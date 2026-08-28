@@ -100,7 +100,7 @@
     .filter-grid{ grid-template-columns:repeat(2, minmax(0,1fr)); gap:20px; }
   }
   @media (max-width: 480px){
-    .filter-grid{ grid-template-columns:repeat(2, minmax(0,1fr)); gap:14px; }
+    .filter-grid{ grid-template-columns:1fr; gap:18px; max-width:280px; margin:0 auto; }
   }
 </style>
 </head>
@@ -148,42 +148,42 @@
     <div class="filter-card">
       <div class="filter-frame">
         <span class="filter-rank">#1 US</span>
-        <video src="videos/filter-real-freckles.mp4" autoplay muted loop playsinline></video>
+        <video class="lazy-video" src="videos/filter-real-freckles.mp4" muted loop playsinline preload="none"></video>
       </div>
       <div class="filter-name">Real Freckles</div>
     </div>
     <div class="filter-card">
       <div class="filter-frame">
         <span class="filter-rank">#1 US</span>
-        <video src="videos/filter-attraction.mp4" autoplay muted loop playsinline></video>
+        <video class="lazy-video" src="videos/filter-attraction.mp4" muted loop playsinline preload="none"></video>
       </div>
       <div class="filter-name">Attraction</div>
     </div>
     <div class="filter-card">
       <div class="filter-frame">
         <span class="filter-rank">#1 US</span>
-        <video src="videos/filter-vintage-dv.mp4" autoplay muted loop playsinline></video>
+        <video class="lazy-video" src="videos/filter-vintage-dv.mp4" muted loop playsinline preload="none"></video>
       </div>
       <div class="filter-name">Vintage DV</div>
     </div>
     <div class="filter-card">
       <div class="filter-frame">
         <span class="filter-rank">#1 US</span>
-        <video src="videos/filter-alien.mp4" autoplay muted loop playsinline></video>
+        <video class="lazy-video" src="videos/filter-alien.mp4" muted loop playsinline preload="none"></video>
       </div>
       <div class="filter-name">Alien</div>
     </div>
     <div class="filter-card">
       <div class="filter-frame">
         <span class="filter-rank">#1 US</span>
-        <video src="videos/filter-90s-pink-tv.mp4" autoplay muted loop playsinline></video>
+        <video class="lazy-video" src="videos/filter-90s-pink-tv.mp4" muted loop playsinline preload="none"></video>
       </div>
       <div class="filter-name">90s Pink Tv</div>
     </div>
     <div class="filter-card">
       <div class="filter-frame">
         <span class="filter-rank">#1 US</span>
-        <video src="videos/filter-brown-cowgirl.mp4" autoplay muted loop playsinline></video>
+        <video class="lazy-video" src="videos/filter-brown-cowgirl.mp4" muted loop playsinline preload="none"></video>
       </div>
       <div class="filter-name">Brown Cowgirl</div>
     </div>
@@ -204,5 +204,26 @@
   </div>
 </div>
 
+<script>
+(function(){
+  var videos = document.querySelectorAll('video.lazy-video');
+  if (!videos.length) return;
+  if (typeof IntersectionObserver === 'undefined') {
+    videos.forEach(function(v){ v.setAttribute('preload','auto'); v.play().catch(function(){}); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      var v = entry.target;
+      if (entry.isIntersecting) {
+        v.play().catch(function(){});
+      } else {
+        v.pause();
+      }
+    });
+  }, { threshold: 0.4 });
+  videos.forEach(function(v){ io.observe(v); });
+})();
+</script>
 </body>
 </html>
