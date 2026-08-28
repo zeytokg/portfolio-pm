@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zeynep Tokgözlü — Instagram Filters</title>
+<meta name="description" content="120+ Spark AR filters, 47.2B impressions across Instagram — performance-driven AR creative work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: oklch(98.2% 0.004 90);
+    --bg-alt: oklch(96% 0.006 95);
+    --ink: oklch(21% 0.012 90);
+    --ink-soft: oklch(40% 0.014 90);
+    --ink-faint: oklch(56% 0.012 90);
+    --line: oklch(85% 0.008 90);
+    --line-strong: oklch(72% 0.01 90);
+    --accent: #D5A900;
+    --accent-hover: #B18D00;
+    --accent-soft: #FFF3B0;
+    --card: oklch(100% 0 0);
+    --on-accent: oklch(16% 0.02 90);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg: oklch(16% 0.01 90);
+      --bg-alt: oklch(20% 0.012 90);
+      --ink: oklch(94% 0.006 90);
+      --ink-soft: oklch(76% 0.012 90);
+      --ink-faint: oklch(58% 0.012 90);
+      --line: oklch(32% 0.014 90);
+      --line-strong: oklch(42% 0.014 90);
+      --accent: #E8C239;
+      --accent-hover: #F3D25B;
+      --accent-soft: oklch(32% 0.05 95);
+      --card: oklch(21% 0.012 90);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg: oklch(16% 0.01 90);
+    --bg-alt: oklch(20% 0.012 90);
+    --ink: oklch(94% 0.006 90);
+    --ink-soft: oklch(76% 0.012 90);
+    --ink-faint: oklch(58% 0.012 90);
+    --line: oklch(32% 0.014 90);
+    --line-strong: oklch(42% 0.014 90);
+    --accent: #E8C239;
+    --accent-hover: #F3D25B;
+    --accent-soft: oklch(32% 0.05 95);
+    --card: oklch(21% 0.012 90);
+  }
+  *{ box-sizing: border-box; }
+  body{ margin:0; background: var(--bg); color: var(--ink); font-family: "Source Serif 4", Georgia, serif; }
+  h1,h2{ font-family: "Source Serif 4", Georgia, serif; font-weight: 600; margin: 0; text-wrap: balance; }
+  p{ margin:0; }
+  a{ color: var(--accent); text-decoration: none; }
+  a:hover{ color: var(--accent-hover); text-decoration: underline; }
+  a:focus-visible, button:focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  @media (prefers-reduced-motion: reduce){ *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; } }
+
+  .container{ max-width: 1080px; margin: 0 auto; padding: 0 40px; }
+  .label{ font-family:"Work Sans", sans-serif; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); font-weight: 600; }
+  .label-accent{ color: var(--accent); }
+  .nav-btn{ font-family:"Work Sans", sans-serif; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; font-weight:700; color:var(--nav-color, var(--ink)) !important; border:1.5px solid var(--nav-color, var(--line)); padding:8px 14px; border-radius:999px; text-decoration:none !important; display:inline-flex; align-items:center; gap:6px; transition: background .2s ease, transform .2s ease, box-shadow .2s ease; }
+  .nav-btn:hover{ background:color-mix(in srgb, var(--nav-color, var(--accent)) 16%, transparent); transform:translateY(-2px); box-shadow:0 6px 16px -6px color-mix(in srgb, var(--nav-color, var(--accent)) 45%, transparent); }
+  .nav-btn .arrow{ display:inline-block; opacity:0; transform:translateX(-4px); transition:opacity .2s ease, transform .2s ease; }
+  .nav-btn:hover .arrow{ opacity:1; transform:translateX(0); }
+  @keyframes fadeUp{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:translateY(0); } }
+  .fade-up{ animation: fadeUp .7s cubic-bezier(.16,.8,.3,1) both; }
+  .fade-up-d1{ animation-delay:.08s; }
+  .fade-up-d2{ animation-delay:.16s; }
+  .fade-up-d3{ animation-delay:.24s; }
+  .rule{ border:none; border-top: 1px solid var(--line); margin:0; }
+  .section{ padding: 64px 0; }
+  .topbar{ display:flex; justify-content:space-between; align-items:center; padding: 28px 0; flex-wrap:wrap; gap:14px 12px; }
+  .section-label{ font-family:"Work Sans", sans-serif; font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-soft); padding-bottom:12px; border-bottom:1px solid var(--line); margin-bottom:28px; }
+
+  .ig-badge{ width:56px; height:56px; border-radius:16px; background:linear-gradient(135deg,#f9ce34,#ee2a7b,#6228d7); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .ig-badge svg{ width:30px; height:30px; }
+
+  .stat-grid{ display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:28px 24px; margin-bottom:60px; }
+  .stat-num{ font-size:clamp(20px, 5vw, 28px); font-weight:600; }
+  .stat-label{ font-family:"Work Sans", sans-serif; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-faint); margin-top:4px; }
+
+  .filter-grid{ display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:32px; }
+  .filter-card{ display:flex; flex-direction:column; gap:12px; }
+  .filter-frame{ position:relative; width:100%; aspect-ratio:9/16; border-radius:16px; overflow:hidden; border:1px solid var(--line); background:var(--card); }
+  .filter-frame video{ width:100%; height:100%; object-fit:cover; display:block; }
+  .filter-rank{ position:absolute; top:10px; left:10px; font-family:"Work Sans", sans-serif; font-size:10px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:var(--on-accent); background:var(--accent); padding:4px 9px; border-radius:999px; }
+  .filter-name{ font-family:"Work Sans", sans-serif; font-size:14px; font-weight:600; color:var(--ink); }
+
+  @media (max-width: 860px){
+    .container{ padding: 0 24px; }
+    .section{ padding: 44px 0; }
+    .stat-grid{ grid-template-columns:repeat(2, minmax(0,1fr)); gap:28px 20px; }
+    .filter-grid{ grid-template-columns:repeat(2, minmax(0,1fr)); gap:20px; }
+  }
+  @media (max-width: 480px){
+    .filter-grid{ grid-template-columns:repeat(2, minmax(0,1fr)); gap:14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="topbar fade-up">
+    <a href="index.html" class="label" style="text-decoration:none;">← Portfolio</a>
+    <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+      <a href="tools.html" class="nav-btn" style="--nav-color:#4C8BF5;" title="Go to page">Tools &amp; Platforms<span class="arrow">→</span></a>
+      <a href="mobile-gaming.html" class="nav-btn" style="--nav-color:#8B5CF6;" title="Go to page">F2P Products<span class="arrow">→</span></a>
+      <a href="snapchat-filters.html" class="nav-btn" style="--nav-color:#CBA400;" title="Go to page">Snapchat Filters<span class="arrow">→</span></a>
+      <a href="casual-games.html" class="nav-btn" style="--nav-color:#10B981;" title="Go to page">Casual Products<span class="arrow">→</span></a>
+    </div>
+  </div>
+</div>
+<hr class="rule">
+
+<div class="container section">
+  <div class="fade-up fade-up-d1" style="display:flex; align-items:center; gap:18px; margin-bottom:20px;">
+    <div class="ig-badge">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="white"/></svg>
+    </div>
+    <div>
+      <div class="label label-accent" style="margin-bottom:6px;">AR / Creative tech</div>
+      <h1 style="font-size:clamp(26px, 7vw, 34px);">Instagram Filters</h1>
+    </div>
+  </div>
+  <p style="font-family:'Work Sans', sans-serif; font-size:15px; color:var(--ink-faint); line-height:1.7; margin-bottom:16px; max-width:680px;">Since 2019, I've developed over 120 creative AR filters using Spark AR, generating 47.2 billion impressions across Instagram. My work has ranked in the top tier of Spark AR challenges (e.g. Cyberpunk 2077, Holiday Spark), and I've actively contributed to the Spark AR Hub initiative by coordinating directly with Meta's product team.</p>
+  <p style="font-family:'Work Sans', sans-serif; font-size:15px; color:var(--ink-faint); line-height:1.7; margin-bottom:48px; max-width:680px;">These effects were designed with performance metrics in mind — optimizing for engagement, shareability, and visual retention.</p>
+
+  <div class="section-label">Facebook Insights</div>
+  <div class="stat-grid">
+    <div><div class="stat-num">4.4B</div><div class="stat-label">Opens</div></div>
+    <div><div class="stat-num">1.4B</div><div class="stat-label">Captures</div></div>
+    <div><div class="stat-num">458.9M</div><div class="stat-label">Saves</div></div>
+    <div><div class="stat-num">54.4M</div><div class="stat-label">Shares</div></div>
+    <div><div class="stat-num">125.3M</div><div class="stat-label">Uses</div></div>
+    <div><div class="stat-num">47.2B</div><div class="stat-label">Impressions</div></div>
+    <div><div class="stat-num">9s</div><div class="stat-label">Average time open</div></div>
+  </div>
+
+  <div class="section-label">Celebrities with my filters</div>
+  <div class="filter-grid">
+    <div class="filter-card">
+      <div class="filter-frame">
+        <span class="filter-rank">#1 US</span>
+        <video src="videos/filter-real-freckles.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="filter-name">Real Freckles</div>
+    </div>
+    <div class="filter-card">
+      <div class="filter-frame">
+        <span class="filter-rank">#1 US</span>
+        <video src="videos/filter-attraction.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="filter-name">Attraction</div>
+    </div>
+    <div class="filter-card">
+      <div class="filter-frame">
+        <span class="filter-rank">#1 US</span>
+        <video src="videos/filter-vintage-dv.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="filter-name">Vintage DV</div>
+    </div>
+    <div class="filter-card">
+      <div class="filter-frame">
+        <span class="filter-rank">#1 US</span>
+        <video src="videos/filter-alien.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="filter-name">Alien</div>
+    </div>
+    <div class="filter-card">
+      <div class="filter-frame">
+        <span class="filter-rank">#1 US</span>
+        <video src="videos/filter-90s-pink-tv.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="filter-name">90s Pink Tv</div>
+    </div>
+    <div class="filter-card">
+      <div class="filter-frame">
+        <span class="filter-rank">#1 US</span>
+        <video src="videos/filter-brown-cowgirl.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="filter-name">Brown Cowgirl</div>
+    </div>
+  </div>
+</div>
+<hr class="rule">
+
+<div class="container" style="padding:56px 0;">
+  <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px;">
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      <h2 style="font-size:clamp(20px, 5vw, 24px);">Let's talk about your product.</h2>
+      <div style="display:flex; gap:18px; flex-wrap:wrap; font-family:'Work Sans', sans-serif; font-size:14px;">
+        <a href="mailto:zeyneptokg@gmail.com">zeyneptokg@gmail.com</a>
+        <a href="https://www.linkedin.com/in/zeytokg/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <div class="label" style="letter-spacing:0.08em;">Turkish (Native) · English (C1) · Italian (A2)</div>
+  </div>
+</div>
+
+</body>
+</html>

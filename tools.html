@@ -63,9 +63,18 @@
   .container{ max-width: 1080px; margin: 0 auto; padding: 0 40px; }
   .label{ font-family:"Work Sans", sans-serif; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); font-weight: 600; }
   .label-accent{ color: var(--accent); }
+  .nav-btn{ font-family:"Work Sans", sans-serif; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; font-weight:700; color:var(--nav-color, var(--ink)) !important; border:1.5px solid var(--nav-color, var(--line)); padding:8px 14px; border-radius:999px; text-decoration:none !important; display:inline-flex; align-items:center; gap:6px; transition: background .2s ease, transform .2s ease, box-shadow .2s ease; }
+  .nav-btn:hover{ background:color-mix(in srgb, var(--nav-color, var(--accent)) 16%, transparent); transform:translateY(-2px); box-shadow:0 6px 16px -6px color-mix(in srgb, var(--nav-color, var(--accent)) 45%, transparent); }
+  .nav-btn .arrow{ display:inline-block; opacity:0; transform:translateX(-4px); transition:opacity .2s ease, transform .2s ease; }
+  .nav-btn:hover .arrow{ opacity:1; transform:translateX(0); }
+  @keyframes fadeUp{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:translateY(0); } }
+  .fade-up{ animation: fadeUp .7s cubic-bezier(.16,.8,.3,1) both; }
+  .fade-up-d1{ animation-delay:.08s; }
+  .fade-up-d2{ animation-delay:.16s; }
+  .fade-up-d3{ animation-delay:.24s; }
   .rule{ border:none; border-top: 1px solid var(--line); margin:0; }
   .section{ padding: 64px 0; }
-  .topbar{ display:flex; justify-content:space-between; align-items:center; padding: 28px 0; }
+  .topbar{ display:flex; justify-content:space-between; align-items:center; padding: 28px 0; flex-wrap:wrap; gap:14px 12px; }
 
   .tool-category{ font-family:"Work Sans", sans-serif; font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-soft); padding-bottom:12px; border-bottom:1px solid var(--line); margin-bottom:28px; }
   .tool-grid{ display:grid; grid-template-columns:repeat(6, minmax(0,1fr)); gap:28px 16px; margin-bottom:56px; }
@@ -91,20 +100,25 @@
 <body>
 
 <div class="container">
-  <div class="topbar">
+  <div class="topbar fade-up">
     <a href="index.html" class="label" style="text-decoration:none;">← Portfolio</a>
-    <div class="label">Milan, Italy · Open to work</div>
+    <div style="display:flex; gap:24px; align-items:center; flex-wrap:wrap;">
+      <a href="mobile-gaming.html" class="nav-btn" style="--nav-color:#8B5CF6;" title="Go to page">F2P Products<span class="arrow">→</span></a>
+      <a href="instagram-filters.html" class="nav-btn" style="--nav-color:#E1306C;" title="Go to page">Instagram Filters<span class="arrow">→</span></a>
+      <a href="snapchat-filters.html" class="nav-btn" style="--nav-color:#CBA400;" title="Go to page">Snapchat Filters<span class="arrow">→</span></a>
+      <a href="casual-games.html" class="nav-btn" style="--nav-color:#10B981;" title="Go to page">Casual Products<span class="arrow">→</span></a>
+    </div>
   </div>
 </div>
 <hr class="rule">
 
 <div class="container section">
   <div class="label label-accent" style="margin-bottom:10px;">Product stack</div>
-  <h1 style="font-size:34px; margin-bottom:10px;">Tools &amp; Platforms</h1>
+  <h1 style="font-size:clamp(26px, 7vw, 34px); margin-bottom:10px;">Tools &amp; Platforms</h1>
   <p style="font-family:'Work Sans', sans-serif; font-size:15px; color:var(--ink-faint); margin-bottom:48px; max-width:640px;">Product delivery, collaboration, analytics, LiveOps, AI, design, prototyping, and technical tools.</p>
 
-  <div class="tool-category">Product &amp; Delivery</div>
-  <div class="tool-grid">
+  <div class="tool-category fade-up fade-up-d1">Product &amp; Delivery</div>
+  <div class="tool-grid fade-up fade-up-d1">
     <a class="tool" href="https://www.atlassian.com/software/jira" target="_blank" rel="noopener"><div class="tool-icon"><img src="https://cdn.simpleicons.org/jira" alt="" loading="lazy"></div><div class="tool-name">Jira</div></a>
     <a class="tool" href="https://www.atlassian.com/software/confluence" target="_blank" rel="noopener"><div class="tool-icon"><img src="https://cdn.simpleicons.org/confluence" alt="" loading="lazy"></div><div class="tool-name">Confluence</div></a>
     <a class="tool" href="https://www.notion.so" target="_blank" rel="noopener"><div class="tool-icon"><img src="https://cdn.simpleicons.org/notion" alt="" loading="lazy"></div><div class="tool-name">Notion</div></a>
@@ -153,7 +167,7 @@
 <div class="container" style="padding:56px 0;">
   <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px;">
     <div style="display:flex; flex-direction:column; gap:10px;">
-      <h2 style="font-size:24px;">Let's talk about your product.</h2>
+      <h2 style="font-size:clamp(20px, 5vw, 24px);">Let's talk about your product.</h2>
       <div style="display:flex; gap:18px; flex-wrap:wrap; font-family:'Work Sans', sans-serif; font-size:14px;">
         <a href="mailto:zeyneptokg@gmail.com">zeyneptokg@gmail.com</a>
         <a href="https://www.linkedin.com/in/zeytokg/" target="_blank" rel="noopener">LinkedIn</a>
