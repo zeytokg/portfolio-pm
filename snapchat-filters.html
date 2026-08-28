@@ -67,6 +67,8 @@
   .nav-btn:hover{ background:color-mix(in srgb, var(--nav-color, var(--accent)) 16%, transparent); transform:translateY(-2px); box-shadow:0 6px 16px -6px color-mix(in srgb, var(--nav-color, var(--accent)) 45%, transparent); }
   .nav-btn .arrow{ display:inline-block; opacity:0; transform:translateX(-4px); transition:opacity .2s ease, transform .2s ease; }
   .nav-btn:hover .arrow{ opacity:1; transform:translateX(0); }
+  .email-cta{ display:inline-flex; align-items:center; gap:8px; background:var(--accent); color:var(--on-accent) !important; font-family:"Work Sans", sans-serif; font-weight:700; font-size:13px; padding:12px 22px; border-radius:999px; text-decoration:none !important; transition:background .2s ease, transform .2s ease; }
+  .email-cta:hover{ background:var(--accent-hover); transform:translateY(-2px); }
   @keyframes fadeUp{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:translateY(0); } }
   .fade-up{ animation: fadeUp .7s cubic-bezier(.16,.8,.3,1) both; }
   .fade-up-d1{ animation-delay:.08s; }
@@ -110,7 +112,7 @@
 
 <div class="container">
   <div class="topbar fade-up">
-    <a href="index.html" class="label" style="text-decoration:none;">← Portfolio</a>
+    <a href="https://zeytokg.github.io/portfolio-pm/" class="label" style="text-decoration:none;">← Portfolio</a>
     <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
       <a href="tools.html" class="nav-btn" style="--nav-color:#4C8BF5;" title="Go to page">Tools &amp; Platforms<span class="arrow">→</span></a>
       <a href="mobile-gaming.html" class="nav-btn" style="--nav-color:#8B5CF6;" title="Go to page">F2P Products<span class="arrow">→</span></a>
@@ -181,9 +183,10 @@
 <div class="container" style="padding:56px 0;">
   <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px;">
     <div style="display:flex; flex-direction:column; gap:10px;">
-      <h2 style="font-size:clamp(20px, 5vw, 24px);">Let's talk about your product.</h2>
-      <div style="display:flex; gap:18px; flex-wrap:wrap; font-family:'Work Sans', sans-serif; font-size:14px;">
-        <a href="mailto:zeyneptokg@gmail.com">zeyneptokg@gmail.com</a>
+      <h2 style="font-size:clamp(20px, 5vw, 24px); margin-bottom:6px;">Want to work together?</h2>
+      <p style="font-family:'Work Sans', sans-serif; font-size:14px; color:var(--ink-faint); margin-bottom:16px; max-width:420px;">Have a role, a product challenge, or just want to say hi — I'd love to hear from you.</p>
+      <div style="display:flex; gap:18px; flex-wrap:wrap; align-items:center; font-family:'Work Sans', sans-serif; font-size:14px;">
+        <a class="email-cta" href="mailto:zeyneptokg@gmail.com?subject=Let%27s%20work%20together&amp;body=Hi%20Zeynep%2C%0A%0A">✉ Email me</a>
         <a href="https://www.linkedin.com/in/zeytokg/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
