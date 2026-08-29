@@ -4,8 +4,8 @@
    instead of duplicating content. Desktop order is restored if the window
    is resized back above the breakpoint. */
 (function(){
-  var MOBILE_ORDER = ['hero','selected-work','ways-i-can-help','stats','feedback','testimonials','education','contact'];
-  var DESKTOP_ORDER = ['hero','stats','selected-work','ways-i-can-help','feedback','testimonials','education','contact'];
+  var MOBILE_ORDER = ['hero','selected-work','ways-i-can-help','stats','feedback','testimonials','talks','education','contact'];
+  var DESKTOP_ORDER = ['hero','stats','selected-work','ways-i-can-help','feedback','testimonials','talks','education','contact'];
   var anchor = document.querySelector('body > script');
   function apply(order){
     if (!anchor) return;
