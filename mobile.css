@@ -1,16 +1,15 @@
-/* Mobile-only homepage experience: hero CTAs, section toggles, hamburger nav.
+/* Mobile-only homepage experience: hero CTAs, section toggles, compact case cards.
    Kept separate from index.html's main stylesheet so the mobile layout logic
    doesn't get mixed in with the core design system. */
 
 .hero-cta-mobile{ display:none; }
 .mobile-only{ display:none; }
-.hamburger-nav{ display:none; }
 
 @media (max-width: 860px){
   .hero-cta-desktop{ display:none !important; }
   .hero-cta-mobile{ display:flex !important; }
   .mobile-only{ display:block; }
   .desktop-only{ display:none !important; }
-  .hamburger-nav{ display:flex !important; }
-  .desktop-inline-nav{ display:none !important; }
+  /* Case study cards: keep the headline + the metric box, drop the descriptive sentence */
+  .case p{ display:none; }
 }
