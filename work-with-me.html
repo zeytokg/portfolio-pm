@@ -343,6 +343,163 @@
     .back-to-top{ right:calc(160px + env(safe-area-inset-right)); }
     .topbar{ padding-left:108px; }
   }
+
+  /* Highlighted CV download tabs */
+  .cv-download-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:14px;
+    margin-top:22px;
+  }
+
+  .cv-download-card{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    min-height:205px;
+    padding:20px;
+    border:1.5px solid color-mix(in srgb,var(--accent) 55%,var(--line));
+    border-radius:16px;
+    background:
+      linear-gradient(
+        145deg,
+        color-mix(in srgb,var(--accent-soft) 82%,var(--card)),
+        var(--card)
+      );
+    color:var(--ink) !important;
+    text-decoration:none !important;
+    overflow:hidden;
+    transition:
+      transform .22s ease,
+      box-shadow .22s ease,
+      border-color .22s ease,
+      background .22s ease;
+  }
+
+  .cv-download-card::after{
+    content:"";
+    position:absolute;
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    top:-58px;
+    right:-50px;
+    background:color-mix(in srgb,var(--accent) 20%,transparent);
+    pointer-events:none;
+  }
+
+  .cv-download-card:hover,
+  .cv-download-card:focus-visible{
+    transform:translateY(-5px);
+    border-color:var(--accent);
+    background:
+      linear-gradient(
+        145deg,
+        color-mix(in srgb,var(--accent-soft) 96%,var(--card)),
+        var(--card)
+      );
+    box-shadow:
+      0 16px 34px -14px color-mix(in srgb,var(--accent) 52%,transparent),
+      0 0 24px color-mix(in srgb,var(--accent) 20%,transparent);
+  }
+
+  .cv-tab-label{
+    display:inline-flex;
+    align-items:center;
+    width:fit-content;
+    gap:6px;
+    padding:5px 9px;
+    border-radius:999px;
+    background:var(--accent);
+    color:var(--on-accent);
+    font-family:"Work Sans",sans-serif;
+    font-size:9px;
+    line-height:1;
+    font-weight:800;
+    letter-spacing:.11em;
+    text-transform:uppercase;
+  }
+
+  .cv-download-title{
+    font-family:"Source Serif 4",Georgia,serif;
+    font-size:18px;
+    font-weight:600;
+    line-height:1.25;
+    padding-right:20px;
+  }
+
+  .cv-download-copy{
+    font-family:"Work Sans",sans-serif;
+    font-size:13px;
+    line-height:1.55;
+    color:var(--ink-soft);
+  }
+
+  .cv-download-action{
+    margin-top:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding-top:12px;
+    border-top:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));
+    color:var(--accent-hover);
+    font-family:"Work Sans",sans-serif;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.03em;
+  }
+
+  .cv-download-arrow{
+    font-size:18px;
+    transition:transform .2s ease;
+  }
+
+  .cv-download-card:hover .cv-download-arrow,
+  .cv-download-card:focus-visible .cv-download-arrow{
+    transform:translateY(2px);
+  }
+
+  .cv-download-card.references{
+    grid-column:1 / -1;
+    min-height:auto;
+    display:grid;
+    grid-template-columns:auto minmax(0,1fr) auto;
+    align-items:center;
+    column-gap:16px;
+  }
+
+  .cv-download-card.references .cv-download-action{
+    margin-top:0;
+    padding-top:0;
+    border-top:0;
+    min-width:150px;
+  }
+
+  @media (max-width:860px){
+    .cv-download-grid{
+      grid-template-columns:1fr;
+    }
+
+    .cv-download-card{
+      min-height:0;
+    }
+
+    .cv-download-card.references{
+      grid-column:auto;
+      display:flex;
+      align-items:stretch;
+    }
+
+    .cv-download-card.references .cv-download-action{
+      margin-top:auto;
+      padding-top:12px;
+      border-top:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));
+      min-width:0;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -408,28 +565,53 @@
 <!-- DOWNLOAD CV -->
 <div class="container section-block reveal" id="download-cv">
   <div class="label label-accent" style="margin-bottom:10px;">Resources</div>
-  <h2 style="font-size:clamp(22px, 5vw, 28px); margin-bottom:24px;">Download My CV</h2>
-  <div class="help-cards-grid stagger">
-    <div class="help-card">
-      <h3 style="font-size:18px;">Senior Product Manager CV</h3>
-      <p style="font-family:'Work Sans', sans-serif; font-size:14px; line-height:1.6; color:var(--ink-soft);">Full-time &amp; B2B product roles.</p>
-      <a href="cv/Zeynep_Tokgozlu_CV.pdf" download style="font-family:'Work Sans', sans-serif; font-size:13px; font-weight:600;">Download CV →</a>
-    </div>
-    <div class="help-card">
-      <h3 style="font-size:18px;">Game Product &amp; Creative Consultant</h3>
-      <p style="font-family:'Work Sans', sans-serif; font-size:14px; line-height:1.6; color:var(--ink-soft);">Game design, F2P, creative &amp; AR.</p>
-      <a href="cv/Zeynep_Tokgozlu_CV_Game_Product_Consultant.pdf" download style="font-family:'Work Sans', sans-serif; font-size:13px; font-weight:600;">Download CV →</a>
-    </div>
-    <div class="help-card">
-      <h3 style="font-size:18px;">Social &amp; Organic Growth Consultant</h3>
-      <p style="font-family:'Work Sans', sans-serif; font-size:14px; line-height:1.6; color:var(--ink-soft);">Content, social media &amp; organic growth.</p>
-      <a href="cv/Zeynep_Tokgozlu_CV_Organic_Growth_Consultant.pdf" download style="font-family:'Work Sans', sans-serif; font-size:13px; font-weight:600;">Download CV →</a>
-    </div>
-    <div class="help-card" style="grid-column:1 / -1;">
-      <h3 style="font-size:18px;">References</h3>
-      <p style="font-family:'Work Sans', sans-serif; font-size:14px; line-height:1.6; color:var(--ink-soft);">Written recommendations from clients, peers and direct reports.</p>
-      <a href="Zeynep_Tokgozlu_References.pdf" download style="font-family:'Work Sans', sans-serif; font-size:13px; font-weight:600;">Download References →</a>
-    </div>
+  <h2 style="font-size:clamp(22px, 5vw, 28px); margin-bottom:8px;">Download My CV</h2>
+  <p style="font-family:'Work Sans', sans-serif; font-size:14px; line-height:1.6; color:var(--ink-soft); max-width:640px;">
+    Pick the version that best matches the role or project.
+  </p>
+
+  <div class="cv-download-grid stagger">
+    <a class="cv-download-card" href="cv/Zeynep_Tokgozlu_CV.pdf" download>
+      <span class="cv-tab-label">CV · Product</span>
+      <span class="cv-download-title">Senior Product Manager</span>
+      <span class="cv-download-copy">Full-time, B2B and senior product-management roles.</span>
+      <span class="cv-download-action">
+        <span>Download PDF</span>
+        <span class="cv-download-arrow">↓</span>
+      </span>
+    </a>
+
+    <a class="cv-download-card" href="cv/Zeynep_Tokgozlu_CV_Game_Product_Consultant.pdf" download>
+      <span class="cv-tab-label">CV · Game</span>
+      <span class="cv-download-title">Game Product &amp; Creative Consultant</span>
+      <span class="cv-download-copy">Game design, F2P systems, monetization, creative and AR.</span>
+      <span class="cv-download-action">
+        <span>Download PDF</span>
+        <span class="cv-download-arrow">↓</span>
+      </span>
+    </a>
+
+    <a class="cv-download-card" href="cv/Zeynep_Tokgozlu_CV_Organic_Growth_Consultant.pdf" download>
+      <span class="cv-tab-label">CV · Growth</span>
+      <span class="cv-download-title">Social &amp; Organic Growth Consultant</span>
+      <span class="cv-download-copy">Content, social media, organic growth and creative experimentation.</span>
+      <span class="cv-download-action">
+        <span>Download PDF</span>
+        <span class="cv-download-arrow">↓</span>
+      </span>
+    </a>
+
+    <a class="cv-download-card references" href="Zeynep_Tokgozlu_References.pdf" download>
+      <span class="cv-tab-label">References</span>
+      <span>
+        <span class="cv-download-title" style="display:block;">Written Recommendations</span>
+        <span class="cv-download-copy" style="display:block; margin-top:4px;">Recommendations from clients, peers and direct reports.</span>
+      </span>
+      <span class="cv-download-action">
+        <span>Download References</span>
+        <span class="cv-download-arrow">↓</span>
+      </span>
+    </a>
   </div>
 </div>
 <hr class="rule">
