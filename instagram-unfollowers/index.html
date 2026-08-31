@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instagram Unfollowers Finder — by zeytokg</title>
+<meta name="description" content="Find Instagram accounts you follow that do not follow you back. Local-first Chrome extension and browser-console tool by zeytokg.">
+<meta name="theme-color" content="#ff4f93">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fffafc;
+  --bg2:#fff5f9;
+  --card:#ffffff;
+  --ink:#20191d;
+  --soft:#655a61;
+  --faint:#93868e;
+  --line:#ecdce5;
+  --pink:#ff4f93;
+  --pink2:#f2317e;
+  --pink-soft:#ffe6f0;
+  --purple:#8358ff;
+  --shadow:0 26px 70px rgba(114,31,67,.12);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#171215;
+    --bg2:#21171c;
+    --card:#221a1f;
+    --ink:#fff5f9;
+    --soft:#d6c3cd;
+    --faint:#9d8994;
+    --line:#40303a;
+    --pink:#ff6aa4;
+    --pink2:#ff87b5;
+    --pink-soft:#442131;
+    --purple:#a68cff;
+    --shadow:0 28px 72px rgba(0,0,0,.34);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--ink);
+  font-family:"Work Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 82% 2%, color-mix(in srgb,var(--pink) 14%,transparent), transparent 28rem),
+    radial-gradient(circle at 5% 30%, color-mix(in srgb,var(--purple) 8%,transparent), transparent 24rem),
+    var(--bg);
+  line-height:1.65;
+}
+a{color:var(--pink);text-decoration:none}
+a:hover{text-decoration:none}
+img{max-width:100%;height:auto}
+.wrap{width:min(1120px,calc(100% - 40px));margin:0 auto}
+.serif{font-family:"Source Serif 4",Georgia,serif}
+.topbar{
+  position:sticky;top:14px;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  margin-top:14px;padding:11px 14px;
+  border:1px solid color-mix(in srgb,var(--line) 80%,transparent);
+  background:color-mix(in srgb,var(--card) 83%,transparent);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-radius:18px;box-shadow:0 8px 32px rgba(0,0,0,.06)
+}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink);font-weight:800}
+.brand img{width:38px;height:38px;border-radius:11px;transition:.22s ease}
+.brand:hover img{transform:translateY(-2px) scale(1.06);filter:drop-shadow(0 0 12px color-mix(in srgb,var(--pink) 65%,transparent))}
+.nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.nav a,.lang-btn{
+  font:700 12px "Work Sans",sans-serif;color:var(--soft);
+  border:1px solid var(--line);background:var(--card);border-radius:999px;
+  padding:8px 12px;cursor:pointer;transition:.2s ease
+}
+.nav a:hover,.lang-btn:hover{color:var(--pink);border-color:var(--pink);box-shadow:0 0 16px color-mix(in srgb,var(--pink) 22%,transparent)}
+.hero{
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr);
+  align-items:center;gap:62px;padding:82px 0 66px
+}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;padding:7px 11px;
+  border:1px solid var(--line);border-radius:999px;color:var(--soft);
+  background:color-mix(in srgb,var(--card) 72%,transparent);
+  font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em
+}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--pink);box-shadow:0 0 0 4px color-mix(in srgb,var(--pink) 18%,transparent)}
+h1{font-size:clamp(46px,7vw,78px);line-height:.98;letter-spacing:-.05em;margin:20px 0}
+.lead{font:400 clamp(18px,2vw,24px)/1.55 "Source Serif 4",Georgia,serif;color:var(--soft);max-width:720px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 22px;border-radius:999px;font-weight:800;
+  border:1.5px solid var(--line);color:var(--ink);background:var(--card);
+  transition:.2s ease
+}
+.btn:hover{transform:translateY(-3px);border-color:var(--pink);box-shadow:0 10px 28px rgba(0,0,0,.09),0 0 24px color-mix(in srgb,var(--pink) 25%,transparent)}
+.btn.primary{background:linear-gradient(135deg,var(--pink),var(--pink2));border-color:transparent;color:#fff;box-shadow:0 12px 30px color-mix(in srgb,var(--pink) 28%,transparent)}
+.btn.primary:hover{box-shadow:0 14px 34px color-mix(in srgb,var(--pink) 45%,transparent)}
+.hero-panel{
+  background:linear-gradient(155deg,color-mix(in srgb,var(--card) 95%,var(--pink) 5%),var(--card));
+  border:1px solid var(--line);border-radius:28px;padding:26px;box-shadow:var(--shadow);
+  position:relative;overflow:hidden;transition:.25s ease
+}
+.hero-panel:hover{transform:translateY(-5px) rotate(-.4deg);box-shadow:0 28px 78px rgba(114,31,67,.17),0 0 34px color-mix(in srgb,var(--pink) 20%,transparent)}
+.hero-panel::before{content:"";position:absolute;width:220px;height:220px;border-radius:50%;right:-80px;top:-100px;background:color-mix(in srgb,var(--pink) 12%,transparent)}
+.appmark{display:flex;align-items:center;gap:16px;margin-bottom:22px;position:relative}
+.appmark img{width:70px;height:70px;border-radius:20px;box-shadow:0 10px 24px rgba(0,0,0,.12)}
+.appmark strong{display:block;font-size:19px}.appmark span{display:block;color:var(--faint);font-size:13px}
+.mini-list{display:grid;gap:10px;position:relative}
+.mini{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;background:var(--bg2);border:1px solid var(--line);border-radius:14px;color:var(--soft);font-size:13px}
+.tick{color:var(--pink);font-weight:900}
+.section{padding:76px 0;border-top:1px solid var(--line)}
+.section-head{display:grid;grid-template-columns:210px minmax(0,1fr);gap:38px;margin-bottom:32px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:var(--pink)}
+.section h2{font:600 clamp(30px,4.8vw,48px)/1.08 "Source Serif 4",Georgia,serif;margin:0}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;transition:.22s ease}
+.card:hover{transform:translateY(-5px);border-color:color-mix(in srgb,var(--pink) 55%,var(--line));box-shadow:0 16px 38px rgba(0,0,0,.08),0 0 26px color-mix(in srgb,var(--pink) 18%,transparent)}
+.card h3{margin:0 0 8px;font-size:17px}.card p{margin:0;color:var(--soft);font-size:14px}
+.mode-card{position:relative;overflow:hidden}
+.mode-label{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:var(--pink);margin-bottom:14px}
+.steps{display:grid;gap:12px}
+.step{display:grid;grid-template-columns:46px 1fr;gap:14px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:17px}
+.step-num{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--pink-soft);color:var(--pink);font-weight:900}
+.step strong{display:block;margin:2px 0 3px}.step span{color:var(--soft);font-size:14px}
+.shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.shot{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:.22s ease}
+.shot:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.12),0 0 28px color-mix(in srgb,var(--pink) 18%,transparent)}
+.shot img{display:block;width:100%}.shot figcaption{padding:12px 16px;color:var(--soft);font-size:13px}
+details.codebox{background:#181318;color:#f9eaf1;border-radius:20px;border:1px solid #3c2a34;overflow:hidden}
+details.codebox summary{cursor:pointer;padding:18px 20px;font-weight:800;list-style:none;display:flex;justify-content:space-between;gap:14px}
+details.codebox summary::-webkit-details-marker{display:none}
+.code-toolbar{display:flex;justify-content:flex-end;padding:0 16px 12px}
+.copy-btn{border:1px solid #58404d;background:#2c1e25;color:#fff;border-radius:999px;padding:8px 13px;font-weight:800;cursor:pointer}
+pre{margin:0;padding:20px;max-height:430px;overflow:auto;border-top:1px solid #3c2a34;font:12px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre}
+.safety{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:28px;border-radius:22px;background:var(--pink-soft);border:1px solid color-mix(in srgb,var(--pink) 28%,var(--line))}
+.footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:38px 0 58px;border-top:1px solid var(--line);font-size:13px;color:var(--faint)}
+.reveal{opacity:0;transform:translateY(16px);transition:.55s cubic-bezier(.16,.8,.3,1)}
+.reveal.visible{opacity:1;transform:none}
+@media(max-width:860px){
+  .hero{grid-template-columns:1fr;padding-top:48px}
+  .section-head{grid-template-columns:1fr;gap:10px}
+  .grid2,.grid3,.shots{grid-template-columns:1fr}
+  .safety{grid-template-columns:1fr}
+  .topbar{position:relative;top:auto}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="topbar">
+  <a class="brand" href="../">
+    <img src="extension/icons/icon128.png" alt="Instagram Unfollowers Finder icon">
+    <span>Instagram Unfollowers Finder</span>
+  </a>
+  <nav class="nav">
+    <a href="#how" data-en="How it works" data-tr="Nasıl çalışır">How it works</a>
+    <a href="privacy.html" data-en="Privacy" data-tr="Gizlilik">Privacy</a>
+    <a href="security.html" data-en="Security" data-tr="Güvenlik">Security</a>
+    <a href="../" data-en="Portfolio ↗" data-tr="Portfolio ↗">Portfolio ↗</a>
+    <button class="lang-btn" id="langBtn" type="button">TR</button>
+  </nav>
+</header>
+
+<main>
+<section class="hero">
+  <div>
+    <div class="badge"><span class="dot"></span><span data-en="Local-first · no account data sent to me" data-tr="Yerel çalışır · hesap verin bana gönderilmez">Local-first · no account data sent to me</span></div>
+    <h1 class="serif" data-en="See who doesn’t follow you back." data-tr="Seni geri takip etmeyenleri gör.">See who doesn’t follow you back.</h1>
+    <p class="lead" data-en="Scan the accounts you follow, filter the results, and choose what to do next — from a draggable Chrome panel or a one-time console script." data-tr="Takip ettiğin hesapları tara, sonuçları filtrele ve sonraki adımı seç — sürüklenebilir Chrome panelinden veya tek seferlik konsol kodundan.">Scan the accounts you follow, filter the results, and choose what to do next — from a draggable Chrome panel or a one-time console script.</p>
+    <div class="actions">
+      <a class="btn primary" href="instagram-unfollowers-extension.zip" download data-en="♥ Download Chrome Extension" data-tr="♥ Chrome Eklentisini İndir">♥ Download Chrome Extension</a>
+      <a class="btn" href="#console" data-en="Use console version" data-tr="Konsol sürümünü kullan">Use console version</a>
+      <a class="btn" href="privacy.html" data-en="Privacy Policy" data-tr="Gizlilik Politikası">Privacy Policy</a>
+    </div>
+  </div>
+  <aside class="hero-panel">
+    <div class="appmark">
+      <img src="extension/icons/icon128.png" alt="">
+      <div><strong>Instagram Unfollowers</strong><span>by zeytokg</span></div>
+    </div>
+    <div class="mini-list">
+      <div class="mini"><span class="tick">✓</span><span data-en="Scans only when you ask it to." data-tr="Yalnızca sen istediğinde tarar.">Scans only when you ask it to.</span></div>
+      <div class="mini"><span class="tick">✓</span><span data-en="Uses your existing Instagram browser session." data-tr="Tarayıcıdaki mevcut Instagram oturumunu kullanır.">Uses your existing Instagram browser session.</span></div>
+      <div class="mini"><span class="tick">✓</span><span data-en="Search, filters, hide, copy and controlled unfollow actions." data-tr="Arama, filtre, gizle, kopyala ve kontrollü takipten çıkma işlemleri.">Search, filters, hide, copy and controlled unfollow actions.</span></div>
+      <div class="mini"><span class="tick">✓</span><span data-en="No developer-operated account database." data-tr="Geliştirici tarafından tutulan hesap veritabanı yoktur.">No developer-operated account database.</span></div>
+    </div>
+  </aside>
+</section>
+
+<section class="section reveal" id="how">
+  <div class="section-head">
+    <div class="eyebrow" data-en="Two ways to use it" data-tr="İki kullanım yolu">Two ways to use it</div>
+    <h2 data-en="Pick the workflow you prefer." data-tr="İstediğin kullanım şeklini seç.">Pick the workflow you prefer.</h2>
+  </div>
+  <div class="grid2">
+    <article class="card mode-card">
+      <div class="mode-label" data-en="Recommended" data-tr="Önerilen">Recommended</div>
+      <h3 data-en="Chrome extension" data-tr="Chrome eklentisi">Chrome extension</h3>
+      <p data-en="Install once. A draggable heart appears on Instagram; click it, open the panel, then start scanning. No console required." data-tr="Bir kez kur. Instagram’da sürüklenebilir kalp görünür; tıkla, paneli aç ve taramayı başlat. Konsol gerekmez.">Install once. A draggable heart appears on Instagram; click it, open the panel, then start scanning. No console required.</p>
+      <div class="actions"><a class="btn primary" href="instagram-unfollowers-extension.zip" download data-en="Download ZIP" data-tr="ZIP indir">Download ZIP</a></div>
+    </article>
+    <article class="card mode-card">
+      <div class="mode-label" data-en="No install" data-tr="Kurulum yok">No install</div>
+      <h3 data-en="One-time console script" data-tr="Tek seferlik konsol kodu">One-time console script</h3>
+      <p data-en="Open Instagram, paste the published script into DevTools, and run it for the current session. The source stays visible so you can inspect it first." data-tr="Instagram’ı aç, yayınlanan kodu DevTools’a yapıştır ve mevcut oturumda çalıştır. Kaynak kod açık olduğu için önce inceleyebilirsin.">Open Instagram, paste the published script into DevTools, and run it for the current session. The source stays visible so you can inspect it first.</p>
+      <div class="actions"><a class="btn" href="#console" data-en="Show the code" data-tr="Kodu göster">Show the code</a></div>
+    </article>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="section-head">
+    <div class="eyebrow" data-en="Extension setup" data-tr="Eklenti kurulumu">Extension setup</div>
+    <h2 data-en="Install it once, then use it from Instagram." data-tr="Bir kez kur, sonra Instagram içinden kullan.">Install it once, then use it from Instagram.</h2>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div><strong data-en="Download and unzip" data-tr="İndir ve ZIP’ten çıkar">Download and unzip</strong><span data-en="Download the extension ZIP above and extract it to a permanent folder." data-tr="Yukarıdaki eklenti ZIP’ini indir ve kalıcı bir klasöre çıkar.">Download the extension ZIP above and extract it to a permanent folder.</span></div></div>
+    <div class="step"><div class="step-num">2</div><div><strong>chrome://extensions</strong><span data-en="Open Chrome Extensions and turn on Developer mode." data-tr="Chrome Extensions sayfasını aç ve Developer mode’u etkinleştir.">Open Chrome Extensions and turn on Developer mode.</span></div></div>
+    <div class="step"><div class="step-num">3</div><div><strong data-en="Load unpacked" data-tr="Load unpacked">Load unpacked</strong><span data-en="Choose the extracted extension folder, then refresh Instagram." data-tr="Çıkardığın eklenti klasörünü seç, sonra Instagram sayfasını yenile.">Choose the extracted extension folder, then refresh Instagram.</span></div></div>
+    <div class="step"><div class="step-num">4</div><div><strong data-en="Click the heart" data-tr="Kalbe tıkla">Click the heart</strong><span data-en="Drag the heart where you want it, open the panel, and start the scan." data-tr="Kalbi istediğin yere sürükle, paneli aç ve taramayı başlat.">Drag the heart where you want it, open the panel, and start the scan.</span></div></div>
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="section-head">
+    <div class="eyebrow" data-en="Screenshots" data-tr="Ekran görüntüleri">Screenshots</div>
+    <h2 data-en="What the workflow looks like." data-tr="Kullanım akışı böyle görünüyor.">What the workflow looks like.</h2>
+  </div>
+  <div class="shots">
+    <figure class="shot"><img src="Images/step2-open-console.png" alt=""><figcaption data-en="Open the developer console." data-tr="Geliştirici konsolunu aç.">Open the developer console.</figcaption></figure>
+    <figure class="shot"><img src="Images/step3-paste-code.png" alt=""><figcaption data-en="Paste the published script." data-tr="Yayınlanan kodu yapıştır.">Paste the published script.</figcaption></figure>
+    <figure class="shot"><img src="Images/step4-results.png" alt=""><figcaption data-en="Review accounts that do not follow you back." data-tr="Seni geri takip etmeyen hesapları incele.">Review accounts that do not follow you back.</figcaption></figure>
+    <figure class="shot"><img src="Images/step5-select-unfollow.png" alt=""><figcaption data-en="Select the accounts you want to act on." data-tr="İşlem yapmak istediğin hesapları seç.">Select the accounts you want to act on.</figcaption></figure>
+  </div>
+</section>
+
+<section class="section reveal" id="console">
+  <div class="section-head">
+    <div class="eyebrow" data-en="Console version" data-tr="Konsol sürümü">Console version</div>
+    <h2 data-en="Want to inspect the source first? Good." data-tr="Önce kaynak kodu incelemek mi istiyorsun? Güzel.">Want to inspect the source first? Good.</h2>
+  </div>
+  <details class="codebox">
+    <summary><span data-en="Show instagram-unfollowers.js" data-tr="instagram-unfollowers.js dosyasını göster">Show instagram-unfollowers.js</span><span>⌄</span></summary>
+    <div class="code-toolbar"><button class="copy-btn" id="copyBtn" type="button" data-en="Copy code" data-tr="Kodu kopyala">Copy code</button></div>
+    <pre id="code">Loading…</pre>
+  </details>
+</section>
+
+<section class="section reveal">
+  <div class="safety">
+    <div>
+      <div class="eyebrow" data-en="Privacy & verification" data-tr="Gizlilik & doğrulama">Privacy & verification</div>
+      <h2 style="margin-top:8px" data-en="Check what it does before you run it." data-tr="Çalıştırmadan önce ne yaptığını kontrol et.">Check what it does before you run it.</h2>
+      <p style="color:var(--soft);margin:10px 0 0" data-en="The security page explains the published file hash and behavior. The privacy page explains what the extension can process and how the data flow works." data-tr="Güvenlik sayfası yayınlanan dosya hash’ini ve davranışı açıklar. Gizlilik sayfası eklentinin neleri işleyebildiğini ve veri akışını açıklar.">The security page explains the published file hash and behavior. The privacy page explains what the extension can process and how the data flow works.</p>
+    </div>
+    <div class="actions" style="margin:0"><a class="btn" href="security.html" data-en="Security" data-tr="Güvenlik">Security</a><a class="btn" href="privacy.html" data-en="Privacy" data-tr="Gizlilik">Privacy</a></div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <span data-en="Open source · by zeytokg" data-tr="Açık kaynak · by zeytokg">Open source · by zeytokg</span>
+  <span data-en="Not affiliated with Instagram or Meta." data-tr="Instagram veya Meta ile bağlantılı değildir.">Not affiliated with Instagram or Meta.</span>
+</footer>
+</div>
+
+<script>
+const LANG_KEY="igu_site_lang_v2";
+let lang="en";
+function applyLang(next){
+  lang=next==="tr"?"tr":"en";
+  document.documentElement.lang=lang;
+  document.querySelectorAll("[data-en]").forEach(el=>{
+    el.innerHTML=el.getAttribute(lang==="tr"?"data-tr":"data-en");
+  });
+  const b=document.getElementById("langBtn");
+  if(b)b.textContent=lang==="en"?"TR":"EN";
+  try{localStorage.setItem(LANG_KEY,lang)}catch(e){}
+}
+document.getElementById("langBtn").addEventListener("click",()=>applyLang(lang==="en"?"tr":"en"));
+try{const s=localStorage.getItem(LANG_KEY);if(s)applyLang(s)}catch(e){}
+
+let scriptText="";
+fetch("./instagram-unfollowers.js",{cache:"no-store"})
+ .then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.text()})
+ .then(t=>{scriptText=t;document.getElementById("code").textContent=t})
+ .catch(()=>{document.getElementById("code").textContent=lang==="tr"?"Kod yüklenemedi.":"Could not load the script.";});
+
+document.getElementById("copyBtn").addEventListener("click",async()=>{
+  if(!scriptText)return;
+  try{
+    await navigator.clipboard.writeText(scriptText);
+  }catch(e){
+    const ta=document.createElement("textarea");ta.value=scriptText;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();
+  }
+  const b=document.getElementById("copyBtn"), old=b.textContent;
+  b.textContent=lang==="tr"?"Kopyalandı ✓":"Copied ✓";
+  setTimeout(()=>b.textContent=lang==="tr"?"Kodu kopyala":"Copy code",1300);
+});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
