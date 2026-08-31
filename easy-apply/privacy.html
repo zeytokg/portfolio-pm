@@ -202,6 +202,9 @@ h1{font-size:clamp(42px,7vw,76px);line-height:.99;letter-spacing:-.045em;margin:
   }
 }
 
+
+.lang-select{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:7px 10px;font:inherit;font-size:12px;font-weight:800;cursor:pointer}
+.lang-select:hover{border-color:var(--green);box-shadow:0 0 14px color-mix(in srgb,var(--green) 22%,transparent)}
 </style>
 </head>
 <body>
@@ -211,7 +214,7 @@ h1{font-size:clamp(42px,7vw,76px);line-height:.99;letter-spacing:-.045em;margin:
       <img src="assets/store-icon-128x128.png" alt="Automatic Easy Apply Jobs icon">
       <span>Automatic Easy Apply Jobs</span>
     </a>
-    <nav class="nav"><a href="./">App</a><a href="../">zeytokg ↗</a></nav>
+    <nav class="nav"><a href="./">App</a><select class="lang-select" data-site-lang aria-label="Language"><option value="en">EN</option><option value="tr">TR</option></select><a href="../">zeytokg ↗</a></nav>
   </header>
 
   <main class="policy">
@@ -298,5 +301,6 @@ h1{font-size:clamp(42px,7vw,76px);line-height:.99;letter-spacing:-.045em;margin:
     <span><a href="./">App page</a> · <a href="../">Portfolio</a></span>
   </footer>
 </div>
+<script src="site-i18n.js"></script>
 </body>
 </html>

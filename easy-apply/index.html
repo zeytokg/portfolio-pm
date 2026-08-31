@@ -202,6 +202,9 @@ h1{font-size:clamp(42px,7vw,76px);line-height:.99;letter-spacing:-.045em;margin:
   }
 }
 
+
+.lang-select{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:7px 10px;font:inherit;font-size:12px;font-weight:800;cursor:pointer}
+.lang-select:hover{border-color:var(--green);box-shadow:0 0 14px color-mix(in srgb,var(--green) 22%,transparent)}
 </style>
 </head>
 <body>
@@ -215,6 +218,7 @@ h1{font-size:clamp(42px,7vw,76px);line-height:.99;letter-spacing:-.045em;margin:
       <a href="#features">Features</a>
       <a href="#install">Install</a>
       <a href="privacy.html">Privacy</a>
+      <select class="lang-select" data-site-lang aria-label="Language"><option value="en">EN</option><option value="tr">TR</option></select>
       <a href="../">zeytokg ↗</a>
     </nav>
   </header>
@@ -226,7 +230,7 @@ h1{font-size:clamp(42px,7vw,76px);line-height:.99;letter-spacing:-.045em;margin:
         <h1 class="serif">Less form filling.<br>More applying.</h1>
         <p class="lead">Import your profile from a CV, reuse application answers, attach your documents, and immediately see which fields still need your attention.</p>
         <div class="actions">
-          <a class="btn primary" href="downloads/automatic-easy-apply-jobs-v2.10.7.zip" download>↓ Download Extension v2.10.7</a>
+          <a class="btn primary" href="downloads/automatic-easy-apply-jobs-v2.11.0-en-tr.zip" download>↓ Download Extension v2.11.0</a>
           <a class="btn" href="#install">Installation guide</a>
           <a class="btn ghost" href="privacy.html">Privacy Policy</a>
         </div>
@@ -237,7 +241,7 @@ h1{font-size:clamp(42px,7vw,76px);line-height:.99;letter-spacing:-.045em;margin:
           <span class="badge">Unanswered-field alerts</span>
         </div>
         <div class="meta">
-          <span>191 KB ZIP</span>
+          <span>201 KB ZIP</span>
           <span>•</span>
           <span>by zeytokg</span>
           <span>•</span>
@@ -294,9 +298,9 @@ h1{font-size:clamp(42px,7vw,76px);line-height:.99;letter-spacing:-.045em;margin:
         <div class="step"><div><strong>Pin the extension</strong><span>Open a job application, import your profile or fill Settings, then use “Fill this page”.</span></div></div>
       </div>
       <div class="actions" style="margin-top:24px">
-        <a class="btn primary" href="downloads/automatic-easy-apply-jobs-v2.10.7.zip" download>↓ Download v2.10.7 ZIP</a>
+        <a class="btn primary" href="downloads/automatic-easy-apply-jobs-v2.11.0-en-tr.zip" download>↓ Download v2.11.0 ZIP</a>
       </div>
-      <p class="code">SHA-256: fb563b6687ee8721b6ee94e5f684c8b80945b7e0a8d7131ecc6a303b3b6b138a</p>
+      <p class="code">SHA-256: a8b9649968bc8df8fdb35b8e2e645e2f34411f0e627b61bdc7d20d24f3577fb6</p>
     </section>
 
     <section class="section">
@@ -316,5 +320,6 @@ h1{font-size:clamp(42px,7vw,76px);line-height:.99;letter-spacing:-.045em;margin:
     <span><a href="privacy.html">Privacy Policy</a> · <a href="../">Portfolio</a></span>
   </footer>
 </div>
+<script src="site-i18n.js"></script>
 </body>
 </html>

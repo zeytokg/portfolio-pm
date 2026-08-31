@@ -1,20 +1,11 @@
-# Automatic Easy Apply Jobs — GitHub Pages
+# Automatic Easy Apply Jobs — Easy Apply folder
 
-Public landing page for **Automatic Easy Apply Jobs by zeytokg**.
+Drop this `easy-apply` folder next to your existing root `index.html`.
 
-## Publish
+- App: `easy-apply/`
+- Privacy: `easy-apply/privacy.html`
+- Public blank/branded extension: `downloads/automatic-easy-apply-jobs-v2.11.0-en-tr.zip`
+- UI languages: English / Türkçe
+- Extension version: 2.11.0
 
-1. Create a public GitHub repository named `Automatic-Easy-Apply-Jobs`.
-2. Upload the contents of this folder to the repository root.
-3. In GitHub: **Settings → Pages → Deploy from a branch → main / root**.
-4. After deployment:
-   - App: `https://zeytokg.github.io/Automatic-Easy-Apply-Jobs/`
-   - Privacy: `https://zeytokg.github.io/Automatic-Easy-Apply-Jobs/privacy.html`
-
-Use the Privacy URL in the Chrome Web Store privacy-policy field.
-
-The downloadable extension is under `downloads/`.
-
-
-## UI
-Hover glow effects are included on buttons, cards, screenshots, badges, navigation, and the app icon.
+The downloadable extension is the BLANK + BRANDED build. It contains no applicant profile data.
