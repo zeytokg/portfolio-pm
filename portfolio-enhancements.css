@@ -49,6 +49,17 @@ body::before{
   color:var(--accent-hover);
 }
 .portfolio-lang-icon svg{width:17px;height:17px;display:block;}
+.portfolio-lang-flag{
+  width:20px;
+  min-width:20px;
+  height:22px;
+  display:grid;
+  place-items:center;
+  font-size:15px;
+  line-height:1;
+  filter:saturate(1.04);
+  transform:translateY(-.25px);
+}
 .portfolio-lang-label{
   color:var(--ink-soft);
   font:700 10px/1 "Work Sans",sans-serif;
@@ -153,12 +164,13 @@ a:focus-visible,button:focus-visible,select:focus-visible,[role="link"]:focus-vi
 ::selection{background:color-mix(in srgb,var(--accent) 38%,transparent);color:var(--ink);}
 
 @media (max-width:860px){
-  .topbar{display:flex !important;align-items:center !important;gap:8px !important;}
-  .topbar > div:first-child{min-width:0;flex:1 1 auto;display:flex !important;flex-wrap:nowrap !important;overflow-x:auto;scrollbar-width:none;gap:6px !important;}
+  .topbar{display:grid !important;grid-template-columns:minmax(0,1fr) auto !important;align-items:center !important;gap:7px !important;}
+  .topbar > div:first-child{min-width:0;display:flex !important;flex-wrap:nowrap !important;overflow-x:auto !important;overflow-y:hidden !important;scrollbar-width:none;gap:5px !important;}
   .topbar > div:first-child::-webkit-scrollbar{display:none;}
-  .portfolio-lang-wrap{flex:0 0 auto;margin-left:0;min-height:38px;padding:3px 4px 3px 8px;gap:6px;}
+  .portfolio-lang-wrap{flex:0 0 auto;margin-left:0;min-height:40px;padding:3px 4px 3px 7px;gap:5px;}
   .portfolio-lang-label{display:none;}
-  .portfolio-lang-select{min-width:52px;padding:7px 24px 7px 9px;font-size:10px;}
+  .portfolio-lang-flag{width:19px;min-width:19px;font-size:14px;}
+  .portfolio-lang-select{min-width:52px;padding:7px 24px 7px 8px;font-size:10px;}
 
   /* Put portrait beside the name instead of leaving it at the bottom of the card. */
   #hero .hero{display:block !important;position:relative !important;padding:22px 16px !important;}
@@ -287,4 +299,87 @@ a:focus-visible,button:focus-visible,select:focus-visible,[role="link"]:focus-vi
   .back-to-top.show svg{
     animation:none !important;
   }
+}
+
+/* =========================================================
+   MOBILE PORTFOLIO HEADER — shared by index + every inner page
+   Keeps the language control visible and prevents inner-page nav wrapping.
+   ========================================================= */
+@media (max-width:860px){
+  .topbar{
+    position:sticky !important;
+    top:8px !important;
+    z-index:90 !important;
+    width:auto !important;
+    padding:8px 9px !important;
+    margin-top:8px !important;
+    border-radius:14px !important;
+    overflow:visible !important;
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) auto !important;
+    align-items:center !important;
+    gap:7px !important;
+  }
+
+  .topbar.topbar-has-floating-back{
+    margin-left:58px !important;
+  }
+
+  .desktop-inline-nav,
+  .portfolio-main-nav{
+    width:auto !important;
+    min-width:0 !important;
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    align-items:center !important;
+    gap:5px !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    overscroll-behavior-x:contain;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    padding:1px 1px 2px !important;
+  }
+
+  .desktop-inline-nav::-webkit-scrollbar,
+  .portfolio-main-nav::-webkit-scrollbar{display:none;}
+
+  .desktop-inline-nav a,
+  .portfolio-main-nav a{
+    flex:0 0 auto !important;
+    white-space:nowrap !important;
+    font-size:9px !important;
+    line-height:1 !important;
+    letter-spacing:.025em !important;
+    padding:7px 8px !important;
+    border:1px solid var(--line) !important;
+    border-radius:999px !important;
+    background:color-mix(in srgb,var(--card) 92%,transparent) !important;
+    text-decoration:none !important;
+  }
+
+  .portfolio-lang-wrap{
+    margin-left:0 !important;
+    align-self:center !important;
+    min-height:40px !important;
+    padding:3px 4px 3px 7px !important;
+    gap:5px !important;
+  }
+
+  .portfolio-lang-label{display:none !important;}
+  .portfolio-lang-flag{width:19px !important;min-width:19px !important;font-size:14px !important;}
+  .portfolio-lang-select{min-width:52px !important;padding:7px 24px 7px 8px !important;font-size:10px !important;}
+
+  /* Floating Back/Home duplicates the first Home link on inner pages. */
+  .topbar-has-floating-back .portfolio-main-nav > a:first-child{
+    display:none !important;
+  }
+}
+
+@media (max-width:430px){
+  .topbar.topbar-has-floating-back{margin-left:54px !important;}
+  .portfolio-main-nav a,
+  .desktop-inline-nav a{font-size:8.5px !important;padding:7px 7px !important;}
+  .portfolio-lang-wrap{gap:4px !important;padding-left:6px !important;}
+  .portfolio-lang-flag{font-size:13px !important;width:17px !important;min-width:17px !important;}
 }

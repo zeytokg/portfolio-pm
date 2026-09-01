@@ -44,3 +44,8 @@ LANGUAGE PATCH — EASY APPLY + INSTAGRAM UNFOLLOWERS
 - Unsupported device/browser languages fall back to English.
 - A manual language choice is remembered and takes priority until changed.
 - Language controls now use a prominent globe + Language/Dil/Lingua + EN/IT/TR selector, matching the main portfolio UI.
+
+2026-09 mobile header + language flag fix:
+- Main portfolio language control now shows active flag: GB / TR / IT.
+- All inner portfolio pages receive the same compact mobile nav class automatically.
+- Mobile header stays one row; language control remains visible; floating Back/Home gets reserved space.

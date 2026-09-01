@@ -5,6 +5,12 @@
   function addLanguageSwitcher(){
     var topbar=document.querySelector('.topbar');
     if(!topbar || topbar.querySelector('.portfolio-lang-wrap')) return;
+
+    /* All portfolio pages should use the same compact responsive nav. */
+    var nav=topbar.querySelector('.desktop-inline-nav') || topbar.querySelector(':scope > div');
+    if(nav) nav.classList.add('portfolio-main-nav');
+    if(document.querySelector('.back-home-btn')) topbar.classList.add('topbar-has-floating-back');
+
     var wrap=document.createElement('div');
     wrap.className='portfolio-lang-wrap';
 
@@ -12,6 +18,11 @@
     icon.className='portfolio-lang-icon';
     icon.setAttribute('aria-hidden','true');
     icon.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15.3 15.3 0 0 1 0 18M12 3a15.3 15.3 0 0 0 0 18"/></svg>';
+
+    var flag=document.createElement('span');
+    flag.className='portfolio-lang-flag';
+    flag.setAttribute('aria-hidden','true');
+    flag.textContent='🇬🇧';
 
     var label=document.createElement('label');
     label.className='portfolio-lang-label';
@@ -25,10 +36,23 @@
     select.setAttribute('aria-label','Language');
     select.innerHTML='<option value="en">EN</option><option value="it">IT</option><option value="tr">TR</option>';
 
+    function syncFlag(){
+      var flags={en:'🇬🇧',it:'🇮🇹',tr:'🇹🇷'};
+      var code=(select.value || document.documentElement.lang || 'en').toLowerCase().split('-')[0];
+      flag.textContent=flags[code] || flags.en;
+    }
+    select.addEventListener('change',syncFlag);
+
     wrap.appendChild(icon);
+    wrap.appendChild(flag);
     wrap.appendChild(label);
     wrap.appendChild(select);
     topbar.appendChild(wrap);
+    syncFlag();
+
+    if(typeof MutationObserver!=='undefined'){
+      new MutationObserver(syncFlag).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+    }
   }
 
   function markActiveNavigation(){

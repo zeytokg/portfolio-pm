@@ -163,6 +163,8 @@
   function apply(){
     document.documentElement.lang=lang;
     document.querySelectorAll('[data-portfolio-lang]').forEach(function(s){s.value=lang;});
+    var flags={en:'🇬🇧',it:'🇮🇹',tr:'🇹🇷'};
+    document.querySelectorAll('.portfolio-lang-flag').forEach(function(el){el.textContent=flags[lang] || flags.en;});
     applyText(document.body);
     applyAttrs();
     document.title=lookup(titleOriginal);
