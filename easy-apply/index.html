@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Automatic Easy Apply Jobs — by zeytokg</title>
+<meta name="description" content="A local-first Chrome extension that helps fill job applications, attach CVs and cover letters, remember reusable answers, and flag fields that still need review.">
+<meta name="theme-color" content="#14945e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fbfaf6;
+  --card:#ffffff;
+  --ink:#242720;
+  --soft:#5d655e;
+  --faint:#818a82;
+  --line:#dfe4de;
+  --green:#14945e;
+  --green-dark:#0c7447;
+  --green-soft:#e8f7ef;
+  --yellow:#d5a900;
+  --yellow-soft:#fff6c8;
+  --shadow:0 22px 60px rgba(24,55,37,.10);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#141714;
+    --card:#1d211d;
+    --ink:#f2f4f0;
+    --soft:#c0c7c0;
+    --faint:#8d968f;
+    --line:#343b35;
+    --green:#35c985;
+    --green-dark:#72dfa8;
+    --green-soft:#173a28;
+    --yellow:#e8c239;
+    --yellow-soft:#443a16;
+    --shadow:0 22px 60px rgba(0,0,0,.30);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Work Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+a{color:var(--green);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%;height:auto}
+.wrap{width:min(1120px,calc(100% - 40px));margin:0 auto}
+.serif{font-family:"Source Serif 4",Georgia,serif}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:24px 0}
+.brand{display:flex;align-items:center;gap:12px;color:var(--ink);font-weight:800}
+.brand img{width:42px;height:42px;border-radius:12px}
+.nav{display:flex;align-items:center;gap:18px;flex-wrap:wrap;font-size:13px;font-weight:700}
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(330px,.95fr);gap:62px;align-items:center;padding:72px 0 64px}
+.kicker{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid var(--line);border-radius:999px;color:var(--soft);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px color-mix(in srgb,var(--green) 18%,transparent)}
+h1{font-size:clamp(42px,7vw,76px);line-height:.99;letter-spacing:-.045em;margin:20px 0 20px}
+.lead{font-family:"Source Serif 4",Georgia,serif;font-size:clamp(18px,2vw,24px);line-height:1.55;color:var(--soft);max-width:720px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border-radius:999px;font-weight:800;border:1.5px solid var(--line);color:var(--ink);background:var(--card);transition:.18s ease}
+.btn:hover{transform:translateY(-2px);text-decoration:none;box-shadow:0 10px 25px rgba(0,0,0,.08)}
+.btn.primary{background:var(--green);border-color:var(--green);color:white}
+.btn.primary:hover{background:var(--green-dark)}
+.btn.ghost{background:transparent}
+.meta{display:flex;gap:14px;flex-wrap:wrap;margin-top:18px;color:var(--faint);font-size:12px}
+.hero-card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:16px;box-shadow:var(--shadow);transform:rotate(1deg)}
+.hero-card img{display:block;border-radius:16px}
+.section{padding:76px 0;border-top:1px solid var(--line)}
+.section-head{display:grid;grid-template-columns:210px minmax(0,1fr);gap:38px;margin-bottom:34px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:var(--faint)}
+.section h2{font-family:"Source Serif 4",Georgia,serif;font-size:clamp(30px,4.8vw,48px);line-height:1.08;margin:0}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px}
+.card h3{font-size:17px;margin:0 0 8px}
+.card p{margin:0;color:var(--soft);font-size:14px}
+.num{font-family:"Source Serif 4",Georgia,serif;font-size:42px;color:var(--green);line-height:1;margin-bottom:18px}
+.shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.shot{background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow)}
+.shot img{display:block;width:100%}
+.shot p{padding:14px 18px;margin:0;color:var(--soft);font-size:13px}
+.steps{counter-reset:step;display:grid;gap:12px}
+.step{display:grid;grid-template-columns:48px minmax(0,1fr);gap:16px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+.step::before{counter-increment:step;content:counter(step);width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--green-soft);color:var(--green);font-weight:900}
+.step strong{display:block;margin:3px 0 4px}
+.step span{color:var(--soft);font-size:14px}
+.privacy-callout{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center;background:var(--green-soft);border:1px solid color-mix(in srgb,var(--green) 30%,var(--line));border-radius:20px;padding:28px}
+.code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;word-break:break-all;color:var(--faint)}
+.footer{padding:38px 0 56px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:var(--faint);font-size:13px}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.badge{border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:12px;color:var(--soft);background:var(--card)}
+.policy{max-width:820px;margin:0 auto;padding:60px 0 90px}
+.policy h1{font-size:clamp(38px,6vw,62px)}
+.policy h2{font-family:"Source Serif 4",Georgia,serif;font-size:28px;margin:38px 0 10px}
+.policy p,.policy li{color:var(--soft)}
+.policy li{margin:7px 0}
+.notice{border-left:4px solid var(--green);padding:14px 18px;background:var(--green-soft);border-radius:0 12px 12px 0;margin:24px 0}
+@media(max-width:850px){
+  .hero{grid-template-columns:1fr;padding-top:40px}
+  .hero-card{transform:none}
+  .section-head{grid-template-columns:1fr;gap:10px}
+  .grid3,.shots{grid-template-columns:1fr}
+  .privacy-callout{grid-template-columns:1fr}
+  .nav{gap:10px;font-size:12px}
+}
+
+/* Hover glow interactions */
+.brand,
+.card,
+.shot,
+.hero-card,
+.badge,
+.privacy-callout,
+.btn {
+  transition:
+    transform .22s ease,
+    box-shadow .22s ease,
+    border-color .22s ease,
+    filter .22s ease,
+    background-color .22s ease;
+}
+
+.brand img {
+  transition: transform .22s ease, filter .22s ease, box-shadow .22s ease;
+}
+
+.brand:hover {
+  text-decoration: none;
+  color: var(--green);
+}
+
+.brand:hover img {
+  transform: translateY(-2px) scale(1.06);
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--green) 70%, transparent));
+}
+
+.btn:hover {
+  border-color: color-mix(in srgb, var(--green) 78%, var(--line));
+  box-shadow:
+    0 10px 28px rgba(0,0,0,.10),
+    0 0 22px color-mix(in srgb, var(--green) 38%, transparent);
+}
+
+.btn.primary:hover {
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.12),
+    0 0 28px color-mix(in srgb, var(--green) 55%, transparent);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: color-mix(in srgb, var(--green) 58%, var(--line));
+  box-shadow:
+    0 16px 34px rgba(0,0,0,.09),
+    0 0 24px color-mix(in srgb, var(--green) 24%, transparent);
+}
+
+.shot:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--green) 58%, var(--line));
+  box-shadow:
+    0 22px 52px rgba(0,0,0,.14),
+    0 0 28px color-mix(in srgb, var(--green) 24%, transparent);
+}
+
+.hero-card:hover {
+  transform: rotate(0deg) translateY(-5px) scale(1.01);
+  border-color: color-mix(in srgb, var(--green) 58%, var(--line));
+  box-shadow:
+    0 26px 64px rgba(0,0,0,.16),
+    0 0 34px color-mix(in srgb, var(--green) 28%, transparent);
+}
+
+.badge:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--green) 58%, var(--line));
+  color: var(--green);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--green) 22%, transparent);
+}
+
+.privacy-callout:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--green) 62%, var(--line));
+  box-shadow: 0 0 28px color-mix(in srgb, var(--green) 20%, transparent);
+}
+
+.nav a {
+  transition: color .18s ease, text-shadow .18s ease;
+}
+.nav a:hover {
+  color: var(--green);
+  text-decoration: none;
+  text-shadow: 0 0 13px color-mix(in srgb, var(--green) 50%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand, .brand img, .card, .shot, .hero-card, .badge, .privacy-callout, .btn, .nav a {
+    transition: none !important;
+  }
+  .brand:hover img, .card:hover, .shot:hover, .hero-card:hover, .badge:hover, .privacy-callout:hover, .btn:hover {
+    transform: none !important;
+  }
+}
+
+
+.lang-select{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:7px 10px;font:inherit;font-size:12px;font-weight:800;cursor:pointer}
+.lang-select:hover{border-color:var(--green);box-shadow:0 0 14px color-mix(in srgb,var(--green) 22%,transparent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <a class="brand" href="../">
+      <img src="assets/store-icon-128x128.png" alt="Automatic Easy Apply Jobs icon">
+      <span>Automatic Easy Apply Jobs</span>
+    </a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#features">Features</a>
+      <a href="#install">Install</a>
+      <a href="privacy.html">Privacy</a>
+      <select class="lang-select" data-site-lang aria-label="Language"><option value="en">EN</option><option value="it">IT</option><option value="tr">TR</option></select>
+      <a href="../">zeytokg ↗</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="kicker"><span class="dot"></span> Chrome extension · local-first</div>
+        <h1 class="serif">Less form filling.<br>More applying.</h1>
+        <p class="lead">Import your profile from a CV, reuse application answers, attach your documents, and immediately see which fields still need your attention.</p>
+        <div class="actions">
+          <a class="btn primary" href="downloads/automatic-easy-apply-jobs-v2.11.0-en-tr.zip" download>↓ Download Extension v2.11.0</a>
+          <a class="btn" href="#install">Installation guide</a>
+          <a class="btn ghost" href="privacy.html">Privacy Policy</a>
+        </div>
+        <div class="badges">
+          <span class="badge">CV profile import</span>
+          <span class="badge">Resume & cover letter upload</span>
+          <span class="badge">Learned answers</span>
+          <span class="badge">Unanswered-field alerts</span>
+        </div>
+        <div class="meta">
+          <span>201 KB ZIP</span>
+          <span>•</span>
+          <span>by zeytokg</span>
+          <span>•</span>
+          <span>No account required</span>
+        </div>
+      </div>
+      <div class="hero-card">
+        <img src="assets/screenshot-2-1280x800.png" alt="Automatic Easy Apply Jobs extension popup and CV import interface">
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section-head">
+        <div class="eyebrow">What it does</div>
+        <h2>One assistant for repetitive job application work.</h2>
+      </div>
+      <div class="grid3">
+        <article class="card"><div class="num">01</div><h3>Import a profile from your CV</h3><p>Select a CV and let the extension populate reusable contact and professional profile fields locally.</p></article>
+        <article class="card"><div class="num">02</div><h3>Fill common application fields</h3><p>Recognizes common text fields, dropdowns, radio buttons, checkbox groups, salary fields, location fields, and more.</p></article>
+        <article class="card"><div class="num">03</div><h3>Attach your documents</h3><p>Store a CV, cover letter, or portfolio file locally and reuse it on compatible upload and drag-and-drop fields.</p></article>
+        <article class="card"><div class="num">04</div><h3>Remember reusable answers</h3><p>Optionally remember answers you enter manually and reuse them on similar future questions. You can view or delete saved answers anytime.</p></article>
+        <article class="card"><div class="num">05</div><h3>Show what is still missing</h3><p>Unanswered visible fields are highlighted so you can jump directly to the parts that still need manual review.</p></article>
+        <article class="card"><div class="num">06</div><h3>Keep sensitive fields manual</h3><p>Passwords, OTPs, passport/ID numbers, banking and card details, API keys, and similar secrets are excluded from saved answers and autofill.</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="eyebrow">Interface</div>
+        <h2>Use it from the toolbar or directly on the application page.</h2>
+      </div>
+      <div class="shots">
+        <figure class="shot">
+          <img src="assets/screenshot-1-1280x800.png" alt="Draggable on-page job application assistant">
+          <p>Draggable on-page assistant with fill controls and unanswered-field review.</p>
+        </figure>
+        <figure class="shot">
+          <img src="assets/screenshot-2-1280x800.png" alt="Extension popup with CV import and stored documents">
+          <p>Toolbar popup with CV profile import, document status, learned answers, and settings access.</p>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="install">
+      <div class="section-head">
+        <div class="eyebrow">Install manually</div>
+        <h2>Download, unzip, and load it in Chrome.</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><div><strong>Download the extension ZIP</strong><span>Use the green Download Extension button above.</span></div></div>
+        <div class="step"><div><strong>Unzip the downloaded file</strong><span>Keep the extracted extension folder somewhere you will not delete accidentally.</span></div></div>
+        <div class="step"><div><strong>Open <code>chrome://extensions</code></strong><span>Turn on Developer mode in the top-right corner.</span></div></div>
+        <div class="step"><div><strong>Choose “Load unpacked”</strong><span>Select the extracted extension folder — not the ZIP itself.</span></div></div>
+        <div class="step"><div><strong>Pin the extension</strong><span>Open a job application, import your profile or fill Settings, then use “Fill this page”.</span></div></div>
+      </div>
+      <div class="actions" style="margin-top:24px">
+        <a class="btn primary" href="downloads/automatic-easy-apply-jobs-v2.11.0-en-tr.zip" download>↓ Download v2.11.0 ZIP</a>
+      </div>
+      <p class="code">SHA-256: a8b9649968bc8df8fdb35b8e2e645e2f34411f0e627b61bdc7d20d24f3577fb6</p>
+    </section>
+
+    <section class="section">
+      <div class="privacy-callout">
+        <div>
+          <div class="eyebrow" style="color:var(--green)">Privacy</div>
+          <h2 style="margin-top:8px">Your application profile stays local to the extension.</h2>
+          <p style="color:var(--soft);margin:12px 0 0">The extension is designed to store profile data, selected documents, and learned answers in browser extension storage. It does not require an account or a developer-operated profile database. Sensitive credential and identity-number fields are intentionally excluded from learned answers.</p>
+        </div>
+        <a class="btn" href="privacy.html">Read Privacy Policy →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Automatic Easy Apply Jobs · by zeytokg</span>
+    <span><a href="privacy.html">Privacy Policy</a> · <a href="../">Portfolio</a></span>
+  </footer>
+</div>
+<script src="site-i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "Instagram Unfollowers by zeytokg",
+  "short_name": "Unfollowers",
+  "version": "1.5.0",
+  "description": "Instagram üzerinde panel ve zeytokg launcherını tek parça gibi birlikte taşı; launcher üzerindeki çarpı ile aracı sekmeden kaldır.",
+  "permissions": [
+    "scripting",
+    "declarativeContent"
+  ],
+  "host_permissions": [
+    "https://www.instagram.com/*"
+  ],
+  "action": {
+    "default_title": "Instagram Unfollowers by zeytokg",
+    "default_state": "disabled",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.instagram.com/*"
+      ],
+      "js": [
+        "launcher.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
