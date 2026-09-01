@@ -7,11 +7,26 @@
     if(!topbar || topbar.querySelector('.portfolio-lang-wrap')) return;
     var wrap=document.createElement('div');
     wrap.className='portfolio-lang-wrap';
+
+    var icon=document.createElement('span');
+    icon.className='portfolio-lang-icon';
+    icon.setAttribute('aria-hidden','true');
+    icon.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15.3 15.3 0 0 1 0 18M12 3a15.3 15.3 0 0 0 0 18"/></svg>';
+
+    var label=document.createElement('label');
+    label.className='portfolio-lang-label';
+    label.setAttribute('for','portfolioLangSelect');
+    label.textContent='Language';
+
     var select=document.createElement('select');
+    select.id='portfolioLangSelect';
     select.className='portfolio-lang-select';
     select.setAttribute('data-portfolio-lang','');
     select.setAttribute('aria-label','Language');
     select.innerHTML='<option value="en">EN</option><option value="it">IT</option><option value="tr">TR</option>';
+
+    wrap.appendChild(icon);
+    wrap.appendChild(label);
     wrap.appendChild(select);
     topbar.appendChild(wrap);
   }

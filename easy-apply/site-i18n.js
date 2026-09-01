@@ -51,6 +51,7 @@
     "The extension is designed to store profile data, selected documents, and learned answers in browser extension storage. It does not require an account or a developer-operated profile database. Sensitive credential and identity-number fields are intentionally excluded from learned answers.": "Uzantı profil verilerini, seçilen belgeleri ve öğrenilmiş cevapları tarayıcı uzantısı depolamasında saklayacak şekilde tasarlanmıştır. Hesap veya geliştirici tarafından işletilen bir profil veritabanı gerektirmez. Hassas giriş bilgileri ve kimlik numarası alanları öğrenilmiş cevaplardan özellikle hariç tutulur.",
     "Read Privacy Policy →": "Gizlilik Politikasını Oku →",
     "Portfolio": "Portföy",
+    "Language": "Dil",
 
     "Privacy Policy — Automatic Easy Apply Jobs": "Gizlilik Politikası — Automatic Easy Apply Jobs",
     "App": "Uygulama",
@@ -165,6 +166,7 @@
     "The extension is designed to store profile data, selected documents, and learned answers in browser extension storage. It does not require an account or a developer-operated profile database. Sensitive credential and identity-number fields are intentionally excluded from learned answers.": "L’estensione è progettata per salvare dati del profilo, documenti selezionati e risposte memorizzate nello storage dell’estensione del browser. Non richiede un account né un database dei profili gestito dallo sviluppatore. I campi con credenziali sensibili e numeri identificativi sono intenzionalmente esclusi dalle risposte memorizzate.",
     "Read Privacy Policy →": "Leggi l’informativa sulla privacy →",
     "Portfolio": "Portfolio",
+    "Language": "Lingua",
     "Privacy Policy — Automatic Easy Apply Jobs": "Informativa sulla privacy — Automatic Easy Apply Jobs",
     "App": "App",
     "Automatic Easy Apply Jobs · by zeytokg": "Automatic Easy Apply Jobs · by zeytokg",
@@ -291,6 +293,11 @@
       el.dataset.boundLang='1';
       el.addEventListener('change',()=>setLang(el.value));
     });
+    apply();
+  });
+  window.addEventListener('languagechange',()=>{
+    try { if(localStorage.getItem(LANG_SOURCE_KEY)==='manual') return; } catch {}
+    lang=deviceLang();
     apply();
   });
 })();

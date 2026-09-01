@@ -26,3 +26,21 @@ Upload/replace the contents of this package in the GitHub Pages repository root 
 
 NOTE
 Product/game names, company names, technical terms and KPI abbreviations (ARPU, LTV, LiveOps, D1/D7, etc.) are intentionally left in their industry-standard form where that reads more naturally.
+
+2026-09 UI/UX patch:
+- tools.html upgraded with clearer tool cards, stronger category hierarchy, sticky navigation polish and improved responsive layout.
+- Floating Back Home / Back to Top controls standardized across inner pages.
+- Floating controls made slightly more visible (stronger border/background/contrast) while preserving the minimal visual language.
+- Back to Top now appears after ~360px of scroll instead of 500px.
+- Home page keeps only Back to Top; inner pages keep both Home and Top controls.
+- Existing automatic device-language behavior remains intact: tr -> Turkish, it -> Italian, en -> English, unsupported languages -> English; explicit manual language choice remains remembered.
+
+2026-09 UI refinement: language selector now has a globe + visible Language label + stronger control treatment. Homepage testimonials heading hierarchy and quote cards were polished for clearer scanning.
+
+
+LANGUAGE PATCH — EASY APPLY + INSTAGRAM UNFOLLOWERS
+- Easy Apply website: EN / TR / IT, automatic device/browser primary-language detection.
+- Instagram Unfollowers website (index/privacy/security/extension): EN / TR / IT, automatic device/browser primary-language detection.
+- Unsupported device/browser languages fall back to English.
+- A manual language choice is remembered and takes priority until changed.
+- Language controls now use a prominent globe + Language/Dil/Lingua + EN/IT/TR selector, matching the main portfolio UI.

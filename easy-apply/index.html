@@ -206,6 +206,149 @@ h1{font-size:clamp(42px,7vw,76px);line-height:.99;letter-spacing:-.045em;margin:
 .lang-select{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:7px 10px;font:inherit;font-size:12px;font-weight:800;cursor:pointer}
 .lang-select:hover{border-color:var(--green);box-shadow:0 0 14px color-mix(in srgb,var(--green) 22%,transparent)}
 </style>
+
+<style id="portfolio-floating-nav-patch">
+/* Global portfolio navigation for standalone mini-sites */
+:root{
+  --portfolio-nav-accent:#D5A900;
+  --portfolio-nav-accent-hover:#B18D00;
+  --portfolio-nav-on-accent:#17150c;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --portfolio-nav-accent:#E8C239;
+    --portfolio-nav-accent-hover:#F3D25B;
+    --portfolio-nav-on-accent:#17150c;
+  }
+}
+.portfolio-floating-home,
+.portfolio-floating-top{
+  position:fixed;
+  z-index:9998;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family:"Work Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  text-decoration:none !important;
+}
+.portfolio-floating-home{
+  top:calc(16px + env(safe-area-inset-top));
+  left:calc(18px + env(safe-area-inset-left));
+}
+.portfolio-floating-top{
+  right:calc(18px + env(safe-area-inset-right));
+  bottom:calc(18px + env(safe-area-inset-bottom));
+  border:0;
+  padding:0;
+  background:transparent;
+  color:inherit;
+  cursor:pointer;
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(10px);
+  transition:opacity .2s ease,transform .24s cubic-bezier(.16,.8,.3,1);
+}
+.portfolio-floating-top.show{
+  opacity:1;
+  pointer-events:auto;
+  transform:none;
+}
+.portfolio-floating-circle{
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  flex:0 0 auto;
+  color:color-mix(in srgb,var(--portfolio-nav-accent) 78%,var(--ink, #242720));
+  background:color-mix(in srgb,var(--card, #fff) 95%,transparent);
+  border:1.5px solid color-mix(in srgb,var(--portfolio-nav-accent) 48%,var(--line, #dfe4de));
+  box-shadow:0 10px 28px rgba(0,0,0,.13),0 0 0 1px color-mix(in srgb,var(--portfolio-nav-accent) 8%,transparent);
+  backdrop-filter:blur(14px) saturate(1.08);
+  -webkit-backdrop-filter:blur(14px) saturate(1.08);
+  transition:transform .22s ease,background .22s ease,border-color .22s ease,color .22s ease,box-shadow .22s ease;
+}
+.portfolio-floating-circle svg{
+  width:20px;
+  height:20px;
+  display:block;
+}
+.portfolio-floating-label{
+  min-height:36px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 14px;
+  border-radius:999px;
+  border:1px solid color-mix(in srgb,var(--portfolio-nav-accent) 42%,var(--line, #dfe4de));
+  background:color-mix(in srgb,var(--card, #fff) 96%,transparent);
+  color:var(--ink, #242720);
+  box-shadow:0 8px 22px rgba(0,0,0,.09);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  font-size:11px;
+  line-height:1;
+  font-weight:800;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  transition:transform .22s ease,background .22s ease,border-color .22s ease,color .22s ease,box-shadow .22s ease;
+}
+.portfolio-floating-home:hover .portfolio-floating-circle,
+.portfolio-floating-home:focus-visible .portfolio-floating-circle,
+.portfolio-floating-top:hover .portfolio-floating-circle,
+.portfolio-floating-top:focus-visible .portfolio-floating-circle{
+  transform:scale(1.06);
+  color:var(--portfolio-nav-on-accent);
+  background:var(--portfolio-nav-accent);
+  border-color:var(--portfolio-nav-accent);
+  box-shadow:0 12px 30px rgba(0,0,0,.18),0 0 0 4px color-mix(in srgb,var(--portfolio-nav-accent) 18%,transparent),0 0 32px color-mix(in srgb,var(--portfolio-nav-accent) 28%,transparent);
+}
+.portfolio-floating-home:hover .portfolio-floating-label,
+.portfolio-floating-home:focus-visible .portfolio-floating-label,
+.portfolio-floating-top:hover .portfolio-floating-label,
+.portfolio-floating-top:focus-visible .portfolio-floating-label{
+  transform:translateX(2px);
+  border-color:var(--portfolio-nav-accent);
+  background:color-mix(in srgb,var(--portfolio-nav-accent) 12%,var(--card, #fff));
+  box-shadow:0 9px 24px rgba(0,0,0,.11);
+}
+.portfolio-floating-home:focus-visible,
+.portfolio-floating-top:focus-visible{
+  outline:2px solid var(--portfolio-nav-accent);
+  outline-offset:4px;
+  border-radius:999px;
+}
+/* Keep top navigation clear of the fixed home control on narrower layouts. */
+@media(max-width:1180px){
+  .topbar{padding-left:76px !important;}
+}
+@media(max-width:860px){
+  .portfolio-floating-home{top:calc(12px + env(safe-area-inset-top));left:calc(12px + env(safe-area-inset-left));}
+  .portfolio-floating-top{right:calc(14px + env(safe-area-inset-right));bottom:calc(14px + env(safe-area-inset-bottom));}
+  .portfolio-floating-circle{width:48px;height:48px;}
+  .portfolio-floating-label{display:none;}
+  .topbar{padding-left:58px !important;}
+}
+@media(prefers-reduced-motion:reduce){
+  .portfolio-floating-circle,.portfolio-floating-label,.portfolio-floating-top{transition:none !important;}
+  html{scroll-behavior:auto;}
+}
+</style>
+
+
+<style id="micro-language-control">
+/* Prominent language control — matches the main portfolio affordance. */
+.micro-lang-control{display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:4px 5px 4px 10px;border:1.5px solid color-mix(in srgb,var(--green) 54%,var(--line));border-radius:999px;background:linear-gradient(135deg,color-mix(in srgb,var(--green) 10%,var(--card)),color-mix(in srgb,var(--card) 96%,transparent));box-shadow:0 7px 20px rgba(0,0,0,.07),0 0 0 1px color-mix(in srgb,var(--green) 4%,transparent);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease,background .2s ease;white-space:nowrap}
+.micro-lang-control:hover,.micro-lang-control:focus-within{border-color:var(--green);background:color-mix(in srgb,var(--green) 12%,var(--card));box-shadow:0 9px 24px rgba(0,0,0,.09),0 0 0 3px color-mix(in srgb,var(--green) 13%,transparent);transform:translateY(-1px)}
+.micro-lang-icon{width:17px;height:17px;display:grid;place-items:center;flex:0 0 auto;color:var(--green-dark)}
+.micro-lang-icon svg{width:17px;height:17px;display:block}
+.micro-lang-label{color:var(--soft);font:800 10px/1 "Work Sans",system-ui,sans-serif;letter-spacing:.07em;text-transform:uppercase;cursor:pointer}
+.micro-lang-select{appearance:none;-webkit-appearance:none;min-width:56px;border:1px solid color-mix(in srgb,var(--green) 34%,var(--line));background-color:var(--card);color:var(--ink);border-radius:999px;padding:8px 27px 8px 11px;font:900 11px/1 "Work Sans",system-ui,sans-serif;letter-spacing:.08em;cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,var(--green-dark) 50%),linear-gradient(135deg,var(--green-dark) 50%,transparent 50%);background-position:calc(100% - 12px) 48%,calc(100% - 8px) 48%;background-size:4px 4px,4px 4px;background-repeat:no-repeat;transition:border-color .2s ease,background-color .2s ease}
+.micro-lang-select:hover,.micro-lang-select:focus-visible{border-color:var(--green);background-color:color-mix(in srgb,var(--green) 7%,var(--card));outline:none}
+@media(max-width:650px){.micro-lang-label{display:none}.micro-lang-control{min-height:38px;padding:3px 4px 3px 8px;gap:6px}.micro-lang-select{min-width:52px;padding:7px 24px 7px 9px;font-size:10px}}
+</style>
+
 </head>
 <body>
 <div class="wrap">
@@ -218,7 +361,7 @@ h1{font-size:clamp(42px,7vw,76px);line-height:.99;letter-spacing:-.045em;margin:
       <a href="#features">Features</a>
       <a href="#install">Install</a>
       <a href="privacy.html">Privacy</a>
-      <select class="lang-select" data-site-lang aria-label="Language"><option value="en">EN</option><option value="it">IT</option><option value="tr">TR</option></select>
+      <label class="micro-lang-control"><span class="micro-lang-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15.3 15.3 0 0 1 0 18M12 3a15.3 15.3 0 0 0 0 18"/></svg></span><span class="micro-lang-label">Language</span><select class="micro-lang-select" data-site-lang aria-label="Language"><option value="en">EN</option><option value="it">IT</option><option value="tr">TR</option></select></label>
       <a href="../">zeytokg ↗</a>
     </nav>
   </header>
@@ -321,5 +464,31 @@ h1{font-size:clamp(42px,7vw,76px);line-height:.99;letter-spacing:-.045em;margin:
   </footer>
 </div>
 <script src="site-i18n.js"></script>
+
+<a class="portfolio-floating-home" href="../" aria-label="Back to portfolio home" title="Back to home">
+  <span class="portfolio-floating-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></span>
+  <span class="portfolio-floating-label">Home</span>
+</a>
+<button class="portfolio-floating-top" type="button" aria-label="Back to top" title="Back to top">
+  <span class="portfolio-floating-label">Top</span>
+  <span class="portfolio-floating-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span>
+</button>
+<script id="portfolio-floating-nav-script">
+(function(){
+  var topBtn=document.querySelector('.portfolio-floating-top');
+  if(!topBtn) return;
+  function syncTopButton(){
+    if(window.scrollY>360) topBtn.classList.add('show');
+    else topBtn.classList.remove('show');
+  }
+  window.addEventListener('scroll',syncTopButton,{passive:true});
+  syncTopButton();
+  topBtn.addEventListener('click',function(){
+    var reduced=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({top:0,behavior:reduced?'auto':'smooth'});
+  });
+})();
+</script>
+
 </body>
 </html>
