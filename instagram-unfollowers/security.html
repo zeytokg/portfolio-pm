@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Security — Instagram Unfollowers Finder</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="../images/favicon-48.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -61,145 +64,363 @@
 </style>
 
 <style id="portfolio-floating-nav-patch">
-/* Global portfolio navigation for standalone mini-sites */
+/* Mini-site floating navigation — ghost motion, site-native accent, hover labels. */
 :root{
-  --portfolio-nav-accent:#D5A900;
-  --portfolio-nav-accent-hover:#B18D00;
-  --portfolio-nav-on-accent:#17150c;
-}
-@media (prefers-color-scheme:dark){
-  :root{
-    --portfolio-nav-accent:#E8C239;
-    --portfolio-nav-accent-hover:#F3D25B;
-    --portfolio-nav-on-accent:#17150c;
-  }
+  --portfolio-nav-accent:var(--pink,var(--accent,#ff4f93));
+  --portfolio-nav-accent-strong:var(--pink2,var(--accent-hover,#f2317e));
+  --portfolio-nav-on-accent:#fff;
 }
 .portfolio-floating-home,
 .portfolio-floating-top{
   position:fixed;
-  z-index:9998;
-  display:inline-flex;
+  z-index:120;
+  display:flex;
   align-items:center;
-  gap:8px;
-  font-family:"Work Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  gap:10px;
+  border:0;
+  padding:0;
+  margin:0;
+  background:none;
+  color:inherit;
   text-decoration:none !important;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
 }
 .portfolio-floating-home{
   top:calc(16px + env(safe-area-inset-top));
-  left:calc(18px + env(safe-area-inset-left));
+  left:calc(16px + env(safe-area-inset-left));
 }
 .portfolio-floating-top{
   right:calc(18px + env(safe-area-inset-right));
   bottom:calc(18px + env(safe-area-inset-bottom));
-  border:0;
-  padding:0;
-  background:transparent;
-  color:inherit;
-  cursor:pointer;
   opacity:0;
   pointer-events:none;
-  transform:translateY(10px);
-  transition:opacity .2s ease,transform .24s cubic-bezier(.16,.8,.3,1);
+  transform:translateY(12px) scale(.9);
+  transition:opacity .28s ease,transform .28s cubic-bezier(.16,.8,.3,1);
 }
 .portfolio-floating-top.show{
   opacity:1;
   pointer-events:auto;
-  transform:none;
+  transform:translateY(0) scale(1);
 }
 .portfolio-floating-circle{
   width:52px;
   height:52px;
+  flex:0 0 52px;
   border-radius:50%;
   display:grid;
   place-items:center;
-  flex:0 0 auto;
-  color:color-mix(in srgb,var(--portfolio-nav-accent) 78%,var(--ink, #242720));
-  background:color-mix(in srgb,var(--card, #fff) 95%,transparent);
-  border:1.5px solid color-mix(in srgb,var(--portfolio-nav-accent) 48%,var(--line, #dfe4de));
-  box-shadow:0 10px 28px rgba(0,0,0,.13),0 0 0 1px color-mix(in srgb,var(--portfolio-nav-accent) 8%,transparent);
-  backdrop-filter:blur(14px) saturate(1.08);
-  -webkit-backdrop-filter:blur(14px) saturate(1.08);
-  transition:transform .22s ease,background .22s ease,border-color .22s ease,color .22s ease,box-shadow .22s ease;
+  color:var(--portfolio-nav-accent-strong);
+  background:color-mix(in srgb,var(--card,var(--bg,#fff)) 86%,transparent);
+  border:1.5px solid color-mix(in srgb,var(--portfolio-nav-accent) 48%,var(--line,#dfe4de));
+  box-shadow:0 8px 24px rgba(0,0,0,.12),0 0 0 1px color-mix(in srgb,var(--portfolio-nav-accent) 7%,transparent);
+  backdrop-filter:blur(12px) saturate(1.1);
+  -webkit-backdrop-filter:blur(12px) saturate(1.1);
+  transition:transform .24s cubic-bezier(.16,.8,.3,1),background .22s ease,color .22s ease,border-color .22s ease,box-shadow .22s ease;
+  animation:portfolioGhostBreath 2.8s ease-in-out infinite;
 }
-.portfolio-floating-circle svg{
-  width:20px;
-  height:20px;
-  display:block;
-}
+.portfolio-floating-circle svg{width:20px;height:20px;display:block}
+.portfolio-floating-home .portfolio-floating-circle svg{animation:portfolioBackHint 1.8s ease-in-out infinite}
+.portfolio-floating-top.show .portfolio-floating-circle svg{animation:portfolioTopHint 1.7s ease-in-out infinite}
 .portfolio-floating-label{
-  min-height:36px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:0 14px;
+  position:absolute;
+  min-width:max-content;
+  padding:8px 11px;
   border-radius:999px;
-  border:1px solid color-mix(in srgb,var(--portfolio-nav-accent) 42%,var(--line, #dfe4de));
-  background:color-mix(in srgb,var(--card, #fff) 96%,transparent);
-  color:var(--ink, #242720);
-  box-shadow:0 8px 22px rgba(0,0,0,.09);
+  border:1px solid color-mix(in srgb,var(--portfolio-nav-accent) 44%,var(--line,#dfe4de));
+  background:color-mix(in srgb,var(--card,var(--bg,#fff)) 94%,transparent);
+  color:var(--ink,#222);
+  box-shadow:0 10px 28px rgba(0,0,0,.11),0 0 18px color-mix(in srgb,var(--portfolio-nav-accent) 10%,transparent);
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
-  font-size:11px;
-  line-height:1;
-  font-weight:800;
-  letter-spacing:.07em;
+  font:800 10px/1 "Work Sans",system-ui,sans-serif;
+  letter-spacing:.09em;
   text-transform:uppercase;
   white-space:nowrap;
-  transition:transform .22s ease,background .22s ease,border-color .22s ease,color .22s ease,box-shadow .22s ease;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s ease,transform .2s cubic-bezier(.16,.8,.3,1),border-color .2s ease,background .2s ease,color .2s ease;
+}
+.portfolio-floating-home .portfolio-floating-label{left:62px;top:50%;transform:translate(-7px,-50%)}
+.portfolio-floating-top .portfolio-floating-label{right:62px;top:50%;transform:translate(7px,-50%)}
+.portfolio-floating-home:hover .portfolio-floating-label,
+.portfolio-floating-home:focus-visible .portfolio-floating-label,
+.portfolio-floating-top:hover .portfolio-floating-label,
+.portfolio-floating-top:focus-visible .portfolio-floating-label{
+  opacity:1;
+  transform:translate(0,-50%);
 }
 .portfolio-floating-home:hover .portfolio-floating-circle,
 .portfolio-floating-home:focus-visible .portfolio-floating-circle,
 .portfolio-floating-top:hover .portfolio-floating-circle,
 .portfolio-floating-top:focus-visible .portfolio-floating-circle{
-  transform:scale(1.06);
-  color:var(--portfolio-nav-on-accent);
-  background:var(--portfolio-nav-accent);
+  color:var(--portfolio-nav-accent-strong);
+  background:color-mix(in srgb,var(--portfolio-nav-accent) 14%,var(--card,var(--bg,#fff)));
   border-color:var(--portfolio-nav-accent);
-  box-shadow:0 12px 30px rgba(0,0,0,.18),0 0 0 4px color-mix(in srgb,var(--portfolio-nav-accent) 18%,transparent),0 0 32px color-mix(in srgb,var(--portfolio-nav-accent) 28%,transparent);
+  transform:scale(1.075);
+  box-shadow:0 12px 30px rgba(0,0,0,.15),0 0 0 4px color-mix(in srgb,var(--portfolio-nav-accent) 14%,transparent),0 0 30px color-mix(in srgb,var(--portfolio-nav-accent) 32%,transparent);
 }
 .portfolio-floating-home:hover .portfolio-floating-label,
 .portfolio-floating-home:focus-visible .portfolio-floating-label,
 .portfolio-floating-top:hover .portfolio-floating-label,
 .portfolio-floating-top:focus-visible .portfolio-floating-label{
-  transform:translateX(2px);
+  color:var(--portfolio-nav-accent-strong);
   border-color:var(--portfolio-nav-accent);
-  background:color-mix(in srgb,var(--portfolio-nav-accent) 12%,var(--card, #fff));
-  box-shadow:0 9px 24px rgba(0,0,0,.11);
+  background:color-mix(in srgb,var(--portfolio-nav-accent) 10%,var(--card,var(--bg,#fff)));
+}
+/* A real click/tap gets a short accent-filled response. */
+.portfolio-floating-home:active .portfolio-floating-circle,
+.portfolio-floating-top:active .portfolio-floating-circle,
+.portfolio-floating-home.is-pressed .portfolio-floating-circle,
+.portfolio-floating-top.is-pressed .portfolio-floating-circle,
+.portfolio-floating-top.nav-clicked .portfolio-floating-circle{
+  color:var(--portfolio-nav-on-accent);
+  background:var(--portfolio-nav-accent);
+  border-color:var(--portfolio-nav-accent);
+  transform:scale(.93);
+  box-shadow:0 7px 18px rgba(0,0,0,.16),0 0 0 5px color-mix(in srgb,var(--portfolio-nav-accent) 18%,transparent),0 0 36px color-mix(in srgb,var(--portfolio-nav-accent) 46%,transparent);
 }
 .portfolio-floating-home:focus-visible,
-.portfolio-floating-top:focus-visible{
-  outline:2px solid var(--portfolio-nav-accent);
-  outline-offset:4px;
-  border-radius:999px;
+.portfolio-floating-top:focus-visible{outline:2px solid var(--portfolio-nav-accent);outline-offset:5px;border-radius:999px}
+@keyframes portfolioGhostBreath{
+  0%,100%{box-shadow:0 8px 24px rgba(0,0,0,.11),0 0 0 0 color-mix(in srgb,var(--portfolio-nav-accent) 0%,transparent)}
+  50%{box-shadow:0 10px 28px rgba(0,0,0,.14),0 0 0 4px color-mix(in srgb,var(--portfolio-nav-accent) 8%,transparent),0 0 24px color-mix(in srgb,var(--portfolio-nav-accent) 23%,transparent)}
 }
-/* Keep top navigation clear of the fixed home control on narrower layouts. */
+@keyframes portfolioBackHint{0%,100%{transform:translateX(0)}50%{transform:translateX(-3px)}}
+@keyframes portfolioTopHint{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 @media(max-width:1180px){
-  .topbar{padding-left:76px !important;}
+  .portfolio-floating-home{top:calc(10px + env(safe-area-inset-top));left:calc(10px + env(safe-area-inset-left));}
 }
-@media(max-width:860px){
-  .portfolio-floating-home{top:calc(12px + env(safe-area-inset-top));left:calc(12px + env(safe-area-inset-left));}
-  .portfolio-floating-top{right:calc(14px + env(safe-area-inset-right));bottom:calc(14px + env(safe-area-inset-bottom));}
-  .portfolio-floating-circle{width:48px;height:48px;}
-  .portfolio-floating-label{display:none;}
-  .topbar{padding-left:58px !important;}
+@media(max-width:700px){
+  .portfolio-floating-circle{width:48px;height:48px;flex-basis:48px}
+  .portfolio-floating-home{top:calc(10px + env(safe-area-inset-top));left:calc(10px + env(safe-area-inset-left));}
+  .portfolio-floating-top{right:calc(12px + env(safe-area-inset-right));bottom:calc(12px + env(safe-area-inset-bottom));}
+  .portfolio-floating-label{display:none}
 }
 @media(prefers-reduced-motion:reduce){
-  .portfolio-floating-circle,.portfolio-floating-label,.portfolio-floating-top{transition:none !important;}
-  html{scroll-behavior:auto;}
+  .portfolio-floating-circle,.portfolio-floating-circle svg,.portfolio-floating-top{animation:none!important;transition:none!important}
 }
 </style>
 
 
 <style id="micro-language-control">
-/* Prominent language control — same interaction pattern as the main portfolio. */
-.micro-lang-control{display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:4px 5px 4px 10px;border:1.5px solid color-mix(in srgb,var(--accent,var(--pink)) 54%,var(--line));border-radius:999px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent,var(--pink)) 10%,var(--card,var(--bg))),color-mix(in srgb,var(--card,var(--bg)) 96%,transparent));box-shadow:0 7px 20px rgba(0,0,0,.07),0 0 0 1px color-mix(in srgb,var(--accent,var(--pink)) 4%,transparent);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease,background .2s ease;white-space:nowrap}
-.micro-lang-control:hover,.micro-lang-control:focus-within{border-color:var(--accent,var(--pink));background:color-mix(in srgb,var(--accent,var(--pink)) 12%,var(--card,var(--bg)));box-shadow:0 9px 24px rgba(0,0,0,.09),0 0 0 3px color-mix(in srgb,var(--accent,var(--pink)) 13%,transparent);transform:translateY(-1px)}
-.micro-lang-icon{width:17px;height:17px;display:grid;place-items:center;flex:0 0 auto;color:var(--accent-hover,var(--pink))}
+/* Language control — stronger site-native color and glow, still compact on mobile. */
+.micro-lang-control{
+  display:inline-flex;align-items:center;gap:7px;min-height:42px;
+  padding:4px 5px 4px 6px;
+  border:1.5px solid color-mix(in srgb,var(--pink,var(--accent,#ff4f93)) 68%,var(--line));
+  border-radius:999px;
+  background:linear-gradient(135deg,color-mix(in srgb,var(--pink,var(--accent,#ff4f93)) 13%,var(--card,var(--bg))),color-mix(in srgb,var(--card,var(--bg)) 96%,transparent));
+  box-shadow:0 8px 22px rgba(0,0,0,.08),0 0 20px color-mix(in srgb,var(--pink,var(--accent,#ff4f93)) 14%,transparent);
+  transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease,background .2s ease;
+  white-space:nowrap;
+}
+.micro-lang-control:hover,.micro-lang-control:focus-within{
+  border-color:var(--pink,var(--accent,#ff4f93));
+  background:color-mix(in srgb,var(--pink,var(--accent,#ff4f93)) 15%,var(--card,var(--bg)));
+  box-shadow:0 10px 26px rgba(0,0,0,.10),0 0 0 3px color-mix(in srgb,var(--pink,var(--accent,#ff4f93)) 12%,transparent),0 0 28px color-mix(in srgb,var(--pink,var(--accent,#ff4f93)) 30%,transparent);
+  transform:translateY(-1px);
+}
+.micro-lang-icon{
+  width:31px;height:31px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto;
+  color:var(--pink2,var(--accent-hover,#f2317e));
+  background:color-mix(in srgb,var(--pink,var(--accent,#ff4f93)) 14%,var(--card,var(--bg)));
+  border:1px solid color-mix(in srgb,var(--pink,var(--accent,#ff4f93)) 38%,transparent);
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--pink,var(--accent,#ff4f93)) 7%,transparent),0 0 16px color-mix(in srgb,var(--pink,var(--accent,#ff4f93)) 25%,transparent);
+  animation:microLangGlow 2.8s ease-in-out infinite;
+}
 .micro-lang-icon svg{width:17px;height:17px;display:block}
 .micro-lang-label{color:var(--soft,var(--ink-soft));font:800 10px/1 "Work Sans",Arial,system-ui,sans-serif;letter-spacing:.07em;text-transform:uppercase;cursor:pointer}
-.micro-lang-select{appearance:none;-webkit-appearance:none;min-width:56px;border:1px solid color-mix(in srgb,var(--accent,var(--pink)) 34%,var(--line));background-color:var(--card,var(--bg));color:var(--ink);border-radius:999px;padding:8px 27px 8px 11px;font:900 11px/1 "Work Sans",Arial,system-ui,sans-serif;letter-spacing:.08em;cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,var(--accent-hover,var(--pink)) 50%),linear-gradient(135deg,var(--accent-hover,var(--pink)) 50%,transparent 50%);background-position:calc(100% - 12px) 48%,calc(100% - 8px) 48%;background-size:4px 4px,4px 4px;background-repeat:no-repeat;transition:border-color .2s ease,background-color .2s ease}
-.micro-lang-select:hover,.micro-lang-select:focus-visible{border-color:var(--accent,var(--pink));background-color:color-mix(in srgb,var(--accent,var(--pink)) 7%,var(--card,var(--bg)));outline:none}
-@media(max-width:650px){.micro-lang-label{display:none}.micro-lang-control{min-height:38px;padding:3px 4px 3px 8px;gap:6px}.micro-lang-select{min-width:52px;padding:7px 24px 7px 9px;font-size:10px}}
+.micro-lang-select{
+  appearance:none;-webkit-appearance:none;min-width:58px;
+  border:1px solid color-mix(in srgb,var(--pink,var(--accent,#ff4f93)) 44%,var(--line));
+  background-color:var(--card,var(--bg));color:var(--ink);
+  border-radius:999px;padding:8px 27px 8px 11px;
+  font:900 11px/1 "Work Sans",Arial,system-ui,sans-serif;letter-spacing:.08em;cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,var(--pink2,var(--accent-hover,#f2317e)) 50%),linear-gradient(135deg,var(--pink2,var(--accent-hover,#f2317e)) 50%,transparent 50%);
+  background-position:calc(100% - 12px) 48%,calc(100% - 8px) 48%;background-size:4px 4px,4px 4px;background-repeat:no-repeat;
+  transition:border-color .2s ease,background-color .2s ease,box-shadow .2s ease;
+}
+.micro-lang-select:hover,.micro-lang-select:focus-visible{
+  border-color:var(--pink,var(--accent,#ff4f93));
+  background-color:color-mix(in srgb,var(--pink,var(--accent,#ff4f93)) 8%,var(--card,var(--bg)));
+  box-shadow:0 0 14px color-mix(in srgb,var(--pink,var(--accent,#ff4f93)) 18%,transparent);
+  outline:none;
+}
+@keyframes microLangGlow{
+  0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--pink,var(--accent,#ff4f93)) 6%,transparent),0 0 13px color-mix(in srgb,var(--pink,var(--accent,#ff4f93)) 18%,transparent)}
+  50%{box-shadow:0 0 0 4px color-mix(in srgb,var(--pink,var(--accent,#ff4f93)) 11%,transparent),0 0 23px color-mix(in srgb,var(--pink,var(--accent,#ff4f93)) 36%,transparent)}
+}
+@media(max-width:650px){
+  .micro-lang-label{display:none}
+  .micro-lang-control{min-height:40px;padding:3px 4px 3px 4px;gap:5px}
+  .micro-lang-icon{width:30px;height:30px}
+  .micro-lang-select{min-width:54px;padding:8px 24px 8px 9px;font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){.micro-lang-icon{animation:none!important}}
+</style>
+
+<style id="micro-mobile-clarity-patch">
+/* Mobile clarity / HiDPI polish */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+img{image-rendering:auto;-webkit-user-drag:none}
+@media(max-width:650px){
+  .wrap{width:min(1120px,calc(100% - 24px))}
+  .topbar{margin-top:10px;padding:10px 11px;gap:10px}
+  .brand{gap:8px;font-size:13px;line-height:1.25}
+  .brand img{width:36px;height:36px;flex:0 0 36px}
+  .nav{gap:6px}
+  .nav a{min-height:38px;display:inline-flex;align-items:center;padding:8px 10px;font-size:11px}
+  .hero{padding:42px 0 54px;gap:30px}
+  h1{font-size:clamp(40px,12vw,58px)}
+  .lead{font-size:18px}
+  .appmark img{width:64px;height:64px}
+  .section{padding:60px 0}
+  .card,.step,.console-step{padding:17px}
+  .shot img{width:100%;height:auto}
+}
+@media(max-width:480px){
+  .topbar{align-items:flex-start;flex-direction:column}
+  .nav{width:100%}
+  .actions .btn{width:100%}
+}
+</style>
+
+<style id="mini-mobile-header-flag-v2">
+/* Mobile header + language flag polish (Easy Apply / Instagram Unfollowers) */
+.micro-lang-flag{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:24px;min-width:24px;height:24px;
+  font:16px/1 system-ui,"Apple Color Emoji","Segoe UI Emoji",sans-serif;
+  filter:saturate(1.05);
+  transform:translateZ(0);
+}
+
+@media(max-width:700px){
+  body{overflow-x:hidden}
+
+  /* Keep the floating Back control aligned with the first header row,
+     while reserving enough space so it never covers the brand. */
+  .portfolio-floating-home{
+    top:calc(20px + env(safe-area-inset-top)) !important;
+    left:calc(18px + env(safe-area-inset-left)) !important;
+  }
+  .portfolio-floating-circle{
+    width:46px !important;height:46px !important;flex-basis:46px !important;
+  }
+
+  .topbar{
+    position:relative !important;top:auto !important;
+    display:flex !important;flex-direction:column !important;
+    align-items:stretch !important;justify-content:flex-start !important;
+    gap:10px !important;
+    margin-top:12px !important;
+    padding:11px 11px 11px 64px !important;
+    min-width:0 !important;
+  }
+
+  .topbar .brand,
+  .topbar .wordmark{
+    min-width:0 !important;
+    max-width:100% !important;
+    min-height:46px;
+    display:flex;align-items:center;
+  }
+  .topbar .brand span,
+  .topbar .wordmark{
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  .topbar .brand img{
+    width:36px !important;height:36px !important;flex:0 0 36px !important;
+    object-fit:cover;
+  }
+
+  /* The nav must not collapse into the tall two-column/stacked layout seen on iPhone.
+     It becomes one compact, swipeable row instead. */
+  .topbar .nav,
+  .topbar .actions,
+  .topbar .topbar-right{
+    width:calc(100% + 53px) !important;
+    max-width:none !important;
+    margin-left:-53px !important;
+    display:flex !important;
+    flex-direction:row !important;
+    flex-wrap:nowrap !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    gap:7px !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    padding:2px 0 3px 0 !important;
+    overscroll-behavior-inline:contain;
+  }
+  .topbar .nav::-webkit-scrollbar,
+  .topbar .actions::-webkit-scrollbar,
+  .topbar .topbar-right::-webkit-scrollbar{display:none}
+
+  .topbar .nav > a,
+  .topbar .actions > a,
+  .topbar .topbar-right > a,
+  .topbar .btn{
+    flex:0 0 auto !important;
+    white-space:nowrap !important;
+    min-height:38px !important;
+  }
+
+  /* Put the language control first so it is always visible without swiping. */
+  .topbar .micro-lang-control{
+    order:-20;
+    flex:0 0 auto !important;
+    min-height:40px !important;
+    padding:3px 4px 3px 5px !important;
+    gap:4px !important;
+  }
+  .topbar .micro-lang-label{display:none !important}
+  .topbar .micro-lang-icon{width:28px !important;height:28px !important;flex:0 0 28px !important}
+  .topbar .micro-lang-flag{width:20px;min-width:20px;height:28px;font-size:15px}
+  .topbar .micro-lang-select{
+    min-width:48px !important;
+    padding:8px 21px 8px 7px !important;
+    font-size:10.5px !important;
+  }
+  .topbar .nav > a,
+  .topbar .actions > a,
+  .topbar .topbar-right > a{
+    padding:7px 9px !important;
+    font-size:10.5px !important;
+  }
+  /* The floating Home control already links to the portfolio, so hide the redundant
+     text link on tiny screens and give the useful mini-site navigation more room. */
+  .topbar .nav > a[href="../"]{display:none !important;}
+
+  /* Mobile typography: retain the editorial look without the hero taking over the viewport. */
+  .hero{padding-top:34px !important;gap:28px !important}
+  h1{font-size:clamp(36px,10.7vw,50px) !important;line-height:1.02 !important}
+  .lead{font-size:17px !important;line-height:1.58 !important}
+  .hero .actions .btn{max-width:100%}
+}
+
+@media(max-width:430px){
+  .topbar{padding-left:61px !important}
+  .topbar .nav,
+  .topbar .actions,
+  .topbar .topbar-right{
+    width:calc(100% + 50px) !important;
+    margin-left:-50px !important;
+    padding-left:0 !important;
+  }
+  .portfolio-floating-home{
+    left:calc(15px + env(safe-area-inset-left)) !important;
+  }
+  .portfolio-floating-circle{width:44px !important;height:44px !important;flex-basis:44px !important}
+}
 </style>
 
 </head>
@@ -209,7 +430,7 @@
       <span class="wordmark">instagram-unfollowers.js</span>
       <div class="topbar-right">
         <a class="nav-btn" href="index.html" data-i18n="backLink">&larr; Back</a>
-        <label class="micro-lang-control"><span class="micro-lang-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15.3 15.3 0 0 1 0 18M12 3a15.3 15.3 0 0 0 0 18"/></svg></span><span class="micro-lang-label" data-i18n="languageLabel">Language</span><select class="micro-lang-select" id="langBtn" aria-label="Language"><option value="en">EN</option><option value="it">IT</option><option value="tr">TR</option></select></label>
+        <label class="micro-lang-control"><span class="micro-lang-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15.3 15.3 0 0 1 0 18M12 3a15.3 15.3 0 0 0 0 18"/></svg></span><span class="micro-lang-flag" aria-hidden="true">🇬🇧</span><span class="micro-lang-label" data-i18n="languageLabel">Language</span><select class="micro-lang-select" id="langBtn" aria-label="Language"><option value="en">EN</option><option value="it">IT</option><option value="tr">TR</option></select></label>
       </div>
     </div>
 
@@ -360,17 +581,66 @@
 <script id="portfolio-floating-nav-script">
 (function(){
   var topBtn=document.querySelector('.portfolio-floating-top');
-  if(!topBtn) return;
-  function syncTopButton(){
-    if(window.scrollY>360) topBtn.classList.add('show');
-    else topBtn.classList.remove('show');
+  var controls=document.querySelectorAll('.portfolio-floating-home,.portfolio-floating-top');
+  if(topBtn){
+    function syncTopButton(){
+      if(window.scrollY>360) topBtn.classList.add('show');
+      else topBtn.classList.remove('show');
+    }
+    window.addEventListener('scroll',syncTopButton,{passive:true});
+    syncTopButton();
+    topBtn.addEventListener('click',function(){
+      topBtn.classList.add('nav-clicked');
+      window.setTimeout(function(){topBtn.classList.remove('nav-clicked');},360);
+      var reduced=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({top:0,behavior:reduced?'auto':'smooth'});
+    });
   }
-  window.addEventListener('scroll',syncTopButton,{passive:true});
-  syncTopButton();
-  topBtn.addEventListener('click',function(){
-    var reduced=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    window.scrollTo({top:0,behavior:reduced?'auto':'smooth'});
+  controls.forEach(function(control){
+    control.addEventListener('pointerdown',function(){control.classList.add('is-pressed');});
+    ['pointerup','pointercancel','pointerleave'].forEach(function(type){
+      control.addEventListener(type,function(){control.classList.remove('is-pressed');});
+    });
   });
+})();
+</script>
+
+
+<script id="mini-language-flag-v2">
+(function(){
+  var flags={en:'🇬🇧',it:'🇮🇹',tr:'🇹🇷'};
+  var names={en:'English',it:'Italiano',tr:'Türkçe'};
+
+  function normalized(value){
+    value=String(value||'').toLowerCase().split('-')[0];
+    return Object.prototype.hasOwnProperty.call(flags,value)?value:'en';
+  }
+  function syncOne(select){
+    if(!select) return;
+    var control=select.closest('.micro-lang-control');
+    if(!control) return;
+    var flag=control.querySelector('.micro-lang-flag');
+    if(!flag) return;
+    var lang=normalized(select.value || document.documentElement.lang);
+    flag.textContent=flags[lang];
+    select.setAttribute('aria-label','Language: '+names[lang]);
+  }
+  function syncAll(){
+    document.querySelectorAll('.micro-lang-control select').forEach(syncOne);
+  }
+
+  document.addEventListener('change',function(e){
+    if(e.target && e.target.matches('.micro-lang-control select')){
+      window.setTimeout(function(){syncOne(e.target)},0);
+    }
+  },true);
+  window.addEventListener('languagechange',function(){window.setTimeout(syncAll,0)});
+
+  if(document.documentElement && window.MutationObserver){
+    new MutationObserver(syncAll).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+  }
+  syncAll();
+  window.setTimeout(syncAll,80);
 })();
 </script>
 
