@@ -336,6 +336,208 @@
     .back-to-top{ right:calc(160px + env(safe-area-inset-right)); }
     .topbar{ padding-left:108px; }
   }
+
+  /* === UI/UX POLISH PATCH === */
+  body{
+    min-height:100vh;
+    background:
+      radial-gradient(circle at 12% 8%, color-mix(in srgb, var(--accent) 7%, transparent), transparent 28rem),
+      radial-gradient(circle at 88% 22%, color-mix(in srgb, var(--accent) 4%, transparent), transparent 24rem),
+      var(--bg);
+  }
+
+  .topbar{
+    position:sticky;
+    top:0;
+    z-index:40;
+    padding-top:18px;
+    padding-bottom:18px;
+    background:color-mix(in srgb, var(--bg) 86%, transparent);
+    backdrop-filter:blur(18px) saturate(1.25);
+    -webkit-backdrop-filter:blur(18px) saturate(1.25);
+  }
+  .topbar a{
+    position:relative;
+    transition:color .2s ease, transform .2s ease;
+  }
+  .topbar a:hover{
+    transform:translateY(-1px);
+    text-decoration:none;
+  }
+  .topbar a::after{
+    content:"";
+    position:absolute;
+    left:0; right:0; bottom:-7px;
+    height:2px;
+    border-radius:999px;
+    background:var(--accent);
+    transform:scaleX(0);
+    transform-origin:center;
+    transition:transform .2s ease;
+  }
+  .topbar a:hover::after{ transform:scaleX(1); }
+
+  .section{
+    position:relative;
+    padding-top:72px;
+    padding-bottom:80px;
+  }
+  .section > .label:first-child{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:7px 11px;
+    border:1px solid color-mix(in srgb, var(--accent) 38%, var(--line));
+    border-radius:999px;
+    background:color-mix(in srgb, var(--accent-soft) 42%, transparent);
+    margin-bottom:18px !important;
+  }
+  .section > .label:first-child::before{
+    content:"";
+    width:6px; height:6px;
+    border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 0 4px color-mix(in srgb, var(--accent) 13%, transparent);
+  }
+  .section > h1{
+    max-width:760px;
+    font-size:clamp(38px, 7vw, 68px) !important;
+    line-height:1.02;
+    letter-spacing:-.035em;
+    margin-bottom:18px !important;
+  }
+  .section > h1 + p{
+    max-width:720px !important;
+    font-size:clamp(15px, 2vw, 18px) !important;
+    line-height:1.7;
+    color:var(--ink-soft) !important;
+    margin-bottom:56px !important;
+  }
+
+  .tool-category{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:0;
+    margin:0 0 16px;
+    border:0;
+    color:var(--ink);
+    font-size:13px;
+    letter-spacing:.08em;
+  }
+  .tool-category::after{
+    content:"";
+    height:1px;
+    flex:1;
+    background:linear-gradient(90deg, var(--line-strong), transparent);
+  }
+  .tool-grid{
+    grid-template-columns:repeat(5, minmax(0,1fr));
+    gap:12px;
+    margin-bottom:52px;
+    padding:16px;
+    border:1px solid var(--line);
+    border-radius:22px;
+    background:color-mix(in srgb, var(--card) 78%, transparent);
+    box-shadow:0 18px 50px -42px rgba(0,0,0,.35);
+  }
+  .tool{
+    min-height:116px;
+    justify-content:center;
+    gap:12px;
+    padding:16px 10px 14px;
+    border:1px solid transparent;
+    border-radius:16px;
+    background:transparent;
+    color:inherit;
+    transition:
+      transform .22s cubic-bezier(.16,.8,.3,1),
+      background .22s ease,
+      border-color .22s ease,
+      box-shadow .22s ease;
+  }
+  a.tool:hover{
+    transform:translateY(-4px);
+    border-color:color-mix(in srgb, var(--accent) 42%, var(--line));
+    background:color-mix(in srgb, var(--card) 88%, var(--accent-soft));
+    box-shadow:0 14px 26px -20px color-mix(in srgb, var(--accent) 35%, rgba(0,0,0,.35));
+    text-decoration:none;
+  }
+  .tool:not(a){ opacity:.9; }
+  .tool-icon{
+    width:60px;
+    height:60px;
+    border-radius:16px;
+    border:1px solid color-mix(in srgb, var(--line) 82%, transparent);
+    background:color-mix(in srgb, var(--card) 92%, var(--bg-alt));
+    box-shadow:0 8px 20px -16px rgba(0,0,0,.45);
+  }
+  .tool:hover .tool-icon{
+    border-color:color-mix(in srgb, var(--accent) 52%, var(--line));
+    transform:translateY(-1px) scale(1.04);
+  }
+  .tool-icon img{ width:30px; height:30px; }
+  .tool-badge{ border-radius:16px; }
+  .tool-name{
+    max-width:100%;
+    font-size:12.5px;
+    line-height:1.3;
+    font-weight:600;
+    color:var(--ink-soft);
+    transition:color .2s ease;
+  }
+  a.tool:hover .tool-name{
+    color:var(--ink);
+    text-decoration:none;
+  }
+
+  body > .container:nth-of-type(3){
+    padding-top:28px !important;
+    padding-bottom:28px !important;
+  }
+  body > .container:nth-of-type(3) > div{
+    padding:18px 20px;
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:color-mix(in srgb, var(--card) 78%, transparent);
+  }
+
+  @media (max-width: 980px){
+    .tool-grid{ grid-template-columns:repeat(4, minmax(0,1fr)); }
+  }
+  @media (max-width: 860px){
+    .topbar{
+      padding-left:74px;
+      padding-top:15px;
+      padding-bottom:15px;
+      flex-wrap:nowrap;
+      overflow-x:auto;
+      scrollbar-width:none;
+    }
+    .topbar::-webkit-scrollbar{ display:none; }
+    .topbar > div:first-child{ flex-wrap:nowrap !important; min-width:max-content; }
+    .section{ padding-top:52px; padding-bottom:56px; }
+    .section > h1{ font-size:clamp(36px, 11vw, 54px) !important; }
+    .tool-grid{ grid-template-columns:repeat(3, minmax(0,1fr)); padding:12px; gap:8px; border-radius:18px; }
+    .tool{ min-height:108px; padding:14px 7px 12px; }
+    .tool-icon{ width:56px; height:56px; }
+  }
+  @media (max-width: 540px){
+    .container{ padding-left:18px; padding-right:18px; }
+    .topbar{ padding-left:60px; }
+    .tool-grid{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+    .tool{ min-height:104px; }
+    .section > h1 + p{ margin-bottom:40px !important; }
+    body > .container:nth-of-type(3) > div{ align-items:flex-start !important; }
+  }
+  @media (hover:none){
+    a.tool:active{
+      transform:scale(.98);
+      background:color-mix(in srgb, var(--card) 88%, var(--accent-soft));
+      border-color:color-mix(in srgb, var(--accent) 35%, var(--line));
+    }
+  }
+
 </style>
 <link rel="stylesheet" href="portfolio-enhancements.css">
 </head>
