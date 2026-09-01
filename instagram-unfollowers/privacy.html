@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Instagram Unfollowers Finder</title>
+<meta name="description" content="Privacy Policy for Instagram Unfollowers Finder Chrome extension.">
+<style>
+  :root{
+    --bg:#faf9f6;
+    --card:#ffffff;
+    --ink:#252321;
+    --soft:#625e59;
+    --faint:#8a857f;
+    --line:#dedad4;
+    --accent:#DD2A7B;
+    --accent-hover:#B81F63;
+    --accent-soft:#fbe4ef;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#181715;
+      --card:#22211f;
+      --ink:#f0ede9;
+      --soft:#c6c0b8;
+      --faint:#918b84;
+      --line:#3b3935;
+      --accent:#FF5C9E;
+      --accent-hover:#FF83B4;
+      --accent-soft:#3a202d;
+    }
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:Georgia, "Times New Roman", serif;
+    line-height:1.65;
+  }
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline;color:var(--accent-hover)}
+  button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .container{max-width:760px;margin:0 auto;padding:0 24px}
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    padding:26px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .wordmark{
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.02em;
+  }
+  .actions{display:flex;align-items:center;gap:8px}
+  .btn{
+    appearance:none;
+    border:1px solid var(--line);
+    border-radius:999px;
+    background:transparent;
+    color:var(--ink);
+    padding:8px 13px;
+    font:700 11px/1 Arial,Helvetica,sans-serif;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    cursor:pointer;
+  }
+  .btn:hover{border-color:var(--accent);background:var(--accent-soft)}
+  .hero{padding:54px 0 24px}
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:var(--accent);
+    font:700 11px/1 Arial,Helvetica,sans-serif;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+  h1,h2{line-height:1.25}
+  h1{font-size:clamp(32px,6vw,48px);margin:0 0 14px}
+  .lead{font-size:18px;color:var(--soft);max-width:650px}
+  .meta{
+    margin-top:18px;
+    color:var(--faint);
+    font:12px/1.6 Arial,Helvetica,sans-serif;
+  }
+  .notice{
+    margin:24px 0 10px;
+    padding:18px 20px;
+    border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));
+    border-radius:12px;
+    background:var(--accent-soft);
+    color:var(--ink);
+    font-size:15px;
+  }
+  .section{padding:18px 0}
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:26px;
+  }
+  .card h2{
+    margin:0 0 12px;
+    font-size:20px;
+  }
+  .card p{margin:0 0 12px;color:var(--soft)}
+  .card p:last-child{margin-bottom:0}
+  ul{margin:8px 0 0;padding-left:22px;color:var(--soft)}
+  li{margin:7px 0}
+  .strong{color:var(--ink);font-weight:700}
+  code{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:.92em;
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:1px 5px;
+  }
+  footer{
+    margin-top:22px;
+    padding:30px 0 50px;
+    border-top:1px solid var(--line);
+    color:var(--faint);
+    text-align:center;
+    font:12px/1.8 Arial,Helvetica,sans-serif;
+  }
+  [data-lang-content]{display:none}
+  html[data-lang="en"] [data-lang-content="en"],
+  html[data-lang="it"] [data-lang-content="it"],
+  html[data-lang="tr"] [data-lang-content="tr"]{display:block}
+  @media(max-width:540px){
+    .topbar{align-items:flex-start}
+    .actions{flex-wrap:wrap;justify-content:flex-end}
+    .card{padding:22px}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="topbar">
+    <a class="wordmark" href="index.html">instagram-unfollower.js</a>
+    <div class="actions">
+      <a class="btn" href="index.html" data-i18n-en="Home" data-i18n-it="Home" data-i18n-tr="Ana sayfa">Home</a>
+      <select class="btn" id="langBtn" aria-label="Language"><option value="en">EN</option><option value="it">IT</option><option value="tr">TR</option></select>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow"><span class="dot"></span><span data-i18n-en="Chrome Extension" data-i18n-it="Estensione Chrome" data-i18n-tr="Chrome Eklentisi">Chrome Extension</span></div>
+      <h1 data-i18n-en="Privacy Policy" data-i18n-it="Informativa sulla privacy" data-i18n-tr="Gizlilik Politikası">Privacy Policy</h1>
+      <p class="lead" data-i18n-en="This policy explains what information Instagram Unfollowers Finder processes, why it is needed, and how it is handled."
+         data-i18n-it="Questa informativa spiega quali informazioni Instagram Unfollowers Finder elabora, perché sono necessarie e come vengono gestite."
+         data-i18n-tr="Bu politika, Instagram Unfollowers Finder'ın hangi bilgileri işlediğini, bunlara neden ihtiyaç duyduğunu ve bilgilerin nasıl ele alındığını açıklar.">
+         This policy explains what information Instagram Unfollowers Finder processes, why it is needed, and how it is handled.
+      </p>
+      <div class="meta">
+        <span data-i18n-en="Effective date:" data-i18n-it="Data di entrata in vigore:" data-i18n-tr="Yürürlük tarihi:">Effective date:</span>
+        <strong>31 August 2026</strong>
+      </div>
+    </section>
+
+    <div class="notice" data-i18n-en="<strong>Summary:</strong> The extension processes Instagram page/account information only to provide its unfollower analysis functionality. The developer does not sell this information or use it for advertising, credit decisions, or unrelated purposes."
+         data-i18n-it="<strong>In sintesi:</strong> L’estensione elabora informazioni relative alla pagina/account Instagram solo per fornire la funzionalità di analisi degli unfollower. Lo sviluppatore non vende queste informazioni e non le usa per pubblicità, decisioni di credito o finalità non correlate."
+         data-i18n-tr="<strong>Özet:</strong> Eklenti, Instagram sayfa/hesap bilgilerini yalnızca geri takip etmeyen hesapları analiz etme işlevini sağlamak için işler. Geliştirici bu bilgileri satmaz; reklam, kredi kararı veya ilgisiz amaçlarla kullanmaz.">
+      <strong>Summary:</strong> The extension processes Instagram page/account information only to provide its unfollower analysis functionality. The developer does not sell this information or use it for advertising, credit decisions, or unrelated purposes.
+    </div>
+
+    <div data-lang-content="en">
+      <section class="section"><div class="card">
+        <h2>1. Information processed</h2>
+        <p>Instagram Unfollowers Finder may process information that is visible or available to the extension on supported Instagram pages, including:</p>
+        <ul>
+          <li>Instagram usernames and profile-related information needed to identify accounts;</li>
+          <li>follow/follow-back relationship information needed to determine which accounts do not follow the user back;</li>
+          <li>page content required to display and operate the extension's interface on Instagram.</li>
+        </ul>
+        <p>The extension does not ask users to provide passwords, payment information, health information, personal communications, or precise location information to the developer.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>2. How information is used</h2>
+        <p>Information is processed solely for the extension's single purpose: helping users identify Instagram accounts they follow that do not follow them back and providing related user-requested controls.</p>
+        <p>User information is not used for advertising, profiling unrelated to the extension's functionality, creditworthiness, lending decisions, or any unrelated purpose.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>3. Data transmission and sharing</h2>
+        <p>The extension is designed to perform its analysis in the user's browser. The developer does not sell user data or transfer it to third parties for advertising or unrelated purposes.</p>
+        <p>The extension may communicate directly with Instagram as necessary to perform functionality requested by the user while the user is signed in to Instagram. Such communication is between the user's browser and Instagram and is subject to Instagram's own terms and privacy practices.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>4. Storage and retention</h2>
+        <p>The developer does not maintain a separate developer-controlled database of Instagram account information processed by the extension. Any temporary or locally stored extension state is used only to operate the extension and remains within the user's browser unless otherwise required by the browser or Instagram itself.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>5. Authentication information</h2>
+        <p>The extension relies on the user's existing Instagram login session in the browser. Users are not asked to send their Instagram password to the developer.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>6. Remote code</h2>
+        <p>The extension does not intentionally download and execute remote JavaScript as extension code. Executable extension logic is packaged with the extension, subject to the final published build.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>7. Limited Use</h2>
+        <p>Use of information is limited to providing or improving the extension's user-facing functionality. User data is not sold and is not transferred for personalized advertising, creditworthiness, lending, or unrelated purposes.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>8. Security</h2>
+        <p>Reasonable measures are used to limit data access to what is needed for the extension's functionality. However, no browser extension or internet-connected service can guarantee absolute security.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>9. Changes to this policy</h2>
+        <p>This Privacy Policy may be updated when the extension's functionality or data practices change. The effective date at the top of this page will be updated when material changes are made.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>10. Contact</h2>
+        <p>For privacy questions, use the verified developer contact address listed on the Chrome Web Store listing or developer account.</p>
+      </div></section>
+    </div>
+
+    <div data-lang-content="it">
+      <section class="section"><div class="card">
+        <h2>1. Informazioni elaborate</h2>
+        <p>Instagram Unfollowers Finder può elaborare le informazioni visibili o disponibili all’estensione nelle pagine Instagram supportate, tra cui:</p>
+        <ul>
+          <li>nomi utente Instagram e informazioni del profilo necessarie per identificare gli account;</li>
+          <li>informazioni sul rapporto follow/follow-back necessarie per determinare quali account non seguono a loro volta l’utente;</li>
+          <li>contenuti della pagina necessari per visualizzare e far funzionare l’interfaccia dell’estensione su Instagram.</li>
+        </ul>
+        <p>L’estensione non chiede agli utenti di inviare allo sviluppatore password, informazioni di pagamento, dati sanitari, comunicazioni personali o informazioni precise sulla posizione.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>2. Come vengono usate le informazioni</h2>
+        <p>Le informazioni vengono elaborate esclusivamente per l’unico scopo dell’estensione: aiutare gli utenti a identificare gli account Instagram che seguono ma che non li seguono a loro volta e fornire i relativi controlli richiesti dall’utente.</p>
+        <p>Le informazioni dell’utente non vengono usate per pubblicità, profilazione non correlata alle funzionalità dell’estensione, valutazione del merito creditizio, decisioni di prestito o altre finalità non correlate.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>3. Trasmissione e condivisione dei dati</h2>
+        <p>L’estensione è progettata per eseguire l’analisi nel browser dell’utente. Lo sviluppatore non vende i dati degli utenti e non li trasferisce a terze parti per pubblicità o finalità non correlate.</p>
+        <p>L’estensione può comunicare direttamente con Instagram quando necessario per eseguire le funzionalità richieste dall’utente mentre quest’ultimo è connesso a Instagram. Tale comunicazione avviene tra il browser dell’utente e Instagram ed è soggetta ai termini e alle pratiche sulla privacy di Instagram.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>4. Archiviazione e conservazione</h2>
+        <p>Lo sviluppatore non mantiene un database separato, controllato dallo sviluppatore, con le informazioni degli account Instagram elaborate dall’estensione. Qualsiasi stato temporaneo o salvato localmente dall’estensione viene usato solo per farla funzionare e rimane nel browser dell’utente, salvo quanto diversamente richiesto dal browser o da Instagram.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>5. Informazioni di autenticazione</h2>
+        <p>L’estensione utilizza la sessione Instagram già attiva nel browser dell’utente. Agli utenti non viene chiesto di inviare la propria password Instagram allo sviluppatore.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>6. Codice remoto</h2>
+        <p>L’estensione non è progettata per scaricare ed eseguire JavaScript remoto come codice dell’estensione. La logica eseguibile è inclusa nel pacchetto dell’estensione, in base alla build finale pubblicata.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>7. Uso limitato</h2>
+        <p>L’uso delle informazioni è limitato alla fornitura o al miglioramento delle funzionalità dell’estensione rivolte all’utente. I dati degli utenti non vengono venduti né trasferiti per pubblicità personalizzata, valutazioni creditizie, prestiti o finalità non correlate.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>8. Sicurezza</h2>
+        <p>Vengono adottate misure ragionevoli per limitare l’accesso ai dati a quanto necessario per le funzionalità dell’estensione. Tuttavia, nessuna estensione del browser o servizio connesso a Internet può garantire una sicurezza assoluta.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>9. Modifiche a questa informativa</h2>
+        <p>Questa Informativa sulla privacy può essere aggiornata quando cambiano le funzionalità dell’estensione o le pratiche relative ai dati. In caso di modifiche sostanziali verrà aggiornata anche la data di entrata in vigore indicata nella parte superiore della pagina.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>10. Contatti</h2>
+        <p>Per domande sulla privacy, usa l’indirizzo di contatto verificato dello sviluppatore indicato nella scheda del Chrome Web Store o nell’account sviluppatore.</p>
+      </div></section>
+    </div>
+
+    <div data-lang-content="tr">
+      <section class="section"><div class="card">
+        <h2>1. İşlenen bilgiler</h2>
+        <p>Instagram Unfollowers Finder, desteklenen Instagram sayfalarında eklenti tarafından görülebilen veya erişilebilen ve temel işlev için gerekli olan şu bilgileri işleyebilir:</p>
+        <ul>
+          <li>hesapları tanımlamak için gerekli Instagram kullanıcı adları ve profil bilgileri;</li>
+          <li>hangi hesapların kullanıcıyı geri takip etmediğini belirlemek için gerekli takip/geri takip ilişkisi bilgileri;</li>
+          <li>eklentinin arayüzünü Instagram üzerinde göstermek ve çalıştırmak için gerekli sayfa içeriği.</li>
+        </ul>
+        <p>Eklenti, kullanıcıların şifrelerini, ödeme bilgilerini, sağlık bilgilerini, kişisel iletişimlerini veya hassas konum bilgilerini geliştiriciye göndermelerini istemez.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>2. Bilgiler nasıl kullanılır?</h2>
+        <p>Bilgiler yalnızca eklentinin tek amacı için işlenir: kullanıcının takip ettiği ancak kendisini geri takip etmeyen Instagram hesaplarını belirlemeye yardımcı olmak ve kullanıcı tarafından istenen ilgili kontrolleri sağlamak.</p>
+        <p>Kullanıcı bilgileri reklam, eklentinin amacı dışındaki profilleme, kredi değerliliği, kredi verme kararı veya başka ilgisiz amaçlar için kullanılmaz.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>3. Veri aktarımı ve paylaşımı</h2>
+        <p>Eklenti, analizini kullanıcının tarayıcısında gerçekleştirecek şekilde tasarlanmıştır. Geliştirici kullanıcı verilerini satmaz ve reklam ya da ilgisiz amaçlar için üçüncü taraflara aktarmaz.</p>
+        <p>Kullanıcı Instagram'a giriş yapmış durumdayken, talep edilen işlevi yerine getirmek amacıyla eklenti gerektiğinde Instagram ile doğrudan iletişim kurabilir. Bu iletişim kullanıcının tarayıcısı ile Instagram arasında gerçekleşir ve Instagram'ın kendi koşulları ile gizlilik uygulamalarına tabidir.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>4. Saklama ve muhafaza</h2>
+        <p>Geliştirici, eklentinin işlediği Instagram hesap bilgileri için geliştirici tarafından kontrol edilen ayrı bir veritabanı tutmaz. Geçici veya yerel eklenti durumu yalnızca eklentiyi çalıştırmak için kullanılır ve tarayıcının veya Instagram'ın kendisi tarafından aksi gerektirilmedikçe kullanıcının tarayıcısında kalır.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>5. Kimlik doğrulama bilgileri</h2>
+        <p>Eklenti, kullanıcının tarayıcıdaki mevcut Instagram oturumundan yararlanır. Kullanıcılardan Instagram şifrelerini geliştiriciye göndermeleri istenmez.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>6. Uzak kod</h2>
+        <p>Eklenti, uzantı kodu olarak uzak JavaScript indirip çalıştırmak üzere tasarlanmamıştır. Çalıştırılabilir uzantı mantığı, yayınlanan son pakete bağlı olarak eklenti paketi içinde bulunur.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>7. Sınırlı Kullanım</h2>
+        <p>Bilgilerin kullanımı, eklentinin kullanıcıya yönelik işlevini sağlamak veya geliştirmekle sınırlıdır. Kullanıcı verileri satılmaz; kişiselleştirilmiş reklam, kredi değerliliği, kredi verme veya ilgisiz amaçlar için aktarılmaz.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>8. Güvenlik</h2>
+        <p>Veri erişimini eklentinin işlevi için gereken düzeyle sınırlamak amacıyla makul önlemler uygulanır. Bununla birlikte hiçbir tarayıcı eklentisi veya internete bağlı hizmet mutlak güvenlik garanti edemez.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>9. Bu politikadaki değişiklikler</h2>
+        <p>Eklentinin işlevi veya veri uygulamaları değiştiğinde bu Gizlilik Politikası güncellenebilir. Önemli değişikliklerde sayfanın üst kısmındaki yürürlük tarihi de güncellenir.</p>
+      </div></section>
+
+      <section class="section"><div class="card">
+        <h2>10. İletişim</h2>
+        <p>Gizlilikle ilgili sorular için Chrome Web Store listelemesinde veya geliştirici hesabında yer alan doğrulanmış geliştirici iletişim adresini kullanabilirsiniz.</p>
+      </div></section>
+    </div>
+  </main>
+
+  <footer>
+    <span data-i18n-en="Instagram Unfollowers Finder is not an official Instagram product and is not affiliated with Meta."
+          data-i18n-it="Instagram Unfollowers Finder non è un prodotto ufficiale di Instagram e non è affiliato a Meta."
+          data-i18n-tr="Instagram Unfollowers Finder resmi bir Instagram ürünü değildir ve Meta ile bağlantılı değildir.">
+      Instagram Unfollowers Finder is not an official Instagram product and is not affiliated with Meta.
+    </span><br>
+    <span>© 2026 zeytokg</span>
+  </footer>
+</div>
+
+<script>
+  const key = "portfolioLang";
+  const sourceKey = "portfolioLangSource";
+  const supported = ["en","it","tr"];
+
+  function deviceLang() {
+    let locale = "";
+    try { locale = navigator.language || navigator.languages?.[0] || ""; } catch {}
+    const code = String(locale || "").toLowerCase().replace("_","-").split("-")[0];
+    return supported.includes(code) ? code : "en";
+  }
+
+  function initialLang() {
+    try {
+      const saved = localStorage.getItem(key);
+      if (localStorage.getItem(sourceKey) === "manual" && supported.includes(saved)) return saved;
+    } catch {}
+    return deviceLang();
+  }
+
+  let lang = initialLang();
+
+  function applyLang(next, persistManual = false) {
+    lang = supported.includes(next) ? next : "en";
+    document.documentElement.dataset.lang = lang;
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-i18n-en]").forEach(el => {
+      const val = el.getAttribute("data-i18n-" + lang) || el.getAttribute("data-i18n-en");
+      if (val !== null) el.innerHTML = val;
+    });
+    const selector=document.getElementById("langBtn");
+    if(selector) selector.value=lang;
+    const titles={en:"Privacy Policy — Instagram Unfollowers Finder",it:"Informativa sulla privacy — Instagram Unfollowers Finder",tr:"Gizlilik Politikası — Instagram Takip Etmeyenler Bulucu"};
+    document.title=titles[lang];
+    try {
+      localStorage.setItem(key, lang);
+      if (persistManual) localStorage.setItem(sourceKey, "manual");
+    } catch {}
+  }
+
+  const selector=document.getElementById("langBtn");
+  if(selector) selector.addEventListener("change", () => applyLang(selector.value, true));
+  applyLang(lang);
+</script>
+</body>
+</html>
