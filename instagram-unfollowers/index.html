@@ -388,9 +388,25 @@ pre{margin:0;padding:20px;max-height:430px;overflow:auto;border-top:1px solid #3
 </div>
 <script>
 const LANG_KEY="portfolioLang";
-let lang="en";
-function applyLang(next){
-  lang=["en","it","tr"].includes(next)?next:"en";
+const LANG_SOURCE_KEY="portfolioLangSource";
+const SUPPORTED_LANGS=["en","it","tr"];
+function deviceLang(){
+  let locale="";
+  try{locale=navigator.language || navigator.languages?.[0] || "";}catch(e){}
+  const code=String(locale||"").toLowerCase().replace("_","-").split("-")[0];
+  return SUPPORTED_LANGS.includes(code)?code:"en";
+}
+function initialLang(){
+  try{
+    const saved=localStorage.getItem(LANG_KEY);
+    const source=localStorage.getItem(LANG_SOURCE_KEY);
+    if(source==="manual"&&SUPPORTED_LANGS.includes(saved))return saved;
+  }catch(e){}
+  return deviceLang();
+}
+let lang=initialLang();
+function applyLang(next,persistManual=false){
+  lang=SUPPORTED_LANGS.includes(next)?next:"en";
   document.documentElement.lang=lang;
   document.querySelectorAll("[data-en]").forEach(el=>{
     const value=el.getAttribute("data-"+lang) || el.getAttribute("data-en");
@@ -398,11 +414,14 @@ function applyLang(next){
   });
   const b=document.getElementById("langBtn");
   if(b)b.value=lang;
-  try{localStorage.setItem(LANG_KEY,lang)}catch(e){}
+  try{
+    localStorage.setItem(LANG_KEY,lang);
+    if(persistManual)localStorage.setItem(LANG_SOURCE_KEY,"manual");
+  }catch(e){}
 }
 const langSelect=document.getElementById("langBtn");
-if(langSelect)langSelect.addEventListener("change",()=>applyLang(langSelect.value));
-try{const s=localStorage.getItem(LANG_KEY);applyLang(["en","it","tr"].includes(s)?s:"en")}catch(e){applyLang("en")}
+if(langSelect)langSelect.addEventListener("change",()=>applyLang(langSelect.value,true));
+applyLang(lang);
 
 let scriptText="";
 fetch("./instagram-unfollowers.js",{cache:"no-store"})

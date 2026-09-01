@@ -3,7 +3,8 @@ Updated: 2026-09-01
 
 WHAT CHANGED
 - EN / IT / TR language support added across the main portfolio pages.
-- The same language preference is shared through localStorage (portfolioLang), so it persists between pages.
+- Language now auto-detects the device/browser primary language: English, Italian or Turkish; all unsupported languages default to English.
+- A language chosen manually from the site selector is remembered across pages and overrides auto-detection.
 - Easy Apply pages now support Italian in addition to English and Turkish.
 - Instagram Unfollowers pages now support English, Italian and Turkish.
 - Mobile homepage hero was reworked: the portrait now sits beside the name instead of dropping to the bottom of the hero card.

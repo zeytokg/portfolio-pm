@@ -368,10 +368,28 @@
 
 <script>
   const key = "portfolioLang";
-  let lang = "en";
+  const sourceKey = "portfolioLangSource";
+  const supported = ["en","it","tr"];
 
-  function applyLang(next) {
-    lang = ["en","it","tr"].includes(next) ? next : "en";
+  function deviceLang() {
+    let locale = "";
+    try { locale = navigator.language || navigator.languages?.[0] || ""; } catch {}
+    const code = String(locale || "").toLowerCase().replace("_","-").split("-")[0];
+    return supported.includes(code) ? code : "en";
+  }
+
+  function initialLang() {
+    try {
+      const saved = localStorage.getItem(key);
+      if (localStorage.getItem(sourceKey) === "manual" && supported.includes(saved)) return saved;
+    } catch {}
+    return deviceLang();
+  }
+
+  let lang = initialLang();
+
+  function applyLang(next, persistManual = false) {
+    lang = supported.includes(next) ? next : "en";
     document.documentElement.dataset.lang = lang;
     document.documentElement.lang = lang;
     document.querySelectorAll("[data-i18n-en]").forEach(el => {
@@ -382,18 +400,15 @@
     if(selector) selector.value=lang;
     const titles={en:"Privacy Policy — Instagram Unfollowers Finder",it:"Informativa sulla privacy — Instagram Unfollowers Finder",tr:"Gizlilik Politikası — Instagram Takip Etmeyenler Bulucu"};
     document.title=titles[lang];
-    try { localStorage.setItem(key, lang); } catch {}
+    try {
+      localStorage.setItem(key, lang);
+      if (persistManual) localStorage.setItem(sourceKey, "manual");
+    } catch {}
   }
 
   const selector=document.getElementById("langBtn");
-  if(selector) selector.addEventListener("change", () => applyLang(selector.value));
-
-  try {
-    const saved = localStorage.getItem(key);
-    applyLang(["en","it","tr"].includes(saved) ? saved : "en");
-  } catch {
-    applyLang("en");
-  }
+  if(selector) selector.addEventListener("change", () => applyLang(selector.value, true));
+  applyLang(lang);
 </script>
 </body>
 </html>

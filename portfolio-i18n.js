@@ -106,8 +106,27 @@
   var titleOriginal=document.title;
   var metaDesc=document.querySelector('meta[name="description"]');
   var metaDescOriginal=metaDesc?metaDesc.getAttribute('content'):'';
-  var lang=(localStorage.getItem('portfolioLang')||'en');
-  if(!['en','it','tr'].includes(lang)) lang='en';
+  var SUPPORTED_LANGS=['en','it','tr'];
+  var LANG_KEY='portfolioLang';
+  var LANG_SOURCE_KEY='portfolioLangSource';
+
+  function deviceLang(){
+    var locale='';
+    try{locale=navigator.language || (navigator.languages && navigator.languages[0]) || '';}catch(e){}
+    var code=String(locale||'').toLowerCase().replace('_','-').split('-')[0];
+    return SUPPORTED_LANGS.includes(code)?code:'en';
+  }
+
+  function initialLang(){
+    try{
+      var saved=localStorage.getItem(LANG_KEY);
+      var source=localStorage.getItem(LANG_SOURCE_KEY);
+      if(source==='manual' && SUPPORTED_LANGS.includes(saved)) return saved;
+    }catch(e){}
+    return deviceLang();
+  }
+
+  var lang=initialLang();
 
   function dict(){return lang==='tr'?TR:lang==='it'?IT:null;}
   function lookup(text){var d=dict(); if(!d) return text; return d[text] != null ? d[text] : text;}
@@ -151,8 +170,13 @@
   }
 
   function setLang(next){
-    if(!['en','it','tr'].includes(next)) next='en';
-    lang=next; localStorage.setItem('portfolioLang',lang); apply();
+    if(!SUPPORTED_LANGS.includes(next)) next='en';
+    lang=next;
+    try{
+      localStorage.setItem(LANG_KEY,lang);
+      localStorage.setItem(LANG_SOURCE_KEY,'manual');
+    }catch(e){}
+    apply();
   }
 
   function bind(){

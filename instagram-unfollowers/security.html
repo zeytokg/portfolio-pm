@@ -158,9 +158,29 @@
     };
 
     const STORAGE_KEY = "portfolioLang";
-    let currentLang = "en";
+    const STORAGE_SOURCE_KEY = "portfolioLangSource";
+    const SUPPORTED_LANGS = ["en","it","tr"];
 
-    function applyLang(lang) {
+    function deviceLang() {
+      let locale = "";
+      try { locale = navigator.language || navigator.languages?.[0] || ""; } catch { /* ignore */ }
+      const code = String(locale || "").toLowerCase().replace("_","-").split("-")[0];
+      return SUPPORTED_LANGS.includes(code) ? code : "en";
+    }
+
+    function initialLang() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        const source = localStorage.getItem(STORAGE_SOURCE_KEY);
+        if (source === "manual" && SUPPORTED_LANGS.includes(saved)) return saved;
+      } catch { /* ignore */ }
+      return deviceLang();
+    }
+
+    let currentLang = initialLang();
+
+    function applyLang(lang, persistManual = false) {
+      lang = SUPPORTED_LANGS.includes(lang) ? lang : "en";
       const dict = I18N[lang] || I18N.en;
       currentLang = lang;
       document.documentElement.lang = dict.htmlLang;
@@ -171,17 +191,15 @@
       });
       const langBtn = document.getElementById("langBtn");
       if (langBtn) langBtn.value = lang;
-      try { localStorage.setItem(STORAGE_KEY, lang); } catch { /* ignore */ }
+      try {
+        localStorage.setItem(STORAGE_KEY, lang);
+        if (persistManual) localStorage.setItem(STORAGE_SOURCE_KEY, "manual");
+      } catch { /* ignore */ }
     }
 
     const langSelect = document.getElementById("langBtn");
-    if (langSelect) langSelect.addEventListener("change", () => applyLang(langSelect.value));
-
-    (function initLang() {
-      let saved = null;
-      try { saved = localStorage.getItem(STORAGE_KEY); } catch { /* ignore */ }
-      applyLang(["en","it","tr"].includes(saved) ? saved : "en");
-    })();
+    if (langSelect) langSelect.addEventListener("change", () => applyLang(langSelect.value, true));
+    applyLang(currentLang);
   </script>
 </body>
 </html>

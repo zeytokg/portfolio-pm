@@ -226,7 +226,27 @@
 };
 
   const originals = new WeakMap();
-  let lang = ['en','it','tr'].includes(localStorage.getItem('portfolioLang')) ? localStorage.getItem('portfolioLang') : 'en';
+  const SUPPORTED_LANGS = ['en','it','tr'];
+  const LANG_KEY = 'portfolioLang';
+  const LANG_SOURCE_KEY = 'portfolioLangSource';
+
+  function deviceLang(){
+    let locale = '';
+    try { locale = navigator.language || navigator.languages?.[0] || ''; } catch {}
+    const code = String(locale || '').toLowerCase().replace('_','-').split('-')[0];
+    return SUPPORTED_LANGS.includes(code) ? code : 'en';
+  }
+
+  function initialLang(){
+    try {
+      const saved = localStorage.getItem(LANG_KEY);
+      const source = localStorage.getItem(LANG_SOURCE_KEY);
+      if (source === 'manual' && SUPPORTED_LANGS.includes(saved)) return saved;
+    } catch {}
+    return deviceLang();
+  }
+
+  let lang = initialLang();
 
   function lookup(text) {
     const dict = lang === 'tr' ? TR : lang === 'it' ? IT : null;
@@ -258,8 +278,11 @@
     document.title=lookup(originalTitle);
   }
   function setLang(next){
-    lang=['en','it','tr'].includes(next)?next:'en';
-    localStorage.setItem('portfolioLang',lang);
+    lang=SUPPORTED_LANGS.includes(next)?next:'en';
+    try {
+      localStorage.setItem(LANG_KEY,lang);
+      localStorage.setItem(LANG_SOURCE_KEY,'manual');
+    } catch {}
     apply();
   }
   document.addEventListener('DOMContentLoaded',()=>{
