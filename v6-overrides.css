@@ -1,0 +1,111 @@
+/* v6: mobile-first polish + small commercial CTAs. Desktop homepage layout stays unchanged. */
+.mobile-copy{display:none !important;}
+.mini-offer-strip{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-top:18px;
+  padding:11px 14px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:color-mix(in srgb,var(--card) 96%,var(--accent) 4%);
+  font-family:"Work Sans",sans-serif;
+  font-size:12px;
+  line-height:1.45;
+  color:var(--ink-soft);
+}
+.mini-offer-strip a{font-weight:800;white-space:nowrap;text-decoration:none !important;}
+.site-credit{font-family:"Work Sans",sans-serif;font-size:10.5px;line-height:1.4;color:var(--ink-faint);letter-spacing:.02em;}
+
+@media (max-width:860px){
+  /* Header: keep the useful anchors, remove duplicate conversion links, and shrink language UI. */
+  .topbar{padding:6px 7px !important;top:6px !important;margin-top:6px !important;border-radius:12px !important;gap:5px !important;}
+  .desktop-inline-nav{gap:4px !important;overflow:visible !important;}
+  .desktop-inline-nav a{font-size:8.7px !important;padding:7px 7px !important;letter-spacing:.015em !important;}
+  .desktop-inline-nav a[href="work-with-me.html"],
+  .desktop-inline-nav a[href*="download-cv"]{display:none !important;}
+  .portfolio-lang-wrap{min-height:32px !important;padding:2px 3px 2px 5px !important;gap:3px !important;}
+  .portfolio-lang-icon{display:none !important;}
+  .portfolio-lang-flag{width:16px !important;min-width:16px !important;font-size:12px !important;}
+  .portfolio-lang-select{min-width:45px !important;max-width:48px !important;padding:6px 19px 6px 7px !important;font-size:9px !important;background-position:calc(100% - 10px) 48%,calc(100% - 7px) 48% !important;}
+
+  /* Homepage hero: less biography, faster route to the live apps. */
+  #hero .hero{padding:17px 14px 15px !important;margin:10px 0 8px !important;border-radius:18px !important;}
+  #hero .hero > div:first-child{gap:11px !important;}
+  #hero h1{font-size:36px !important;line-height:.96 !important;padding-right:78px !important;min-height:66px !important;letter-spacing:-.04em !important;}
+  #hero .hero-photo{top:16px !important;right:14px !important;width:64px !important;height:64px !important;border-width:3px !important;}
+  #hero .role-box{padding:8px 10px !important;font-size:9.5px !important;line-height:1.32 !important;letter-spacing:.045em !important;border-radius:2px;}
+  #hero .hero-summary{font-size:13px !important;line-height:1.45 !important;margin:0 !important;color:var(--ink-soft) !important;}
+  #hero .hero-background,
+  #hero .hero-contact-row{display:none !important;}
+  #hero .availability-pill{font-size:10px !important;line-height:1.25 !important;padding:7px 10px !important;gap:7px !important;width:100% !important;border-radius:10px !important;}
+  #hero .availability-dot{width:6px !important;height:6px !important;}
+  .desktop-copy{display:none !important;}
+  .mobile-copy{display:inline !important;}
+
+  /* Apps are the primary mobile action: full-card taps, clear labels, compact height. */
+  #hero .hero-tools{margin:2px 0 0 !important;gap:6px !important;}
+  #hero .hero-tools-label{font-size:9.5px !important;letter-spacing:.1em !important;color:var(--ink-soft) !important;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+  #hero .hero-tools-hint{display:inline !important;font-size:8.5px;font-weight:700;letter-spacing:.02em;text-transform:none;color:var(--ink-faint);}
+  #hero .hero-tools-grid{grid-template-columns:1fr !important;gap:6px !important;}
+  #hero .hero-tool-card{grid-template-columns:38px minmax(0,1fr) 18px !important;min-height:54px !important;padding:6px 9px !important;border-radius:12px !important;gap:9px !important;}
+  #hero .hero-tool-icon{width:38px !important;height:38px !important;border-radius:10px !important;}
+  #hero .hero-tool-copy{font-size:11.5px !important;line-height:1.15 !important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  #hero .hero-tool-try{font-size:9.5px !important;margin-right:6px;}
+  #hero .hero-tool-arrow{font-size:0 !important;width:18px;text-align:center;color:var(--ink-soft) !important;}
+  #hero .hero-tool-arrow::before{content:"↗";font:700 16px/1 Arial,sans-serif;}
+
+  /* Secondary homepage CTAs should not overpower the apps. */
+  #hero .hero-cta-mobile{grid-template-columns:1fr 1fr !important;gap:7px !important;margin-top:1px;}
+  #hero .hero-cta-mobile .cta-primary,
+  #hero .hero-cta-mobile .cta-secondary{font-size:10.5px !important;line-height:1.1 !important;padding:10px 8px !important;min-height:36px !important;}
+
+  /* Remove the stats wall on phones; the work section carries the proof. */
+  #stats{display:none !important;}
+
+  /* Selected Work: compact 2x2 navigation, then lightweight proof cards. */
+  #selected-work{padding-top:32px !important;padding-bottom:34px !important;}
+  #selected-work > .label{font-size:9.5px !important;margin-bottom:7px !important;}
+  #selected-work h2{font-size:23px !important;line-height:1.08 !important;margin-bottom:16px !important;max-width:330px;}
+  #selected-work .selected-pages-label{font-size:9px !important;margin-bottom:8px !important;}
+  #selected-work .selected-pages-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:7px !important;}
+  #selected-work .selected-page-card{min-height:76px !important;padding:11px 10px !important;border-radius:12px !important;justify-content:space-between;}
+  #selected-work .selected-page-kicker{display:none !important;}
+  #selected-work .selected-page-title{font-size:14.5px !important;line-height:1.08 !important;margin-top:0 !important;}
+  #selected-work .selected-page-action{font-size:9.5px !important;margin-top:8px !important;}
+  #selected-work .selected-page-card::after{width:65px !important;height:65px !important;right:-35px !important;top:-38px !important;}
+  #selected-work .selected-page-dropdown .dropdown-menu{min-width:160px !important;width:calc(200% + 7px) !important;right:0 !important;left:auto !important;}
+
+  #selected-work .case{padding:13px 12px !important;margin-top:8px !important;border-radius:13px !important;gap:7px !important;}
+  #selected-work .case h3{font-size:17px !important;line-height:1.12 !important;padding-right:34px !important;}
+  #selected-work .case .meta{font-size:10.5px !important;line-height:1.3 !important;white-space:nowrap !important;overflow:hidden;text-overflow:ellipsis;}
+  #selected-work .case p{display:none !important;}
+  #selected-work .case-metric{display:inline-flex !important;width:fit-content !important;padding:5px 8px !important;border-radius:8px !important;gap:0 !important;}
+  #selected-work .case-metric .stat-num{font-size:12.5px !important;line-height:1.1 !important;}
+  #selected-work .case-metric .stat-label{display:none !important;}
+  #selected-work .case::after{top:10px !important;right:10px !important;width:25px !important;height:25px !important;font-size:12px !important;}
+  #viewAllWork{font-size:11px !important;padding:8px 12px !important;margin-top:10px !important;}
+
+  /* General mobile density: keep service cards useful without paragraphs of copy. */
+  #ways-i-can-help .help-card{padding:15px !important;gap:9px !important;}
+  #ways-i-can-help .help-card p{display:none !important;}
+  #ways-i-can-help .tag-chip{font-size:9.5px !important;padding:5px 8px !important;}
+  #testimonials .quotes-grid > div{padding:17px 15px !important;}
+  #testimonials .quote-text{font-size:13.5px !important;line-height:1.55 !important;}
+
+  /* Footer: stack the attribution quietly below the contact links. */
+  #contact .site-credit{font-size:9.5px !important;margin-top:2px;}
+  .mini-offer-strip{align-items:flex-start;flex-direction:column;gap:7px;padding:10px 11px;font-size:11px;}
+  .mini-offer-strip a{white-space:normal;}
+}
+
+@media (max-width:430px){
+  .container{padding-left:12px !important;padding-right:12px !important;}
+  .rule,.rule-strong{margin-left:12px !important;margin-right:12px !important;}
+  .desktop-inline-nav a{font-size:8.2px !important;padding:6px 6px !important;}
+  #hero h1{font-size:34px !important;padding-right:72px !important;min-height:62px !important;}
+  #hero .hero-photo{width:60px !important;height:60px !important;}
+  #hero .hero-tool-copy{font-size:11px !important;}
+  #selected-work h2{font-size:22px !important;}
+}

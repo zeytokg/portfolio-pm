@@ -49,3 +49,13 @@ LANGUAGE PATCH — EASY APPLY + INSTAGRAM UNFOLLOWERS
 - Main portfolio language control now shows active flag: GB / TR / IT.
 - All inner portfolio pages receive the same compact mobile nav class automatically.
 - Mobile header stays one row; language control remains visible; floating Back/Home gets reserved space.
+
+
+v6 mobile polish:
+- Desktop homepage layout left intact; mobile homepage is substantially more compact.
+- Mobile header simplified and language control reduced.
+- Mobile hero prioritizes the three live apps and shortens biography copy.
+- Stats hidden on phones; Selected Work navigation is now a compact 2x2 grid and only two proof cards show initially.
+- Added website quote CTA to Work With Me.
+- Added custom AR filter quote CTA to Instagram/Snapchat filter pages.
+- Added small website credit in the homepage footer.

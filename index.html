@@ -614,6 +614,7 @@
 </style>
 <link rel="stylesheet" href="mobile.css">
 <link rel="stylesheet" href="portfolio-enhancements.css">
+<link rel="stylesheet" href="v6-overrides.css">
 </head>
 <body>
 
@@ -635,19 +636,19 @@
   <div class="hero fade-up fade-up-d1">
     <div style="display:flex; flex-direction:column; gap:22px; max-width:640px;">
       <h1 style="font-size:clamp(30px, 9vw, 48px); line-height:1.08;">Zeynep Tokgözlü</h1>
-      <div class="role-box">Senior Product Manager · Product Operations &amp; Agile Delivery · AI-Powered Digital Products</div>
-      <p style="font-size:clamp(15px, 4vw, 18px); line-height:1.7; color:var(--ink-soft);">I turn messy product environments into predictable delivery — then use data to decide what ships next.</p>
-      <p style="font-family:'Work Sans', sans-serif; font-size:13px; color:var(--ink-faint);">Computer engineering background · Product, engineering &amp; data fluency</p>
-      <div style="display:flex; gap:16px; flex-wrap:wrap; font-family:'Work Sans', sans-serif; font-size:14px;">
+      <div class="role-box"><span class="desktop-copy">Senior Product Manager · Product Operations &amp; Agile Delivery · AI-Powered Digital Products</span><span class="mobile-copy">Senior Product Manager · AI Products</span></div>
+      <p class="hero-summary" style="font-size:clamp(15px, 4vw, 18px); line-height:1.7; color:var(--ink-soft);"><span class="desktop-copy">I turn messy product environments into predictable delivery — then use data to decide what ships next.</span><span class="mobile-copy">Product, delivery &amp; growth — guided by data.</span></p>
+      <p class="hero-background" style="font-family:'Work Sans', sans-serif; font-size:13px; color:var(--ink-faint);">Computer engineering background · Product, engineering &amp; data fluency</p>
+      <div class="hero-contact-row" style="display:flex; gap:16px; flex-wrap:wrap; font-family:'Work Sans', sans-serif; font-size:14px;">
         <a href="mailto:zeyneptokg@gmail.com">zeyneptokg@gmail.com</a>
         <span style="color:var(--line-strong);">|</span>
         <a href="https://www.linkedin.com/in/zeytokg/" target="_blank" rel="noopener">LinkedIn</a>
         <span style="color:var(--line-strong);">|</span>
         <span style="color:var(--ink-faint);">Milan, Italy</span>
       </div>
-      <div class="availability-pill"><span class="availability-dot"></span>Available for full-time, remote, B2B/B2C, contract &amp; consulting opportunities.</div>
+      <div class="availability-pill"><span class="availability-dot"></span><span class="desktop-copy">Available for full-time, remote, B2B/B2C, contract &amp; consulting opportunities.</span><span class="mobile-copy">Open to product roles, contracts &amp; consulting.</span></div>
       <div class="hero-tools" id="hero-tools">
-        <div class="hero-tools-label">Tools I built</div>
+        <div class="hero-tools-label"><span>Tools I built</span><span class="hero-tools-hint mobile-copy">Live apps · tap to try</span></div>
         <div class="hero-tools-grid">
           <a class="hero-tool-card easy" href="easy-apply/" aria-label="Try Easy Apply app">
             <img class="hero-tool-icon" src="easy-apply/assets/store-icon-128x128.png" alt="Easy Apply app icon">
@@ -672,7 +673,7 @@
         <a class="cta-secondary" href="work-with-me.html#download-cv">Download CV</a>
       </div>
       <div class="hero-cta-mobile" style="gap:14px; flex-wrap:wrap;">
-        <a class="cta-primary" href="#selected-work">View My Work ↓</a>
+        <a class="cta-primary" href="#selected-work">Selected Work ↓</a>
         <a class="cta-secondary" href="work-with-me.html">Work With Me →</a>
       </div>
     </div>
@@ -952,6 +953,7 @@
       <span style="color:var(--line-strong);">|</span>
       <a href="https://www.linkedin.com/in/zeytokg/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
+    <div class="site-credit">Website designed &amp; built by Zeynep Tokgözlü.</div>
   </div>
 </div>
 <script src="mobile.js"></script>
@@ -985,7 +987,7 @@
     window.addEventListener('resize', apply);
     apply();
   }
-  setupTruncate('#selected-work .case', 'viewAllWork', 4, false);
+  setupTruncate('#selected-work .case', 'viewAllWork', 2, false);
   setupTruncate('#testimonials .quotes-grid > div', 'viewMoreTestimonials', 1, false);
 })();
 </script>
