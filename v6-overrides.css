@@ -109,3 +109,81 @@
   #hero .hero-tool-copy{font-size:11px !important;}
   #selected-work h2{font-size:22px !important;}
 }
+
+/* FINAL PASS: consistent mobile rhythm/alignment only. Desktop remains untouched. */
+@media (max-width:860px){
+  /* One spacing rhythm across homepage sections. */
+  #selected-work,
+  #ways-i-can-help,
+  #testimonials,
+  #talks,
+  #education{
+    padding-top:30px !important;
+    padding-bottom:30px !important;
+  }
+
+  /* Keep section headings visually consistent. */
+  #selected-work > .label,
+  #ways-i-can-help > .label,
+  #talks > .label{
+    margin-bottom:8px !important;
+  }
+  #selected-work h2{ margin-bottom:14px !important; }
+  #ways-i-can-help .mobile-only h2{ margin-bottom:6px !important; }
+  #ways-i-can-help .mobile-only p{ margin-bottom:10px !important; }
+
+  /* Consistent card spacing on the homepage. */
+  #selected-work .selected-pages-grid{ gap:8px !important; }
+  #selected-work .case{ margin-top:8px !important; }
+  #ways-i-can-help .help-cards-grid,
+  #testimonials .quotes-grid{ gap:10px !important; }
+  #ways-i-can-help .help-card,
+  #talks .help-card{ padding:14px !important; gap:10px !important; }
+  #testimonials .testimonials-heading{ margin-bottom:14px !important; }
+  #testimonials .quotes-grid > div{ padding:15px 14px !important; }
+  #testimonials #viewMoreTestimonials,
+  #testimonials > p{ margin-top:12px !important; }
+
+  /* Education + footer line up with the same vertical rhythm. */
+  #education .two-col{ gap:12px !important; }
+  #education .two-col > div:last-child{ gap:18px !important; }
+  #contact{
+    padding-top:26px !important;
+    padding-bottom:26px !important;
+  }
+  #contact > div{ gap:10px !important; }
+  #contact > div > div:first-child{ gap:10px !important; }
+
+  /* Work With Me page: same spacing between hero, service areas and resources. */
+  .section-block{
+    padding-top:32px !important;
+    padding-bottom:32px !important;
+  }
+  .section-block > .label{ margin-bottom:8px !important; }
+  .section-block > h2{ margin-bottom:14px !important; }
+  .section-block .help-cards-grid{ gap:10px !important; }
+  .section-block .help-card{ padding:14px !important; gap:10px !important; }
+  .mini-offer-strip{ margin-top:12px !important; }
+  .mini-offer-strip + .mini-offer-strip{ margin-top:8px !important; }
+  #download-cv .cv-download-grid{ margin-top:14px !important; gap:10px !important; }
+  #download-cv .cv-download-card{ padding:16px !important; gap:10px !important; }
+
+  /* Social/filter pages use the same compact commercial CTA spacing. */
+  .mini-offer-strip + .mini-offer-strip{ margin-bottom:0 !important; }
+}
+
+@media (max-width:430px){
+  /* Keep all mobile content on one clean left/right grid. */
+  .container{ padding-left:12px !important; padding-right:12px !important; }
+  .rule,.rule-strong{ margin-left:12px !important; margin-right:12px !important; }
+  #selected-work,
+  #ways-i-can-help,
+  #testimonials,
+  #talks,
+  #education{
+    padding-top:28px !important;
+    padding-bottom:28px !important;
+  }
+  .section-block{ padding-top:28px !important; padding-bottom:28px !important; }
+  #contact{ padding-top:24px !important; padding-bottom:24px !important; }
+}
