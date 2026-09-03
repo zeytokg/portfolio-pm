@@ -133,7 +133,7 @@
     line-height:1.45 !important;
   }
 
-  /* Tool cards under the name become a clean vertical stack. */
+  /* Tool cards under availability become a compact vertical stack. */
   .hero-tools{
     width:100%;
     margin-top:0 !important;
@@ -141,27 +141,30 @@
 
   .hero-tools-grid{
     grid-template-columns:1fr !important;
-    gap:8px !important;
+    gap:6px !important;
   }
 
   .hero-tool-card{
-    grid-template-columns:42px minmax(0,1fr) 18px !important;
+    grid-template-columns:34px minmax(0,1fr) 14px !important;
+    gap:7px !important;
     width:100%;
-    min-height:68px;
-    padding:10px 11px !important;
+    height:auto !important;
+    min-height:58px;
+    padding:5px 8px !important;
   }
 
   .hero-tool-name{
-    font-size:12.5px !important;
+    font-size:11px !important;
+    line-height:1.12 !important;
   }
 
   .hero-tool-kind{
-    font-size:8px !important;
+    font-size:7px !important;
   }
 
   .hero-tool-try{
-    font-size:8px !important;
-    padding:4px 7px !important;
+    font-size:7px !important;
+    padding:2px 6px !important;
   }
 
   /* Contact / availability rows wrap without overflow. */

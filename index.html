@@ -413,12 +413,13 @@
   }
 
 
-  /* Tools directly under the name */
+  /* Compact tools under availability */
   .hero-tools{
     display:flex;
     flex-direction:column;
-    gap:10px;
-    margin-top:-4px;
+    gap:7px;
+    margin-top:-12px;
+    margin-bottom:-8px;
   }
   .hero-tools-label{
     font-family:"Work Sans",sans-serif;
@@ -430,126 +431,184 @@
   }
   .hero-tools-grid{
     display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:10px;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:8px;
   }
   .hero-tool-card{
     position:relative;
     display:grid;
-    grid-template-columns:42px minmax(0,1fr) 18px;
-    gap:10px;
+    grid-template-columns:34px minmax(0,1fr) 14px;
+    gap:8px;
     align-items:center;
     min-width:0;
-    padding:11px 12px;
+    min-height:54px;
+    padding:7px 9px;
     border:1px solid var(--line);
-    border-radius:14px;
+    border-radius:12px;
     background:color-mix(in srgb,var(--card) 94%,transparent);
     color:var(--ink) !important;
     text-decoration:none !important;
     overflow:hidden;
-    transition:
-      transform .2s ease,
-      border-color .2s ease,
-      box-shadow .2s ease,
-      background .2s ease;
+    transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease,background .2s ease;
   }
   .hero-tool-card::before{
     content:"";
     position:absolute;
-    width:92px;
-    height:92px;
+    width:68px;
+    height:68px;
     border-radius:50%;
-    right:-50px;
-    top:-58px;
-    opacity:.10;
+    right:-38px;
+    top:-42px;
+    opacity:.09;
     pointer-events:none;
   }
   .hero-tool-card.easy::before{ background:#16A36A; }
   .hero-tool-card.insta::before{ background:#FF4F93; }
-  .hero-tool-card:hover{ transform:translateY(-3px); }
+  .hero-tool-card.snap::before{ background:#D5A900; }
+  .hero-tool-card:hover{ transform:translateY(-2px); }
   .hero-tool-card.easy:hover{
     border-color:#16A36A;
     background:color-mix(in srgb,#16A36A 5%,var(--card));
-    box-shadow:0 10px 26px rgba(22,163,106,.13),0 0 18px rgba(22,163,106,.13);
+    box-shadow:0 8px 22px rgba(22,163,106,.12);
   }
   .hero-tool-card.insta:hover{
     border-color:#FF4F93;
     background:color-mix(in srgb,#FF4F93 5%,var(--card));
-    box-shadow:0 10px 26px rgba(255,79,147,.13),0 0 18px rgba(255,79,147,.15);
+    box-shadow:0 8px 22px rgba(255,79,147,.12);
+  }
+  .hero-tool-card.snap:hover{
+    border-color:#D5A900;
+    background:color-mix(in srgb,#D5A900 5%,var(--card));
+    box-shadow:0 8px 22px rgba(213,169,0,.12);
   }
   .hero-tool-icon{
-    width:42px;
-    height:42px;
-    border-radius:12px;
+    width:34px;
+    height:34px;
+    border-radius:9px;
     object-fit:cover;
-    box-shadow:0 6px 15px rgba(0,0,0,.10);
+    box-shadow:0 5px 12px rgba(0,0,0,.10);
   }
   .hero-tool-copy{
     min-width:0;
-    display:flex;
-    flex-direction:column;
-    gap:2px;
-  }
-  .hero-tool-kind{
     font-family:"Work Sans",sans-serif;
-    font-size:8.5px;
-    line-height:1.2;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    color:var(--ink-faint);
+    font-size:10.5px;
+    line-height:1.18;
     font-weight:800;
+    overflow-wrap:normal;
   }
-  .hero-tool-name{
-    font-family:"Work Sans",sans-serif;
-    font-size:12px;
-    line-height:1.25;
-    font-weight:800;
-    overflow-wrap:anywhere;
-  }
+  .hero-tool-try{font-weight:900;}
+  .hero-tool-card.easy .hero-tool-try{color:#16A36A;}
+  .hero-tool-card.insta .hero-tool-try{color:#FF4F93;}
+  .hero-tool-card.snap .hero-tool-try{color:#D5A900;}
   .hero-tool-arrow{
+    justify-self:end;
     font-size:15px;
-    color:var(--ink-faint);
+    color:var(--ink-soft);
     transition:transform .2s ease,color .2s ease;
   }
   .hero-tool-card.easy:hover .hero-tool-arrow{color:#16A36A;transform:translate(2px,-2px)}
   .hero-tool-card.insta:hover .hero-tool-arrow{color:#FF4F93;transform:translate(2px,-2px)}
+  .hero-tool-card.snap:hover .hero-tool-arrow{color:#D5A900;transform:translate(2px,-2px)}
   @media(max-width:620px){
-    .hero-tools-grid{grid-template-columns:1fr}
+    .hero-tools-grid{grid-template-columns:1fr;gap:6px}
+    .hero-tool-card{min-height:52px;padding:6px 9px;}
+    .hero-tool-copy{font-size:11px;}
   }
 
-
-  .hero-tool-try{
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    width:fit-content;
-    margin-bottom:4px;
-    padding:4px 8px;
-    border-radius:999px;
+  /* Selected Work page cards */
+  .selected-pages-label{
+    margin:0 0 10px;
     font-family:"Work Sans",sans-serif;
-    font-size:8.5px;
-    font-weight:900;
+    font-size:10px;
+    font-weight:800;
     letter-spacing:.12em;
     text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+  .selected-pages-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:12px;
+    margin-bottom:0;
+  }
+  .selected-page-card{
+    --page-color:var(--accent);
+    position:relative;
+    width:100%;
+    min-height:106px;
+    padding:15px 16px;
+    border:1px solid color-mix(in srgb,var(--page-color) 78%,var(--line));
+    border-radius:14px;
+    background:color-mix(in srgb,var(--page-color) 4%,var(--card));
+    color:var(--ink) !important;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    text-align:left;
+    text-decoration:none !important;
+    overflow:hidden;
+    cursor:pointer;
+    font:inherit;
+    transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease,background .2s ease;
+  }
+  .selected-page-card::after{
+    content:"";
+    position:absolute;
+    width:92px;
+    height:92px;
+    right:-48px;
+    top:-52px;
+    border-radius:50%;
+    background:var(--page-color);
+    opacity:.09;
+    pointer-events:none;
+  }
+  .selected-page-card:hover,.selected-page-card:focus-visible{
+    transform:translateY(-3px);
+    border-color:var(--page-color);
+    background:color-mix(in srgb,var(--page-color) 6%,var(--card));
+    box-shadow:0 12px 28px color-mix(in srgb,var(--page-color) 13%,transparent);
+  }
+  .selected-page-card.f2p{--page-color:#8B5CF6;}
+  .selected-page-card.casual{--page-color:#10B981;}
+  .selected-page-card.tools{--page-color:#4C8BF5;}
+  .selected-page-card.social{--page-color:#E1306C;}
+  .selected-page-kicker{
+    font-family:"Work Sans",sans-serif;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:.11em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    line-height:1.2;
+  }
+  .selected-page-title{
+    margin-top:9px;
+    font-family:"Source Serif 4",Georgia,serif;
+    font-size:18px;
+    line-height:1.2;
+    font-weight:600;
+    color:var(--ink);
+  }
+  .selected-page-action{
+    margin-top:auto;
+    padding-top:13px;
+    font-family:"Work Sans",sans-serif;
+    font-size:11px;
     line-height:1;
-    border:1px solid currentColor;
-    transition:box-shadow .2s ease, transform .2s ease;
+    font-weight:800;
+    color:var(--page-color);
   }
-  .hero-tool-card.easy .hero-tool-try{
-    color:#16A36A;
-    background:color-mix(in srgb,#16A36A 8%,transparent);
+  .selected-page-dropdown{display:block;min-width:0;}
+  .selected-page-dropdown .dropdown-menu{
+    left:0;
+    right:0;
+    min-width:0;
+    width:100%;
   }
-  .hero-tool-card.insta .hero-tool-try{
-    color:#FF4F93;
-    background:color-mix(in srgb,#FF4F93 8%,transparent);
-  }
-  .hero-tool-card.easy:hover .hero-tool-try{
-    box-shadow:0 0 14px rgba(22,163,106,.35);
-    transform:translateY(-1px);
-  }
-  .hero-tool-card.insta:hover .hero-tool-try{
-    box-shadow:0 0 14px rgba(255,79,147,.38);
-    transform:translateY(-1px);
+  @media(max-width:620px){
+    .selected-pages-grid{grid-template-columns:1fr;gap:10px;margin-bottom:0;}
+    .selected-page-card{min-height:96px;padding:14px 15px;}
   }
 
 </style>
@@ -576,29 +635,6 @@
   <div class="hero fade-up fade-up-d1">
     <div style="display:flex; flex-direction:column; gap:22px; max-width:640px;">
       <h1 style="font-size:clamp(30px, 9vw, 48px); line-height:1.08;">Zeynep Tokgözlü</h1>
-      <div class="hero-tools" id="hero-tools">
-        <div class="hero-tools-label">Tools I built</div>
-        <div class="hero-tools-grid">
-          <a class="hero-tool-card easy" href="easy-apply/" aria-label="Open Automatic Easy Apply Jobs">
-            <img class="hero-tool-icon" src="easy-apply/assets/store-icon-128x128.png" alt="">
-            <span class="hero-tool-copy">
-              <span class="hero-tool-try">Try now</span>
-              <span class="hero-tool-kind">Chrome extension</span>
-              <span class="hero-tool-name">Automatic Easy Apply Jobs</span>
-            </span>
-            <span class="hero-tool-arrow">↗</span>
-          </a>
-          <a class="hero-tool-card insta" href="instagram-unfollowers/" aria-label="Open Instagram Unfollowers Finder">
-            <img class="hero-tool-icon" src="instagram-unfollowers/extension/icons/icon128.png" alt="">
-            <span class="hero-tool-copy">
-              <span class="hero-tool-try">Try now</span>
-              <span class="hero-tool-kind">Chrome extension + browser tool</span>
-              <span class="hero-tool-name">Instagram Unfollowers Finder</span>
-            </span>
-            <span class="hero-tool-arrow">↗</span>
-          </a>
-        </div>
-      </div>
       <div class="role-box">Senior Product Manager · Product Operations &amp; Agile Delivery · AI-Powered Digital Products</div>
       <p style="font-size:clamp(15px, 4vw, 18px); line-height:1.7; color:var(--ink-soft);">I turn messy product environments into predictable delivery — then use data to decide what ships next.</p>
       <p style="font-family:'Work Sans', sans-serif; font-size:13px; color:var(--ink-faint);">Computer engineering background · Product, engineering &amp; data fluency</p>
@@ -610,6 +646,26 @@
         <span style="color:var(--ink-faint);">Milan, Italy</span>
       </div>
       <div class="availability-pill"><span class="availability-dot"></span>Available for full-time, remote, B2B/B2C, contract &amp; consulting opportunities.</div>
+      <div class="hero-tools" id="hero-tools">
+        <div class="hero-tools-label">Tools I built</div>
+        <div class="hero-tools-grid">
+          <a class="hero-tool-card easy" href="easy-apply/" aria-label="Try Easy Apply app">
+            <img class="hero-tool-icon" src="easy-apply/assets/store-icon-128x128.png" alt="Easy Apply app icon">
+            <span class="hero-tool-copy"><span class="hero-tool-try">Try now</span> Easy Apply app</span>
+            <span class="hero-tool-arrow">↗</span>
+          </a>
+          <a class="hero-tool-card insta" href="instagram-unfollowers/" aria-label="Try IG Unfollowers App">
+            <img class="hero-tool-icon" src="instagram-unfollowers/extension/icons/icon128.png" alt="IG Unfollowers App icon">
+            <span class="hero-tool-copy"><span class="hero-tool-try">Try now</span> IG Unfollowers App</span>
+            <span class="hero-tool-arrow">↗</span>
+          </a>
+          <a class="hero-tool-card snap" href="snapchat-filters.html" aria-label="Try My Snapchat Filters">
+            <img class="hero-tool-icon" src="images/Snapchat.jpg" alt="My Snapchat Filters icon">
+            <span class="hero-tool-copy"><span class="hero-tool-try">Try</span> My Snapchat Filters</span>
+            <span class="hero-tool-arrow">↗</span>
+          </a>
+        </div>
+      </div>
       <div class="hero-cta-desktop" style="display:flex; gap:14px; flex-wrap:wrap;">
         <a class="cta-primary" href="work-with-me.html">Work With Me →</a>
         <a class="cta-secondary" href="#selected-work">View Selected Work ↓</a>
@@ -649,12 +705,28 @@
 <div class="container section" id="selected-work" style="border-top:1px solid var(--line);">
   <div class="label label-accent" style="margin-bottom:10px;">Selected work</div>
   <h2 style="font-size:clamp(22px, 6vw, 30px); margin-bottom:20px;">A few things I've worked on, and how they went</h2>
-  <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:8px;">
-    <a href="mobile-gaming.html" class="nav-btn" style="--nav-color:#8B5CF6;" title="Go to page">F2P Products<span class="arrow">→</span></a>
-    <a href="casual-games.html" class="nav-btn" style="--nav-color:#10B981;" title="Go to page">Casual Products<span class="arrow">→</span></a>
-    <a href="tools.html" class="nav-btn" style="--nav-color:#4C8BF5;" title="Go to page">Tools &amp; Platforms<span class="arrow">→</span></a>
-    <div class="dropdown-nav">
-      <button type="button" class="nav-btn" style="--nav-color:#E1306C;" onclick="event.stopPropagation(); toggleDropdown(this.parentElement);">AR / Social Filters<span class="arrow">→</span></button>
+  <div class="selected-pages-label">Explore by product area</div>
+  <div class="selected-pages-grid">
+    <a href="mobile-gaming.html" class="selected-page-card f2p" title="Go to page">
+      <span class="selected-page-kicker">View F2P Products</span>
+      <span class="selected-page-title">F2P Products</span>
+      <span class="selected-page-action">View page ↗</span>
+    </a>
+    <a href="casual-games.html" class="selected-page-card casual" title="Go to page">
+      <span class="selected-page-kicker">View Casual Products</span>
+      <span class="selected-page-title">Casual Products</span>
+      <span class="selected-page-action">View page ↗</span>
+    </a>
+    <a href="tools.html" class="selected-page-card tools" title="View Tools I Use" aria-label="View Tools I Use">
+      <span class="selected-page-title" style="margin-top:0;">Tools I Use</span>
+      <span class="selected-page-action">View Tools I Use ↗</span>
+    </a>
+    <div class="dropdown-nav selected-page-dropdown">
+      <button type="button" class="selected-page-card social" onclick="event.stopPropagation(); toggleDropdown(this.parentElement);" aria-label="Choose AR / Social Filters page">
+        <span class="selected-page-kicker">View AR / Social Filters</span>
+        <span class="selected-page-title">AR / Social Filters</span>
+        <span class="selected-page-action">Choose page ↓</span>
+      </button>
       <div class="dropdown-menu">
         <a href="instagram-filters.html">Instagram Filters</a>
         <a href="snapchat-filters.html">Snapchat Filters</a>
@@ -794,12 +866,6 @@
     </div>
   </div>
   <p class="desktop-only" style="font-family:'Work Sans', sans-serif; font-size:14px; margin-top:24px;"><a href="work-with-me.html" style="font-weight:600;">Work with me →</a></p>
-</div>
-<!-- 360 FEEDBACK -->
-<div class="container section" id="feedback" style="border-top:1px solid var(--line); padding-top:32px; padding-bottom:32px;">
-  <div class="label label-accent" style="margin-bottom:10px;">360° Feedback</div>
-  <p style="font-family:'Work Sans', sans-serif; font-size:14px; line-height:1.6; color:var(--ink-soft);">92% Motivation · 88% Emotional Maturity · 86% Speed &amp; Deadlines · 85% Team Player · 84% Communication</p>
-  <p style="font-family:'Work Sans', sans-serif; font-size:12px; color:var(--ink-faint); margin-top:8px;">Based on peer and team feedback.</p>
 </div>
 <!-- TESTIMONIALS -->
 <div class="container section" id="testimonials" style="border-top:1px solid var(--line);">
@@ -943,6 +1009,37 @@
 })();
 </script>
 <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+(function(){
+  var nav = document.querySelector('.desktop-inline-nav');
+  if (!nav || typeof IntersectionObserver === 'undefined') return;
+  var links = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]'));
+  var pairs = links.map(function(link){
+    var href = link.getAttribute('href');
+    var target = href === '#' ? document.getElementById('hero') : document.querySelector(href);
+    return target ? {link:link,target:target} : null;
+  }).filter(Boolean);
+  if (!pairs.length) return;
+  function setActive(link){
+    links.forEach(function(a){
+      a.removeAttribute('aria-current');
+      a.style.color = 'var(--ink-faint)';
+    });
+    if (link){
+      link.setAttribute('aria-current','page');
+      link.style.color = 'var(--accent)';
+    }
+  }
+  var current = null;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) current = pairs.find(function(p){ return p.target === entry.target; });
+    });
+    if (current) setActive(current.link);
+  }, {rootMargin:'-28% 0px -58% 0px', threshold:0});
+  pairs.forEach(function(p){ io.observe(p.target); });
+})();
+</script>
 <script>
 (function(){
   var btn = document.getElementById('backToTop');

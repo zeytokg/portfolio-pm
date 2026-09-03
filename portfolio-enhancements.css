@@ -185,7 +185,7 @@ a:focus-visible,button:focus-visible,select:focus-visible,[role="link"]:focus-vi
     margin:0 !important;
     z-index:2;
   }
-  #hero .hero-tools{margin-top:2px !important;}
+  #hero .hero-tools{margin-top:-12px !important;margin-bottom:-8px !important;}
   #hero .role-box{margin-top:2px;}
 
   #selected-work .case{padding:19px 16px !important;border-radius:15px;}
