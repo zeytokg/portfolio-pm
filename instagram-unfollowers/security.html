@@ -39,7 +39,7 @@
   a{ color: var(--accent); text-decoration: none; }
   a:hover{ color: var(--accent-hover); text-decoration: underline; }
 
-  .container{ max-width: 640px; margin: 0 auto; padding: 0 24px 60px; }
+  .container{ max-width: 1240px; margin: 0 auto; padding: 0 30px 60px; }
   .topbar{ display:flex; justify-content:space-between; align-items:center; padding: 26px 0; gap:12px; flex-wrap:wrap; }
   .wordmark{ font-family:"Work Sans", sans-serif; font-weight:700; font-size:13px; color:var(--ink); }
   .topbar-right{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
@@ -61,6 +61,41 @@
   li:last-child{ margin-bottom:0; }
 
   .rule{ border:none; border-top:1px solid var(--line); margin: 10px 0 30px; }
+
+
+  .security-dashboard{margin:28px 0 34px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:color-mix(in srgb,var(--bg) 96%,var(--ink) 4%)}
+  .security-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.95fr)}
+  .signature-panel{padding:28px;border-right:1px solid var(--line);min-height:240px}
+  .report-stack{display:grid;grid-template-rows:1fr 1fr}
+  .report-cell{padding:28px;border-bottom:1px solid var(--line)}
+  .report-cell:last-child{border-bottom:0}
+  .security-kicker{font-family:"Work Sans",sans-serif;font-size:12px;font-weight:600;color:var(--ink-faint);margin-bottom:14px}
+  .package-name{font-family:"Work Sans",sans-serif;font-size:13px;color:var(--ink-soft);margin:0 0 12px}
+  .hash-plain{display:block;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;line-height:1.65;color:var(--ink-soft);word-break:break-all}
+  .vt-score{display:flex;align-items:center;gap:10px;margin:3px 0 10px;font-family:"Work Sans",sans-serif}
+  .vt-score strong{font-size:25px;color:var(--ink);letter-spacing:-.04em}
+  .status-pill{display:inline-flex;align-items:center;gap:7px;padding:5px 9px;border:1px solid color-mix(in srgb,#39b86a 48%,var(--line));border-radius:999px;font:700 10px/1 "Work Sans",sans-serif;text-transform:uppercase;letter-spacing:.05em;color:#2f9d5b;background:color-mix(in srgb,#39b86a 9%,transparent)}
+  .status-pill:before{content:"";width:7px;height:7px;border-radius:50%;background:#39b86a}
+  .report-cell p{font-size:14px;line-height:1.55;margin:0 0 9px}
+  .report-link{font-family:"Work Sans",sans-serif;font-size:12px;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+  .insight-title{font-family:"Work Sans",sans-serif;font-size:12px;font-weight:700;color:var(--ink);margin:0 0 8px}
+  .security-actions{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 38px}
+  .security-actions .nav-btn{font-size:11px;padding:11px 18px}
+  .security-actions .primary{background:var(--ink);border-color:var(--ink);color:var(--bg)!important}
+  .security-actions .primary:hover{background:var(--accent);border-color:var(--accent);color:white!important}
+  .privacy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 34px}
+  .privacy-card{border:1px solid var(--line);border-radius:14px;padding:18px;background:color-mix(in srgb,var(--bg) 97%,var(--ink) 3%)}
+  .privacy-card strong{display:block;font-family:"Work Sans",sans-serif;font-size:13px;margin-bottom:8px;color:var(--ink)}
+  .privacy-card p{font-size:13.5px;line-height:1.55;margin:0}
+  .meta-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+  .meta-chip{font:600 10.5px/1 "Work Sans",sans-serif;padding:7px 9px;border-radius:999px;border:1px solid var(--line);color:var(--ink-soft)}
+  .made-by{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font:500 11px/1.5 "Work Sans",sans-serif;color:var(--ink-faint)}
+  @media(max-width:720px){
+    .security-grid{grid-template-columns:1fr}
+    .signature-panel{border-right:0;border-bottom:1px solid var(--line);min-height:0}
+    .privacy-grid{grid-template-columns:1fr}
+  }
+
 </style>
 
 <style id="portfolio-floating-nav-patch">
@@ -423,101 +458,156 @@ img{image-rendering:auto;-webkit-user-drag:none}
 }
 </style>
 
+
+<style id="unfollowers-security-site-theme-v7">
+:root{
+  --bg:#fffafc;--bg2:#fff5f9;--card:#ffffff;--ink:#20191d;--soft:#655a61;--faint:#93868e;
+  --line:#ecdce5;--pink:#ff4f93;--pink2:#f2317e;--pink-soft:#ffe6f0;--purple:#8358ff;
+  --shadow:0 26px 70px rgba(114,31,67,.12);
+  --ink-soft:var(--soft);--ink-faint:var(--faint);--accent:var(--pink);--accent-hover:var(--pink2);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#171215;--bg2:#21171c;--card:#221a1f;--ink:#fff5f9;--soft:#d6c3cd;--faint:#9d8994;
+    --line:#40303a;--pink:#ff6aa4;--pink2:#ff87b5;--pink-soft:#442131;--purple:#a68cff;
+    --shadow:0 28px 72px rgba(0,0,0,.34);
+    --ink-soft:var(--soft);--ink-faint:var(--faint);--accent:var(--pink);--accent-hover:var(--pink2);
+  }
+}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--ink);font-family:"Work Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:radial-gradient(circle at 82% 2%,color-mix(in srgb,var(--pink) 14%,transparent),transparent 28rem),radial-gradient(circle at 5% 30%,color-mix(in srgb,var(--purple) 8%,transparent),transparent 24rem),var(--bg);
+  line-height:1.65;
+}
+a{color:var(--pink);text-decoration:none}a:hover{color:var(--pink2);text-decoration:none}
+.container{width:min(1120px,calc(100% - 40px));max-width:none;margin:0 auto;padding:0}
+.serif,h1,h2{font-family:"Source Serif 4",Georgia,serif}
+.topbar{position:sticky;top:14px;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:14px;padding:11px 14px;border:1px solid color-mix(in srgb,var(--line) 80%,transparent);background:color-mix(in srgb,var(--card) 83%,transparent);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:18px;box-shadow:0 8px 32px rgba(0,0,0,.06)}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink)!important;font-weight:800;text-decoration:none!important}.brand img{width:38px;height:38px;border-radius:11px;transition:.22s ease}.brand:hover img{transform:translateY(-2px) scale(1.06);filter:drop-shadow(0 0 12px color-mix(in srgb,var(--pink) 65%,transparent))}
+.topbar-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.nav-btn{font:700 12px "Work Sans",sans-serif!important;letter-spacing:0!important;text-transform:none!important;color:var(--soft)!important;border:1px solid var(--line)!important;background:var(--card)!important;border-radius:999px!important;padding:8px 12px!important;cursor:pointer;transition:.2s ease;text-decoration:none!important}.nav-btn:hover{color:var(--pink)!important;border-color:var(--pink)!important;box-shadow:0 0 16px color-mix(in srgb,var(--pink) 22%,transparent)}
+.security-hero{padding:82px 0 58px;max-width:860px}.badge{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid var(--line);border-radius:999px;color:var(--soft);background:color-mix(in srgb,var(--card) 72%,transparent);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.dot{width:8px;height:8px;border-radius:50%;background:var(--pink);box-shadow:0 0 0 4px color-mix(in srgb,var(--pink) 18%,transparent)}
+h1{font-size:clamp(46px,7vw,78px)!important;line-height:.98!important;letter-spacing:-.05em;margin:20px 0!important;font-weight:600!important}.lead{font:400 clamp(18px,2vw,24px)/1.55 "Source Serif 4",Georgia,serif;color:var(--soft);max-width:760px;margin:0}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border-radius:999px;font-weight:800;border:1.5px solid var(--line);color:var(--ink)!important;background:var(--card);transition:.2s ease;text-decoration:none!important}.btn:hover{transform:translateY(-3px);border-color:var(--pink);box-shadow:0 10px 28px rgba(0,0,0,.09),0 0 24px color-mix(in srgb,var(--pink) 25%,transparent)}.btn.primary{background:linear-gradient(135deg,var(--pink),var(--pink2));border-color:transparent!important;color:#fff!important;box-shadow:0 12px 30px color-mix(in srgb,var(--pink) 28%,transparent)}
+.section{padding:76px 0;border-top:1px solid var(--line);margin:0!important}.section-head{display:grid;grid-template-columns:210px minmax(0,1fr);gap:38px;margin-bottom:32px}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:var(--pink)}.section h2{font:600 clamp(30px,4.8vw,48px)/1.08 "Source Serif 4",Georgia,serif!important;margin:0!important}
+.security-dashboard{margin:0;border:1px solid var(--line);border-radius:28px;overflow:hidden;background:linear-gradient(155deg,color-mix(in srgb,var(--card) 95%,var(--pink) 5%),var(--card));box-shadow:var(--shadow);position:relative}.security-dashboard:before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-100px;top:-125px;background:color-mix(in srgb,var(--pink) 10%,transparent);pointer-events:none}.security-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);position:relative}.signature-panel{padding:30px;border-right:1px solid var(--line);min-height:270px;display:flex;flex-direction:column;justify-content:center}.report-stack{display:grid;grid-template-rows:1fr 1fr}.report-cell{padding:28px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--card) 84%,transparent)}.report-cell:last-child{border-bottom:0}
+.security-kicker{font:800 11px/1.2 "Work Sans",sans-serif;text-transform:uppercase;letter-spacing:.12em;color:var(--pink);margin-bottom:14px}.package-name{font-family:"Work Sans",sans-serif!important;font-size:14px!important;color:var(--soft)!important;margin:0 0 14px!important}.package-name strong{color:var(--ink)}.hash-plain{display:block;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;line-height:1.65;color:var(--soft);word-break:break-all;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--bg2)}.meta-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.meta-chip{font:800 10.5px/1 "Work Sans",sans-serif;padding:8px 10px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--soft)}
+.vt-score{display:flex;align-items:center;gap:10px;margin:3px 0 10px;font-family:"Work Sans",sans-serif}.vt-score strong{font-size:38px;color:var(--ink);letter-spacing:-.05em}.status-pill{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border:1px solid color-mix(in srgb,#39b86a 48%,var(--line));border-radius:999px;font:800 10px/1 "Work Sans",sans-serif;text-transform:uppercase;letter-spacing:.05em;color:#2f9d5b;background:color-mix(in srgb,#39b86a 9%,transparent)}.status-pill:before{content:"";width:7px;height:7px;border-radius:50%;background:#39b86a}.report-cell p{font-size:14px;line-height:1.6;margin:0 0 9px;color:var(--soft)}.report-link{font:800 12px "Work Sans",sans-serif;color:var(--pink);text-decoration:none}.report-link:hover{text-decoration:underline;text-underline-offset:3px}.insight-title{font:800 13px "Work Sans",sans-serif;color:var(--ink);margin:0 0 8px}
+.security-actions{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0 0}.security-actions .nav-btn{padding:14px 22px!important;font-weight:800!important}.security-actions .primary{background:linear-gradient(135deg,var(--pink),var(--pink2))!important;border-color:transparent!important;color:#fff!important}.privacy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:0}.privacy-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;transition:.22s ease}.privacy-card:hover{transform:translateY(-5px);border-color:color-mix(in srgb,var(--pink) 55%,var(--line));box-shadow:0 16px 38px rgba(0,0,0,.08),0 0 26px color-mix(in srgb,var(--pink) 18%,transparent)}.privacy-card strong{display:block;font-family:"Work Sans",sans-serif;font-size:16px;margin-bottom:8px;color:var(--ink)}.privacy-card p{font-size:14px;line-height:1.65;margin:0;color:var(--soft)}
+.section ul{list-style:none;padding:0;margin:0;display:grid;gap:12px}.section li{position:relative;margin:0;padding:16px 18px 16px 46px;border:1px solid var(--line);border-radius:16px;background:var(--card);font-size:14px;line-height:1.65;color:var(--soft);transition:.2s ease}.section li:before{content:"✓";position:absolute;left:17px;top:15px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--pink-soft);color:var(--pink);font-weight:900;font-size:12px}.section li:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--pink) 50%,var(--line));box-shadow:0 12px 26px rgba(0,0,0,.06),0 0 20px color-mix(in srgb,var(--pink) 12%,transparent)}.section code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink)}
+.footer,.made-by{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:38px 0 58px;border-top:1px solid var(--line);font:500 13px/1.6 "Work Sans",sans-serif;color:var(--faint);margin:0}.footer a{color:var(--soft)}
+@media(max-width:860px){.security-hero{padding-top:48px}.section-head{grid-template-columns:1fr;gap:10px}.security-grid{grid-template-columns:1fr}.signature-panel{border-right:0;border-bottom:1px solid var(--line);min-height:0}.privacy-grid{grid-template-columns:1fr}.topbar{position:relative;top:auto}}
+@media(max-width:600px){.container{width:min(100% - 24px,1120px)}.topbar{align-items:flex-start;flex-direction:column}.topbar-right{width:100%}h1{font-size:clamp(38px,12vw,54px)!important}.security-hero{padding:40px 0}.section{padding:58px 0}.signature-panel,.report-cell{padding:22px}}
+</style>
+
 </head>
 <body>
-  <div class="container">
-    <div class="topbar">
-      <span class="wordmark">instagram-unfollowers.js</span>
-      <div class="topbar-right">
-        <a class="nav-btn" href="index.html" data-i18n="backLink">&larr; Back</a>
-        <label class="micro-lang-control"><span class="micro-lang-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15.3 15.3 0 0 1 0 18M12 3a15.3 15.3 0 0 0 0 18"/></svg></span><span class="micro-lang-flag" aria-hidden="true">🇬🇧</span><span class="micro-lang-label" data-i18n="languageLabel">Language</span><select class="micro-lang-select" id="langBtn" aria-label="Language"><option value="en">EN</option><option value="it">IT</option><option value="tr">TR</option></select></label>
-      </div>
+<div class="container">
+  <header class="topbar">
+    <a class="brand" href="index.html"><img src="extension/icons/icon256.png" alt="Instagram Unfollowers Finder icon"><span>Instagram Unfollowers Finder</span></a>
+    <div class="topbar-right">
+      <a class="nav-btn" href="index.html" data-i18n="backLink">&larr; Back</a>
+      <label class="micro-lang-control"><span class="micro-lang-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15.3 15.3 0 0 1 0 18M12 3a15.3 15.3 0 0 0 0 18"/></svg></span><span class="micro-lang-flag" aria-hidden="true">🇬🇧</span><span class="micro-lang-label" data-i18n="languageLabel">Language</span><select class="micro-lang-select" id="langBtn" aria-label="Language"><option value="en">EN</option><option value="it">IT</option><option value="tr">TR</option></select></label>
     </div>
-
-    <h1 data-i18n="title">Security</h1>
-    <p data-i18n="intro">This page has what you need to verify the code yourself before you paste it into your own browser console.</p>
-
-    <hr class="rule">
-
-    <section>
-      <h2 data-i18n="hashTitle">Current file hash</h2>
-      <p data-i18n="hashBody">This is the SHA-256 hash of <code>instagram-unfollowers.js</code> as published in this repository. After downloading the file, you can compute its hash yourself and compare.</p>
-      <div class="hash-row"><span class="hash-label">SHA-256</span></div>
-      <span class="hash" id="hashValue">44e7a339959e5e8f8b668d6d60196308f457c7f1cb826b8a444be3b220cb582b</span>
+  </header>
+  <main>
+    <section class="security-hero">
+      <div class="badge"><span class="dot"></span><span>VirusTotal · 0 / 65</span></div>
+      <h1 class="serif" data-i18n="title">Security</h1>
+      <p class="lead" data-i18n="intro">Review the published security report and the code before using the extension.</p>
+      <div class="actions"><a class="btn primary" href="#virus-report" data-i18n="detailsBtn">Review VirusTotal report ↗</a><a class="btn" href="index.html#codeTerminal" data-i18n="codeBtn">Review code</a></div>
     </section>
-
-    <section>
-      <h2 data-i18n="whatTitle">What the code does</h2>
-      <ul>
-        <li data-i18n="what1">Only runs when the page is <code>www.instagram.com</code> — it refuses to run anywhere else.</li>
-        <li data-i18n="what2">Reads your existing Instagram session cookies to make requests as you; it never asks for or stores a password.</li>
-        <li data-i18n="what3">Every network request goes to <code>www.instagram.com</code> directly from your browser — nothing is sent to any third-party server.</li>
-        <li data-i18n="what4">Unfollowing only happens after you select accounts and confirm — nothing is unfollowed automatically.</li>
-      </ul>
+    <section class="section" id="virus-report">
+      <div class="section-head"><div class="eyebrow">VirusTotal</div><h2 data-i18n="signatureTitle">File signature</h2></div>
+      <div class="security-dashboard"><div class="security-grid">
+        <div class="signature-panel"><div class="security-kicker" data-i18n="packageLabel">Analyzed package</div><p class="package-name"><strong>instagram-unfollowers-extension.zip</strong></p><span class="hash-plain">SHA-256&nbsp;&nbsp;1c8779ca15aeefd9c797bd17f6328b343ae8befd812670d522e85fac37083ef2</span><div class="meta-row"><span class="meta-chip">v1.5.0</span><span class="meta-chip">26.37 KB</span><span class="meta-chip">CRX / ZIP</span></div></div>
+        <div class="report-stack">
+          <div class="report-cell"><div class="security-kicker">VirusTotal</div><div class="vt-score"><strong>0 / 65</strong><span class="status-pill" data-i18n="cleanLabel">No detections</span></div><p data-i18n="vtCounts">0 malicious, 0 suspicious.</p><p data-i18n="vtBody">No security vendors flagged this file as malicious in the submitted VirusTotal analysis.</p><a class="report-link" href="https://www.virustotal.com/gui/file/1c8779ca15aeefd9c797bd17f6328b343ae8befd812670d522e85fac37083ef2?nocache=1" target="_blank" rel="noopener noreferrer" data-i18n="vtLink">Review VirusTotal report ↗</a></div>
+          <div class="report-cell"><div class="security-kicker" data-i18n="insightsTitle">Code insights</div><div class="insight-title">Instagram Unfollowers by zeytokg · v1.5.0</div><p data-i18n="insightsBody">VirusTotal Code Insights reports that the extension provides an Instagram UI for finding and unfollowing non-mutual accounts using Instagram's native endpoints, with no data exfiltration, remote code execution, or malicious behavior found.</p></div>
+        </div>
+      </div></div>
+      <div class="security-actions"><a class="nav-btn primary" href="https://www.virustotal.com/gui/file/1c8779ca15aeefd9c797bd17f6328b343ae8befd812670d522e85fac37083ef2?nocache=1" target="_blank" rel="noopener noreferrer" data-i18n="detailsBtn">Review VirusTotal report ↗</a><a class="nav-btn" href="index.html#codeTerminal" data-i18n="codeBtn">Review code</a></div>
     </section>
-
-    <section>
-      <h2 data-i18n="verifyTitle">How to verify it yourself</h2>
-      <ul>
-        <li data-i18n="verify1">Read the full source on <a href="https://github.com/zeytokg" target="_blank" rel="noopener">GitHub</a> before running it — it's a single, readable file.</li>
-        <li data-i18n="verify2">Compare the hash above with the file you're about to paste (e.g. with <code>shasum -a 256 instagram-unfollowers.js</code>).</li>
-        <li data-i18n="verify3">You're welcome to run your own scanner (VirusTotal, Semgrep, or anything else) against the file — it's short enough to review in a few minutes either way.</li>
-      </ul>
+    <section class="section">
+      <div class="section-head"><div class="eyebrow" data-i18n="sessionTitle">Login &amp; privacy</div><h2 data-i18n="credentialsTitle">No credential collection</h2></div>
+      <div class="privacy-grid"><div class="privacy-card"><strong data-i18n="loginCardTitle">Instagram login required</strong><p data-i18n="loginCardBody">Install the extension, then log in to instagram.com. It works only while an Instagram session is active in your browser.</p></div><div class="privacy-card"><strong data-i18n="credentialsTitle">No credential collection</strong><p data-i18n="credentialsBody">The extension does not ask you to enter or send your Instagram password to the developer, and it does not store your login credentials. It uses the Instagram session already open in your browser.</p></div><div class="privacy-card"><strong data-i18n="storageTitle">No developer account database</strong><p data-i18n="storageBody">The developer does not maintain a separate developer-controlled database of the Instagram account information processed by the extension. Processing is performed for the tool's functionality in your browser.</p></div></div>
     </section>
-  </div>
+    <section class="section"><div class="section-head"><div class="eyebrow" data-i18n="instagramEyebrow">Instagram</div><h2 data-i18n="whatTitle">What the code does</h2></div><ul><li data-i18n="what1">Only runs when the page is <code>www.instagram.com</code> — it refuses to run anywhere else.</li><li data-i18n="what2">Uses your existing Instagram session to make the requests needed for the tool; it never asks for or stores your password.</li><li data-i18n="what3">Instagram requests are made directly from your browser to <code>www.instagram.com</code>; the extension is not designed to send your Instagram data to a developer-controlled server.</li><li data-i18n="what4">Unfollowing only happens after you select accounts and confirm — nothing is unfollowed automatically.</li></ul></section>
+    <section class="section"><div class="section-head"><div class="eyebrow" data-i18n="verifyEyebrow">Verify</div><h2 data-i18n="verifyTitle">How to verify it yourself</h2></div><ul><li data-i18n="verify1">Open the VirusTotal report above and review the detection and Code Insights results.</li><li data-i18n="verify2">Review the full published console script from the <a href="index.html#codeTerminal">code panel</a> before running it.</li><li data-i18n="verify3">The SHA-256 shown above belongs to the analyzed <code>instagram-unfollowers-extension.zip</code> package submitted to VirusTotal.</li></ul><div class="actions"><a class="btn" href="index.html" data-i18n="backLink">&larr; Back</a><a class="btn" href="privacy.html" data-i18n="privacyLink">Privacy</a></div></section>
+  </main>
+  <footer class="footer"><span>Instagram Unfollowers · by zeytokg</span><span data-i18n="footerCredit">Made by Zeynep Tokgözü.</span><span><a href="index.html" data-i18n="appLink">App</a> · <a href="privacy.html" data-i18n="privacyLink">Privacy</a></span></footer>
+</div>
 
   <script>
     const I18N = {
       en: {
-        htmlLang: "en", pageTitle: "Security — Instagram Unfollowers Finder", langBtn: "TR", languageLabel: "Language",
-        backLink: "&larr; Back",
-        title: "Security",
-        intro: "This page has what you need to verify the code yourself before you paste it into your own browser console.",
-        hashTitle: "Current file hash",
-        hashBody: "This is the SHA-256 hash of <code>instagram-unfollowers.js</code> as published in this repository. After downloading the file, you can compute its hash yourself and compare.",
+        htmlLang: "en", pageTitle: "Security — Instagram Unfollowers Finder", languageLabel: "Language",
+        backLink: "&larr; Back", title: "Security", privacyLink: "Privacy", appLink: "App", verifyEyebrow: "Verify", instagramEyebrow: "Instagram",
+        intro: "Review the published security report and the code before using the extension.",
+        signatureTitle: "File signature", packageLabel: "Analyzed package", cleanLabel: "No detections", vtCounts: "0 malicious, 0 suspicious.",
+        vtBody: "No security vendors flagged this file as malicious in the submitted VirusTotal analysis.",
+        vtLink: "Review VirusTotal report ↗", insightsTitle: "Code insights",
+        insightsBody: "VirusTotal Code Insights reports that the extension provides an Instagram UI for finding and unfollowing non-mutual accounts using Instagram's native endpoints, with no data exfiltration, remote code execution, or malicious behavior found.",
+        detailsBtn: "Review VirusTotal report ↗", codeBtn: "Review code", sessionTitle: "Login &amp; privacy",
+        loginCardTitle: "Instagram login required", loginCardBody: "Install the extension, then log in to instagram.com. It works only while an Instagram session is active in your browser.",
+        credentialsTitle: "No credential collection", credentialsBody: "The extension does not ask you to enter or send your Instagram password to the developer, and it does not store your login credentials. It uses the Instagram session already open in your browser.",
+        storageTitle: "No developer account database", storageBody: "The developer does not maintain a separate developer-controlled database of the Instagram account information processed by the extension. Processing is performed for the tool's functionality in your browser.",
         whatTitle: "What the code does",
         what1: "Only runs when the page is <code>www.instagram.com</code> — it refuses to run anywhere else.",
-        what2: "Reads your existing Instagram session cookies to make requests as you; it never asks for or stores a password.",
-        what3: "Every network request goes to <code>www.instagram.com</code> directly from your browser — nothing is sent to any third-party server.",
+        what2: "Uses your existing Instagram session to make the requests needed for the tool; it never asks for or stores your password.",
+        what3: "Instagram requests are made directly from your browser to <code>www.instagram.com</code>; the extension is not designed to send your Instagram data to a developer-controlled server.",
         what4: "Unfollowing only happens after you select accounts and confirm — nothing is unfollowed automatically.",
         verifyTitle: "How to verify it yourself",
-        verify1: 'Read the full source on <a href="https://github.com/zeytokg" target="_blank" rel="noopener">GitHub</a> before running it — it\'s a single, readable file.',
-        verify2: "Compare the hash above with the file you're about to paste (e.g. with <code>shasum -a 256 instagram-unfollowers.js</code>).",
-        verify3: "You're welcome to run your own scanner (VirusTotal, Semgrep, or anything else) against the file — it's short enough to review in a few minutes either way."
+        verify1: "Open the VirusTotal report above and review the detection and Code Insights results.",
+        verify2: 'Review the full published console script from the <a href="index.html#codeTerminal">code panel</a> before running it.',
+        verify3: "The SHA-256 shown above belongs to the analyzed <code>instagram-unfollowers-extension.zip</code> package submitted to VirusTotal.",
+        footerCredit: "Made by Zeynep Tokgözü."
       },
       it: {
-        htmlLang: "it", pageTitle: "Sicurezza — Instagram Unfollowers Finder", langBtn: "IT", languageLabel: "Lingua",
-        backLink: "&larr; Indietro",
-        title: "Sicurezza",
-        intro: "Questa pagina contiene ciò che ti serve per verificare personalmente il codice prima di incollarlo nella console del browser.",
-        hashTitle: "Hash del file corrente",
-        hashBody: "Questo è l’hash SHA-256 di <code>instagram-unfollowers.js</code> pubblicato in questo repository. Dopo aver scaricato il file, puoi calcolare l’hash e confrontarlo.",
+        htmlLang: "it", pageTitle: "Sicurezza — Instagram Unfollowers Finder", languageLabel: "Lingua",
+        backLink: "&larr; Indietro", title: "Sicurezza", privacyLink: "Privacy", appLink: "App", verifyEyebrow: "Verifica", instagramEyebrow: "Instagram",
+        intro: "Controlla il report di sicurezza pubblicato e il codice prima di usare l’estensione.",
+        signatureTitle: "Firma del file", packageLabel: "Pacchetto analizzato", cleanLabel: "Nessun rilevamento", vtCounts: "0 dannosi, 0 sospetti.",
+        vtBody: "Nell’analisi VirusTotal inviata, nessun fornitore di sicurezza ha segnalato questo file come dannoso.",
+        vtLink: "Apri il report VirusTotal ↗", insightsTitle: "Analisi del codice",
+        insightsBody: "VirusTotal Code Insights indica che l’estensione fornisce un’interfaccia su Instagram per trovare e smettere di seguire gli account non reciproci tramite gli endpoint nativi di Instagram; non sono stati rilevati esfiltrazione di dati, esecuzione di codice remoto o comportamenti dannosi.",
+        detailsBtn: "Apri il report VirusTotal ↗", codeBtn: "Controlla il codice", sessionTitle: "Accesso &amp; privacy",
+        loginCardTitle: "Accesso a Instagram necessario", loginCardBody: "Installa l’estensione, poi accedi a instagram.com. Funziona solo quando nel browser è attiva una sessione Instagram.",
+        credentialsTitle: "Nessuna raccolta delle credenziali", credentialsBody: "L’estensione non ti chiede di inserire o inviare allo sviluppatore la password di Instagram e non conserva le credenziali di accesso. Usa la sessione Instagram già aperta nel browser.",
+        storageTitle: "Nessun database account dello sviluppatore", storageBody: "Lo sviluppatore non mantiene un database separato e controllato dallo sviluppatore con le informazioni degli account Instagram elaborate dall’estensione. L’elaborazione avviene nel browser per far funzionare lo strumento.",
         whatTitle: "Cosa fa il codice",
         what1: "Funziona solo quando la pagina è <code>www.instagram.com</code> — rifiuta di eseguirsi altrove.",
-        what2: "Legge i cookie della tua sessione Instagram esistente per effettuare richieste come te; non chiede né salva mai la password.",
-        what3: "Ogni richiesta di rete va direttamente dal tuo browser a <code>www.instagram.com</code> — nulla viene inviato a server di terze parti.",
+        what2: "Usa la sessione Instagram già attiva per effettuare le richieste necessarie allo strumento; non chiede né salva mai la password.",
+        what3: "Le richieste a Instagram vengono effettuate direttamente dal browser verso <code>www.instagram.com</code>; l’estensione non è progettata per inviare i tuoi dati Instagram a un server controllato dallo sviluppatore.",
         what4: "L’unfollow avviene solo dopo che selezioni gli account e confermi — nulla viene rimosso automaticamente.",
         verifyTitle: "Come verificarlo personalmente",
-        verify1: 'Leggi tutto il codice sorgente su <a href="https://github.com/zeytokg" target="_blank" rel="noopener">GitHub</a> prima di eseguirlo — è un singolo file leggibile.',
-        verify2: "Confronta l’hash qui sopra con quello del file che stai per incollare (ad esempio con <code>shasum -a 256 instagram-unfollowers.js</code>).",
-        verify3: "Puoi anche eseguire il tuo scanner (VirusTotal, Semgrep o altro) sul file — è abbastanza breve da poter essere controllato in pochi minuti."
+        verify1: "Apri il report VirusTotal qui sopra e controlla i risultati Detection e Code Insights.",
+        verify2: 'Controlla tutto lo script console pubblicato nel <a href="index.html#codeTerminal">pannello del codice</a> prima di eseguirlo.',
+        verify3: "Lo SHA-256 mostrato qui sopra appartiene al pacchetto analizzato <code>instagram-unfollowers-extension.zip</code> inviato a VirusTotal.",
+        footerCredit: "Realizzato da Zeynep Tokgözü."
       },
       tr: {
-        htmlLang: "tr", pageTitle: "Güvenlik — Instagram Takip Etmeyenler Bulucu", langBtn: "EN", languageLabel: "Dil",
-        backLink: "&larr; Geri",
-        title: "Güvenlik",
-        intro: "Bu sayfada, kodu tarayıcı konsoluna yapıştırmadan önce kendin doğrulaman için gereken bilgiler var.",
-        hashTitle: "Güncel dosya hash'i",
-        hashBody: "Bu, bu depoda yayınlanan <code>instagram-unfollowers.js</code> dosyasının SHA-256 hash'idir. Dosyayı indirdikten sonra hash'ini kendin hesaplayıp karşılaştırabilirsin.",
+        htmlLang: "tr", pageTitle: "Güvenlik — Instagram Takip Etmeyenler Bulucu", languageLabel: "Dil",
+        backLink: "&larr; Geri", title: "Güvenlik", privacyLink: "Gizlilik", appLink: "Uygulama", verifyEyebrow: "Doğrula", instagramEyebrow: "Instagram",
+        intro: "Eklentiyi kullanmadan önce yayınlanan güvenlik raporunu ve kodu inceleyebilirsin.",
+        signatureTitle: "Dosya imzası", packageLabel: "Analiz edilen paket", cleanLabel: "Tespit yok", vtCounts: "0 zararlı, 0 şüpheli.",
+        vtBody: "Gönderilen VirusTotal analizinde hiçbir güvenlik sağlayıcısı bu dosyayı zararlı olarak işaretlemedi.",
+        vtLink: "VirusTotal raporunu incele ↗", insightsTitle: "Kod analizi",
+        insightsBody: "VirusTotal Code Insights, eklentinin Instagram’ın kendi endpoint’lerini kullanarak karşılıklı olmayan hesapları bulmak ve takipten çıkarmak için Instagram üzerinde bir arayüz sunduğunu; veri sızdırma, uzaktan kod çalıştırma veya zararlı davranış bulunmadığını bildiriyor.",
+        detailsBtn: "VirusTotal raporunu incele ↗", codeBtn: "Kodu incele", sessionTitle: "Giriş &amp; gizlilik",
+        loginCardTitle: "Instagram’a giriş gerekli", loginCardBody: "Eklentiyi kurduktan sonra instagram.com’a giriş yap. Eklenti yalnızca tarayıcında aktif bir Instagram oturumu varken çalışır.",
+        credentialsTitle: "Giriş bilgilerini toplamaz", credentialsBody: "Eklenti Instagram şifreni geliştiriciye girmeni veya göndermeni istemez ve giriş bilgilerini saklamaz. Tarayıcında zaten açık olan Instagram oturumunu kullanır.",
+        storageTitle: "Geliştirici tarafında hesap veritabanı yok", storageBody: "Geliştirici, eklentinin işlediği Instagram hesap bilgileri için ayrı ve geliştirici kontrollü bir veritabanı tutmaz. İşleme, aracın çalışması için tarayıcında gerçekleştirilir.",
         whatTitle: "Kod ne yapar",
         what1: "Sadece sayfa <code>www.instagram.com</code> olduğunda çalışır — başka hiçbir yerde çalışmayı reddeder.",
-        what2: "İsteklerini senin adına yapmak için mevcut Instagram oturum çerezlerini okur; hiçbir zaman şifre istemez veya saklamaz.",
-        what3: "Her ağ isteği doğrudan tarayıcından <code>www.instagram.com</code>'a gider — hiçbir şey üçüncü taraf bir sunucuya gönderilmez.",
+        what2: "Aracın ihtiyaç duyduğu istekleri yapmak için mevcut Instagram oturumunu kullanır; hiçbir zaman şifre istemez veya saklamaz.",
+        what3: "Instagram istekleri doğrudan tarayıcından <code>www.instagram.com</code> adresine yapılır; eklenti Instagram verilerini geliştirici kontrollü bir sunucuya göndermek üzere tasarlanmamıştır.",
         what4: "Takipten çıkarma yalnızca sen hesap seçip onayladıktan sonra gerçekleşir — hiçbir şey otomatik olarak takipten çıkarılmaz.",
         verifyTitle: "Kendin nasıl doğrularsın",
-        verify1: 'Çalıştırmadan önce tüm kaynak kodunu <a href="https://github.com/zeytokg" target="_blank" rel="noopener">GitHub</a>\'da oku — tek, okunabilir bir dosya.',
-        verify2: "Yukarıdaki hash'i yapıştıracağın dosyayla karşılaştır (örneğin <code>shasum -a 256 instagram-unfollowers.js</code> ile).",
-        verify3: "Dosya üzerinde istersen kendi tarayıcını da çalıştırabilirsin (VirusTotal, Semgrep ya da başka bir şey) — zaten birkaç dakikada okunacak kısalıkta bir dosya."
+        verify1: "Yukarıdaki VirusTotal raporunu açıp Detection ve Code Insights sonuçlarını inceleyebilirsin.",
+        verify2: 'Çalıştırmadan önce yayınlanan konsol kodunun tamamını <a href="index.html#codeTerminal">kod panelinden</a> inceleyebilirsin.',
+        verify3: "Yukarıdaki SHA-256, VirusTotal’a gönderilen analiz edilmiş <code>instagram-unfollowers-extension.zip</code> paketine aittir.",
+        footerCredit: "Zeynep Tokgözü tarafından yapılmıştır."
       }
     };
 

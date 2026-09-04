@@ -483,7 +483,7 @@ img{image-rendering:auto;-webkit-user-drag:none}
 
     <div class="section" style="padding-bottom:0;">
       <div class="notice">
-        <p data-i18n="noticeText"><b>Heads up:</b> Chrome only lets extensions install with one click through the official Chrome Web Store. Anything downloaded from a website — including this one — has to be added manually through Developer Mode. That's not a shortcut I skipped; it's a Chrome restriction that applies to every extension not published in the Store.</p>
+        <p data-i18n="noticeText"><b>Now on the Chrome Web Store:</b> install the extension directly from its official store listing. Installation is handled directly by Chrome.</p>
       </div>
     </div>
 
@@ -492,32 +492,27 @@ img{image-rendering:auto;-webkit-user-drag:none}
         <h2><span class="dot"></span><span data-i18n="installTitle">Install it (once)</span></h2>
 
         <div class="dl-box">
-          <a class="dl-link" href="instagram-unfollowers-extension.zip" download data-i18n="dlLabel">
-            <span>&#9829;</span><span data-i18n="dlLabelText">Download the extension (.zip)</span>
+          <a class="dl-link" href="https://chromewebstore.google.com/detail/instagram-unfollowers-by/nncocnefbohhghckdiaffdiglocllahj?authuser=0&hl=tr" target="_blank" rel="noopener" data-i18n="dlLabel">
+            <span>&#9829;</span><span data-i18n="dlLabelText">Open in Chrome Web Store</span>
           </a>
-          <p class="dl-hint" data-i18n="dlHint">Unzips into a single folder — that's the folder you'll point Chrome at below.</p>
+          <p class="dl-hint" data-i18n="dlHint">Install from the official store listing, then refresh Instagram.</p>
         </div>
 
         <div class="step" style="margin-top:8px;">
           <span class="num">1</span>
-          <p data-i18n="install1">Unzip the downloaded file.</p>
+          <p data-i18n="install1">Open the Chrome Web Store listing above.</p>
         </div>
         <div class="step">
           <span class="num">2</span>
-          <p data-i18n="install2">Open <code>chrome://extensions</code> in Chrome.</p>
+          <p data-i18n="install2">Click <strong>Add to Chrome</strong> and confirm the installation.</p>
         </div>
         <div class="step">
           <span class="num">3</span>
-          <p data-i18n="install3">Turn on <strong>Developer mode</strong> (top-right toggle).</p>
+          <p data-i18n="install3">Open <a href="https://www.instagram.com" target="_blank" rel="noopener">instagram.com</a> and log in to your account. The extension needs an active Instagram session in this browser; if you were already signed in, refresh the tab.</p>
         </div>
-        <div class="step">
-          <span class="num">4</span>
-          <p data-i18n="install4">Click <strong>Load unpacked</strong> and select the unzipped folder.</p>
-        </div>
-        <div class="step">
-          <span class="num">5</span>
-          <p data-i18n="install5">Open or refresh <a href="https://www.instagram.com" target="_blank" rel="noopener">instagram.com</a>.</p>
-        </div>
+      </div>
+      <div class="notice" style="margin-top:18px;margin-bottom:0;">
+        <p data-i18n="privacyNote"><b>Login &amp; privacy:</b> the extension never asks you to enter or send your Instagram password to the developer and does not store your login credentials. It uses the Instagram session already open in your browser. The developer does not maintain a separate developer-controlled database of the Instagram account information processed by the extension.</p>
       </div>
     </div>
 
@@ -541,11 +536,11 @@ img{image-rendering:auto;-webkit-user-drag:none}
 
     <div class="section">
       <div class="card">
-        <h2><span class="dot"></span><span data-i18n="whyTitle">Why not the Chrome Web Store</span></h2>
+        <h2><span class="dot"></span><span data-i18n="whyTitle">Why install from the Chrome Web Store</span></h2>
         <ul class="list">
-          <li data-i18n="why1">Automated bulk-unfollow tools are a category Google routinely rejects or later removes from the Store, because they act on a third-party service (Instagram) in ways that service's own terms don't allow.</li>
-          <li data-i18n="why2">Submitting would mean a review process, a developer fee, and a real chance of rejection or takedown later — for a personal tool, that's not worth it.</li>
-          <li data-i18n="why3">Loading it unpacked costs you thirty seconds and gives the exact same result, with the source fully visible before you install it.</li>
+          <li data-i18n="why1">Install directly from the official store listing in a couple of clicks.</li>
+          <li data-i18n="why2">Chrome handles installation and extension updates for you.</li>
+          <li data-i18n="why3">You can still review the published console script and security information on this site.</li>
         </ul>
       </div>
     </div>
@@ -553,6 +548,7 @@ img{image-rendering:auto;-webkit-user-drag:none}
     <hr class="rule">
     <footer>
       <span data-i18n="footer1">Open source, written by <b>zeytokg</b>.</span><br>
+      <span data-i18n="footerCredit">Made by Zeynep Tokgözü.</span><br>
       <span data-i18n="footer2">Not an official Instagram product, not affiliated with Meta.</span><br>
       <a href="security.html" data-i18n="securityLink">Security &amp; verification</a>
     </footer>
@@ -568,24 +564,24 @@ img{image-rendering:auto;-webkit-user-drag:none}
         badge: "chrome extension &middot; true one click &middot; no console",
         title: "Install the extension",
         intro: "A small Chrome extension. Click the pink heart while you're on Instagram and the panel opens right there — no console, no bookmark juggling, no second click.",
-        noticeText: "<b>Heads up:</b> Chrome only lets extensions install with one click through the official Chrome Web Store. Anything downloaded from a website — including this one — has to be added manually through Developer Mode. That's not a shortcut I skipped; it's a Chrome restriction that applies to every extension not published in the Store.",
+        noticeText: "<b>Now on the Chrome Web Store:</b> install the extension directly from its official store listing. Installation is handled directly by Chrome.",
         installTitle: "Install it (once)",
-        dlLabelText: "Download the extension (.zip)",
-        dlHint: "Unzips into a single folder — that's the folder you'll point Chrome at below.",
-        install1: "Unzip the downloaded file.",
-        install2: 'Open <code>chrome://extensions</code> in Chrome.',
-        install3: "Turn on <strong>Developer mode</strong> (top-right toggle).",
-        install4: "Click <strong>Load unpacked</strong> and select the unzipped folder.",
-        install5: 'Open or refresh <a href="https://www.instagram.com" target="_blank" rel="noopener">instagram.com</a>.',
+        dlLabelText: "Open in Chrome Web Store",
+        dlHint: "Install from the official store listing, then refresh Instagram.",
+        install1: "Open the Chrome Web Store listing above.",
+        install2: "Click <strong>Add to Chrome</strong> and confirm the installation.",
+        install3: 'Open <a href="https://www.instagram.com" target="_blank" rel="noopener">instagram.com</a> and log in to your account. The extension needs an active Instagram session in this browser; if you were already signed in, refresh the tab.',
+        privacyNote: "<b>Login &amp; privacy:</b> the extension never asks you to enter or send your Instagram password to the developer and does not store your login credentials. It uses the Instagram session already open in your browser. The developer does not maintain a separate developer-controlled database of the Instagram account information processed by the extension.",
         useTitle: "Use it",
         use1: "A pink heart appears on the page — drag it anywhere you like.",
         use2: "Click it (or the toolbar icon) — the panel opens right away.",
         use3: 'Click <strong>"Scan now"</strong>. No console, no second click, nothing to paste.',
-        whyTitle: "Why not the Chrome Web Store",
-        why1: "Automated bulk-unfollow tools are a category Google routinely rejects or later removes from the Store, because they act on a third-party service (Instagram) in ways that service's own terms don't allow.",
-        why2: "Submitting would mean a review process, a developer fee, and a real chance of rejection or takedown later — for a personal tool, that's not worth it.",
-        why3: "Loading it unpacked costs you thirty seconds and gives the exact same result, with the source fully visible before you install it.",
+        whyTitle: "Why install from the Chrome Web Store",
+        why1: "Install directly from the official store listing in a couple of clicks.",
+        why2: "Chrome handles installation and extension updates for you.",
+        why3: "You can still review the published console script and security information on this site.",
         footer1: "Open source, written by <b>zeytokg</b>.",
+        footerCredit: "Made by Zeynep Tokgözü.",
         footer2: "Not an official Instagram product, not affiliated with Meta.",
         securityLink: "Security &amp; verification"
       },
@@ -597,24 +593,24 @@ img{image-rendering:auto;-webkit-user-drag:none}
         badge: "estensione chrome &middot; un vero clic &middot; senza console",
         title: "Installa l’estensione",
         intro: "Una piccola estensione Chrome. Clicca il cuore rosa mentre sei su Instagram e il pannello si apre direttamente nella pagina — niente console, niente bookmark, niente secondo clic.",
-        noticeText: "<b>Nota:</b> Chrome consente l’installazione con un clic solo tramite il Chrome Web Store ufficiale. Qualsiasi estensione scaricata da un sito web — inclusa questa — deve essere aggiunta manualmente tramite Modalità sviluppatore. Non è un passaggio che ho saltato: è una restrizione di Chrome valida per ogni estensione non pubblicata nello Store.",
+        noticeText: "<b>Ora sul Chrome Web Store:</b> installa l’estensione direttamente dalla pagina ufficiale dello Store. L’installazione viene gestita direttamente da Chrome.",
         installTitle: "Installala (una volta)",
-        dlLabelText: "Scarica l’estensione (.zip)",
-        dlHint: "Si estrae in una singola cartella — è quella che indicherai a Chrome nei passaggi qui sotto.",
-        install1: "Estrai il file scaricato.",
-        install2: "Apri <code>chrome://extensions</code> in Chrome.",
-        install3: "Attiva la <strong>Modalità sviluppatore</strong> (interruttore in alto a destra).",
-        install4: "Clicca <strong>Carica estensione non pacchettizzata</strong> e seleziona la cartella estratta.",
-        install5: 'Apri o aggiorna <a href="https://www.instagram.com" target="_blank" rel="noopener">instagram.com</a>.',
+        dlLabelText: "Apri nel Chrome Web Store",
+        dlHint: "Installala dalla pagina ufficiale dello Store, poi aggiorna Instagram.",
+        install1: "Apri la pagina del Chrome Web Store qui sopra.",
+        install2: "Clicca <strong>Aggiungi a Chrome</strong> e conferma l’installazione.",
+        install3: 'Apri <a href="https://www.instagram.com" target="_blank" rel="noopener">instagram.com</a> e accedi al tuo account. L’estensione richiede una sessione Instagram attiva in questo browser; se eri già connesso, aggiorna la scheda.',
+        privacyNote: "<b>Accesso &amp; privacy:</b> l’estensione non ti chiede mai di inserire o inviare allo sviluppatore la password di Instagram e non conserva le credenziali di accesso. Usa la sessione Instagram già aperta nel browser. Lo sviluppatore non mantiene un database separato e controllato dallo sviluppatore con le informazioni degli account Instagram elaborate dall’estensione.",
         useTitle: "Usala",
         use1: "Nella pagina appare un cuore rosa — puoi trascinarlo dove preferisci.",
         use2: "Cliccalo (oppure usa l’icona nella toolbar) — il pannello si apre subito.",
         use3: 'Clicca <strong>"Scan now"</strong>. Niente console, niente secondo clic, nulla da incollare.',
-        whyTitle: "Perché non è nel Chrome Web Store",
-        why1: "Gli strumenti di unfollow automatico in massa sono una categoria che Google spesso rifiuta o rimuove dallo Store, perché agiscono su un servizio di terze parti (Instagram) in modi che i termini del servizio non consentono.",
-        why2: "La pubblicazione richiederebbe un processo di revisione, una quota sviluppatore e comporterebbe un rischio reale di rifiuto o rimozione successiva — per uno strumento personale non ne vale la pena.",
-        why3: "Caricarla come estensione non pacchettizzata richiede circa trenta secondi e dà lo stesso risultato, con il codice sorgente completamente visibile prima dell’installazione.",
+        whyTitle: "Perché installarla dal Chrome Web Store",
+        why1: "Installa direttamente dalla pagina ufficiale dello Store in pochi clic.",
+        why2: "Chrome gestisce installazione e aggiornamenti dell’estensione.",
+        why3: "Puoi comunque controllare lo script console pubblicato e le informazioni di sicurezza su questo sito.",
         footer1: "Open source, scritto da <b>zeytokg</b>.",
+        footerCredit: "Realizzato da Zeynep Tokgözü.",
         footer2: "Non è un prodotto ufficiale di Instagram e non è affiliato a Meta.",
         securityLink: "Sicurezza &amp; verifica"
       },
@@ -626,24 +622,24 @@ img{image-rendering:auto;-webkit-user-drag:none}
         badge: "chrome eklentisi &middot; gerçek tek tık &middot; konsol yok",
         title: "Eklentiyi kur",
         intro: "Küçük bir Chrome eklentisi. Instagram'dayken pembe kalbe tıkla, panel hemen orada açılır — konsol yok, yer imi derdi yok, ikinci tıklama yok.",
-        noticeText: "<b>Not:</b> Chrome, eklentilerin tek tıkla kurulmasına sadece resmi Chrome Web Store üzerinden izin veriyor. Bir web sitesinden indirilen her şey — bu da dahil — Developer Mode üzerinden elle eklenmek zorunda. Bu benim atladığım bir kısayol değil, Store'da yayınlanmamış her eklenti için geçerli olan bir Chrome kısıtlaması.",
+        noticeText: "<b>Artık Chrome Web Store’da:</b> eklentiyi resmi mağaza sayfasından doğrudan kurabilirsin. Kurulumu doğrudan Chrome yönetir.",
         installTitle: "Kur (bir kereliğine)",
-        dlLabelText: "Eklentiyi indir (.zip)",
-        dlHint: "Tek bir klasöre çıkar — aşağıda Chrome'a göstereceğin klasör bu olacak.",
-        install1: "İndirdiğin dosyayı çıkart (unzip).",
-        install2: "Chrome'da <code>chrome://extensions</code> aç.",
-        install3: "<strong>Developer mode</strong>'u aç (sağ üstteki anahtar).",
-        install4: "<strong>Load unpacked</strong>'a bas ve çıkarttığın klasörü seç.",
-        install5: '<a href="https://www.instagram.com" target="_blank" rel="noopener">instagram.com</a>\'ı aç ya da yenile.',
+        dlLabelText: "Chrome Web Store’da Aç",
+        dlHint: "Resmi mağaza sayfasından kur, ardından Instagram’ı yenile.",
+        install1: "Yukarıdaki Chrome Web Store sayfasını aç.",
+        install2: "<strong>Chrome’a ekle</strong> butonuna tıkla ve kurulumu onayla.",
+        install3: '<a href="https://www.instagram.com" target="_blank" rel="noopener">instagram.com</a>\'u aç ve hesabına giriş yap. Eklentinin bu tarayıcıda aktif bir Instagram oturumuna ihtiyacı vardır; zaten giriş yaptıysan sekmeyi yenile.',
+        privacyNote: "<b>Giriş &amp; gizlilik:</b> eklenti Instagram şifreni geliştiriciye girmeni veya göndermeni hiçbir zaman istemez ve giriş bilgilerini saklamaz. Tarayıcında zaten açık olan Instagram oturumunu kullanır. Geliştirici, eklentinin işlediği Instagram hesap bilgileri için ayrı ve geliştirici kontrollü bir veritabanı tutmaz.",
         useTitle: "Kullan",
         use1: "Sayfada pembe bir kalp belirir — istediğin yere sürükleyebilirsin.",
         use2: "Ona (ya da araç çubuğundaki simgeye) tıkla — panel hemen açılır.",
         use3: 'Sağ üstte panel açılır — <strong>"Scan now"</strong>a tıkla. Konsol yok, ikinci tıklama yok, yapıştırma yok.',
-        whyTitle: "Neden Chrome Web Store değil",
-        why1: "Otomatik toplu takipten çıkarma araçları, Google'ın Store'dan düzenli olarak reddettiği ya da sonradan kaldırdığı bir kategori — çünkü üçüncü taraf bir servise (Instagram) o servisin kendi kurallarının izin vermediği şekilde işlem yapıyor.",
-        why2: "Başvurmak bir inceleme süreci, geliştirici ücreti ve reddedilme/kaldırılma riski demek — kişisel bir araç için buna değmez.",
-        why3: "Unpacked yüklemek otuz saniyeni alır ve aynı sonucu verir, üstelik kaynak kod kurmadan önce tamamen görünür.",
+        whyTitle: "Neden Chrome Web Store’dan kurmalı",
+        why1: "Resmi mağaza sayfasından birkaç tıkla doğrudan kurabilirsin.",
+        why2: "Kurulumu ve eklenti güncellemelerini Chrome yönetir.",
+        why3: "Yayınlanan konsol kodunu ve güvenlik bilgilerini yine bu siteden inceleyebilirsin.",
         footer1: "Açık kaynak, <b>zeytokg</b> tarafından yazıldı.",
+        footerCredit: "Zeynep Tokgözü tarafından yapılmıştır.",
         footer2: "Resmi bir Instagram ürünü değildir, Meta ile ilişkili değildir.",
         securityLink: "Güvenlik &amp; doğrulama"
       }
