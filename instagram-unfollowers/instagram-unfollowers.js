@@ -30,7 +30,7 @@
 
   const ROOT_ID = "igu-root";
   const STYLE_ID = "igu-style";
-  const STORAGE_KEY = "igu_unfollower_state_v2";
+  const STORAGE_KEY = "igu_unfollower_state_v3"; // v3: reset legacy filter/hidden state that could hide private accounts
   const APP_ID_HEADER = "936619743392459"; // Instagram web's public app id
   const MAX_RETRIES = 3;
 
@@ -150,7 +150,7 @@
     users: [],                 // everyone you follow, after scanning
     selected: new Set(),
     hidden: new Set(saved.hidden || []),
-    filters: saved.filters || { verified: true, private: true },
+    filters: { verified: true, private: true, ...(saved.filters || {}) },
     search: "",
     settings: { ...DEFAULTS, ...(saved.settings || {}) },
     progress: { current: 0, total: 0, note: "" },
@@ -613,7 +613,13 @@
   function viewResults() {
     const list = displayedUsers();
     const rows = list.length ? list.map(userRowHTML).join("") : `<p class="igu-muted">${esc(t("noMatch"))}</p>`;
-    const total = list.length;
+    // Keep the headline count independent from display filters. In the old
+    // version, turning the Private chip off made private non-followers vanish
+    // from both the list and the count, which looked like the scan missed them.
+    const total = state.users
+      .filter((u) => !u.followsBack)
+      .filter((u) => !state.hidden.has(u.id))
+      .length;
     const allSelected = list.length && list.every((u) => state.selected.has(u.id));
     return `
       <div class="igu-muted">${esc(t("notFollowingBack", { n: total }))}</div>
