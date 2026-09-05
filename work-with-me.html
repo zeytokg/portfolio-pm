@@ -473,11 +473,77 @@
     column-gap:16px;
   }
 
-  .cv-download-card.references .cv-download-action{
-    margin-top:0;
-    padding-top:0;
-    border-top:0;
-    min-width:150px;
+  div.cv-download-card.references:hover{
+    transform:none;
+    box-shadow:0 12px 28px -12px color-mix(in srgb,var(--accent) 35%,transparent);
+  }
+
+  .cv-download-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+  }
+
+  .cv-action-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    padding:8px 14px;
+    border-radius:10px;
+    font-family:"Work Sans",sans-serif;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.02em;
+    text-decoration:none !important;
+    white-space:nowrap;
+    transition:transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease, color .18s ease;
+  }
+
+  .cv-btn-primary{
+    background:var(--accent);
+    color:var(--on-accent) !important;
+    border:1.5px solid var(--accent);
+    box-shadow:0 4px 12px color-mix(in srgb,var(--accent) 30%,transparent);
+  }
+
+  .cv-btn-primary:hover{
+    transform:translateY(-2px);
+    background:var(--accent-hover);
+    border-color:var(--accent-hover);
+    box-shadow:0 6px 18px color-mix(in srgb,var(--accent) 45%,transparent);
+  }
+
+  .cv-btn-primary .cv-download-arrow{
+    font-size:14px;
+    transition:transform .18s ease;
+  }
+
+  .cv-btn-primary:hover .cv-download-arrow{
+    transform:translate(2px, -2px);
+  }
+
+  .cv-btn-secondary{
+    background:color-mix(in srgb,var(--accent-soft) 40%,transparent);
+    color:var(--ink) !important;
+    border:1.5px solid color-mix(in srgb,var(--accent) 40%,var(--line));
+  }
+
+  .cv-btn-secondary:hover{
+    transform:translateY(-2px);
+    background:color-mix(in srgb,var(--accent-soft) 85%,transparent);
+    border-color:var(--accent);
+    color:var(--accent-hover) !important;
+  }
+
+  .cv-btn-secondary .cv-download-arrow{
+    font-size:15px;
+    transition:transform .18s ease;
+  }
+
+  .cv-btn-secondary:hover .cv-download-arrow{
+    transform:translateX(3px);
   }
 
   @media (max-width:860px){
@@ -492,14 +558,35 @@
     .cv-download-card.references{
       grid-column:auto;
       display:flex;
+      flex-direction:column;
       align-items:stretch;
+      gap:12px;
     }
 
-    .cv-download-card.references .cv-download-action{
+    .cv-download-actions{
+      justify-content:stretch;
+      gap:8px;
       margin-top:auto;
       padding-top:12px;
       border-top:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));
-      min-width:0;
+    }
+
+    .cv-action-btn{
+      flex:1 1 auto;
+      justify-content:center;
+      text-align:center;
+      padding:9px 12px;
+    }
+  }
+
+  @media (max-width:480px){
+    .cv-download-actions{
+      flex-direction:column-reverse;
+      align-items:stretch;
+    }
+
+    .cv-action-btn{
+      width:100%;
     }
   }
 
@@ -618,17 +705,23 @@
       </span>
     </a>
 
-    <a class="cv-download-card references" href="index.html#testimonials">
+    <div class="cv-download-card references">
       <span class="cv-tab-label">References</span>
-      <span>
+      <div class="cv-download-details">
         <span class="cv-download-title" style="display:block;">Written Recommendations</span>
         <span class="cv-download-copy" style="display:block; margin-top:4px;">Recommendations from clients, peers and direct reports.</span>
-      </span>
-      <span class="cv-download-action">
-        <span>View References</span>
-        <span class="cv-download-arrow">→</span>
-      </span>
-    </a>
+      </div>
+      <div class="cv-download-actions">
+        <a class="cv-action-btn cv-btn-secondary" href="index.html#testimonials">
+          <span>View References</span>
+          <span class="cv-download-arrow">→</span>
+        </a>
+        <a class="cv-action-btn cv-btn-primary" href="https://www.linkedin.com/in/zeytokg/details/recommendations/?detailScreenTabIndex=0" target="_blank" rel="noopener">
+          <span>See All on LinkedIn</span>
+          <span class="cv-download-arrow">↗</span>
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 <hr class="rule">
